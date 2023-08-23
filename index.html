@@ -1,0 +1,243 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FGO NP Damage Table</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+    <nav class="header">
+        <div>fgonptable@proton.me</div>
+    </nav>
+
+    <div class="content">
+
+        <div class="settings">
+
+            <fieldset id="CardType">
+                <legend>CardType:</legend>
+
+                <div>
+                    <input type="checkbox" id="Buster" name="cardtype" checked value="Buster" />
+                    <label for="buster">Buster</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="Arts" name="cardtype" checked value="Arts" />
+                    <label for="arts">Arts</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="Quick" name="cardtype" checked value="Quick" />
+                    <label for="quick">Quick</label>
+                </div>
+            </fieldset>
+
+            <fieldset id="NPLevels">
+                <legend>NP Levels:</legend>
+
+                <div>
+                    <input type="checkbox" id="np1" name="np1" checked value="1" />
+                    <label for="np1">Level 1</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="np2" name="np2" value="2" / />
+                    <label for="np2">Level 2</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="np3" name="np3" value="3" / />
+                    <label for="np3">Level 3</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="np4" name="np4" value="4" / />
+                    <label for="np4">Level 4</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="np5" name="np5" value="5" / />
+                    <label for="np5">Level 5</label>
+                </div>
+            </fieldset>
+
+            <fieldset id="OCLevels">
+                <legend>OC Levels:</legend>
+
+                <div class="inline_div">
+                    <input type="checkbox" id="OC1" name="OC1" checked value="1" />
+                    <label for="OC1">Level 1</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="OC2" name="OC2" value="2" />
+                    <label for="OC2">Level 2</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="OC3" name="OC3" value="3" />
+                    <label for="OC3">Level 3</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="OC4" name="OC4" value="4" />
+                    <label for="OC4">Level 4</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="OC5" name="OC5" value="5" />
+                    <label for="OC5">Level 5</label>
+                </div>
+            </fieldset>
+
+            <fieldset id="EnemyClass">
+                <legend>Enemy Class:</legend>
+
+                <div>
+                    <label for="Shielder"> <input type="radio" name="class" id="Shielder" checked>Shielder</label>
+                    <label for="Saber"> <input type="radio" name="class" id="Saber">Saber</label>
+                    <label for="Archer"> <input type="radio" name="class" id="Archer">Archer</label>
+                    <label for="Lancer"> <input type="radio" name="class" id="Lancer">Lancer</label>
+                    <label for="Caster"> <input type="radio" name="class" id="Caster">Caster</label>
+                    <label for="Assassin"> <input type="radio" name="class" id="Assassin">Assassin</label>
+                    <label for="Berserker"> <input type="radio" name="class" id="Berserker">Berserker</label>
+
+                </div>
+
+                <div>
+                    <label for="Ruler"> <input type="radio" name="class" id="Ruler">Ruler</label>
+                    <label for="Avenger"> <input type="radio" name="class" id="Avenger">Avenger</label>
+                    <label for="Alterego"> <input type="radio" name="class" id="Alterego">Alterego</label>
+                    <label for="Mooncancer"> <input type="radio" name="class" id="Mooncancer">Mooncancer</label>
+                    <label for="Foreigner"> <input type="radio" name="class" id="Foreigner">Foreigner</label>
+                    <label for="Pretender"> <input type="radio" name="class" id="Pretender">Pretender</label>
+                </div>
+
+            </fieldset>
+
+            <fieldset id="EnemyAttribute">
+                <legend>Enemy Attribute:</legend>
+                <label for="Star"><input type="radio" name="attribute" id="Star" checked>Star</label>
+                <label for="Sky"><input type="radio" name="attribute" id="Sky">Sky</label>
+                <label for="Earth"><input type="radio" name="attribute" id="Earth">Earth</label>
+                <label for="Man"><input type="radio" name="attribute" id="Man">Man</label>
+                <label for="Beast"><input type="radio" name="attribute" id="Beast">Beast</label>
+            </fieldset>
+
+            <fieldset id="Config">
+                <legend>Configuration:</legend>
+
+                <div>
+                    <label for="servantAttackBonus">Servant Attack Bonus:</label>
+                    <input type="number" id="servantAttackBonus" name="servantAttackBonus" min="0" max="9999" value="1000" />
+                </div>
+
+                <div>
+                    <label for="cardBonus">Card Bonus, %:</label>
+                    <input type="number" id="cardBonus" name="cardBonus" min="0" max="999" value="0" />
+                </div>
+
+                <div>
+                    <label for="attackBonus">Attack Bonus, %:</label>
+                    <input type="number" id="attackBonus" name="attackBonus" min="0" max="999" value="0" />
+                </div>
+
+                <div>
+                    <label for="powerBonus">Power Bonus, %:</label>
+                    <input type="number" id="powerBonus" name="powerBonus" min="0" max="999" value="0" />
+                </div>
+
+                <div>
+                    <label for="NpBonus">NP Bonus, %:</label>
+                    <input type="number" id="NpBonus" name="NpBonus" min="0" max="999" value="0" />
+                </div>
+
+                <div>
+                    <label for="SpecialDefence">SpecialDefence, %:</label>
+                    <input type="number" id="SpecialDefence" name="SpecialDefence" min="0" max="99" value="0" />
+                </div>
+
+                <hr />
+
+                <div>
+                    <input type="checkbox" id="NPEffectivenessUp" name="NPEffectivenessUp" value="100" />
+                    <label for="NPEffectiveness">NP Effectiveness Up</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="ShowDetails" name="ShowDetails" />
+                    <label for="ShowDetails">Show effects</label>
+                </div>
+
+            </fieldset>
+
+            <fieldset id="LevelFilter">
+                <legend>Level filter</legend>
+                <div>
+                    <input type="checkbox" id="Include100" name="LevelFilter" value="100" />
+                    <label for="Include100">Level 100</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="Include120" name="LevelFilter" value="120" />
+                    <label for="Include120">Level 120</label>
+                </div>
+            </fieldset>
+
+            <fieldset id="TargetFilter">
+                <legend>Target filter</legend>
+                <div>
+                    <input type="checkbox" id="TargetEnemy" name="TargetFilter" value="Enemy" checked />
+                    <label for="TargetEnemy">Enemy</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="TargetEnemyTeam" name="TargetFilter" value="EnemyTeam" checked />
+                    <label for="TargetEnemyTeam">Enemy Team</label>
+                </div>
+            </fieldset>
+
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="tablecontent">
+
+            <fieldset id="EnemyTraits">
+                <legend>Enemy Traits:</legend>
+            </fieldset>
+
+            <table id="NPTable">
+                <thead>
+                    <tr>
+                        <th id="Column_ID" class="filtered">ID</th>
+                        <th id="Column_Servant" class="filtered">Servant</th>
+                        <th>Rarity</th>
+                        <th>Card Type</th>
+                        <th>NP Type</th>
+                        <th>Class</th>
+                        <th>Attribute</th>
+                        <th>Character Level</th>
+                        <th>NP Level</th>
+                        <th>OC Level</th>
+                        <th id="Column_Attack" class="filtered">Attack</th>
+                        <th id="Column_Damage" class="filtered">Damage</th>
+                        <th id="Column_Traits" hidden>Traits</th>
+                        <th id="Column_Effects" hidden>Effects</th>
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <script src="MySource.js"></script>
+    <script src="data.js"></script>
+    <script src="calc.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>
