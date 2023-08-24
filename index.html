@@ -205,9 +205,16 @@
 
         <div class="tablecontent">
 
-            <fieldset id="EnemyTraits">
-                <legend>Enemy Traits:</legend>
-            </fieldset>
+            <div>
+
+                <fieldset id="PlayerClasses">
+                    <legend>Player Classes:</legend>
+                </fieldset>
+
+                <fieldset id="EnemyTraits">
+                    <legend>Enemy Traits:</legend>
+                </fieldset>
+            </div>
 
             <table id="NPTable">
                 <thead>
@@ -217,7 +224,7 @@
                         <th>Rarity</th>
                         <th>Card Type</th>
                         <th>NP Type</th>
-                        <th>Class</th>
+                        <th c id="Column_Class" class="filtered">Class</th>
                         <th>Attribute</th>
                         <th>Character Level</th>
                         <th>NP Level</th>

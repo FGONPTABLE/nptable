@@ -4,32 +4,15 @@ class Application {
     dataSort = {
         sortByID: MySource.getSortableField(),
         sortByName: MySource.getSortableField(),
+        sortByClass: MySource.getSortableField(),
         sortByAttack: MySource.getSortableField(),
         sortByDamage: MySource.getSortableField()
     };
 
-    insertTraitElement(type, parentElementId, elementId, name, checked = false) {
-        var element = document.getElementById(parentElementId);
-
-        var input = document.createElement("input");
-        input.type = type;
-        input.id = elementId;
-        input.name = parentElementId;
-        input.checked = checked;
-        input.value = elementId;
-
-        var label = document.createElement("label");
-        label.for = elementId;
-        label.style = "display: block;";
-
-        label.appendChild(input);
-        label.append(elementId);
-        element.appendChild(label);
-    }
-
     updateDataSource() {
         this.dataSource = [];
 
+        let classes = MySource.documentGetSelectionArray("PlayerClasses");
         let cardTypes = MySource.documentGetSelectionArray("CardType");
         let NPLevels = MySource.documentGetSelectionArrayInt("NPLevels");
         let OCLevels = MySource.documentGetSelectionArrayInt("OCLevels");
@@ -48,30 +31,51 @@ class Application {
             servant.DamageCalculations.forEach((calc) => {
 
                 let targetTypeMatch = targetTypes.includes(calc.NoblePhantasm.TargetType);
+                if (!targetTypeMatch)
+                    return;
+
+                let classMatch = classes.includes(calc.ClassType);
+                if (!classMatch)
+                    return;
+
                 let cardTypeMatch = cardTypes.includes(calc.NoblePhantasm.CardType);
+                if (!cardTypeMatch)
+                    return;
+
                 let OCmatch = OCLevels.includes(calc.OCLevel);
+                if (!OCmatch)
+                    return;
+
                 let traitMatch = calc.Traits.length == 0 || (Traits.length > 0 && checker(calc.Traits, Traits));
-                let FreeNp5 = servant.IsFree && calc.NPLevel == 5;
+                if (!traitMatch)
+                    return;
+
                 let NPLevelMatch = !servant.IsFree && NPLevels.includes(calc.NPLevel);
+                if (!NPLevelMatch)
+                    return;
+
+                let FreeNp5 = servant.IsFree && calc.NPLevel == 5;
                 let LevelMatch = calc.ServantLevel <= maxLevel;
+                if (!(FreeNp5 || LevelMatch))
+                    return;
 
-                let conditionMatch =
-                    targetTypeMatch && cardTypeMatch && OCmatch && traitMatch && LevelMatch
-                    && (FreeNp5 || NPLevelMatch);
-
-                if (conditionMatch) {
-                    let damageCalculation = DamageCalculation.CalculateDamage(servant, enemy, calc);
-                    this.dataSource.push(damageCalculation);
-                }
+                let damageCalculation = DamageCalculation.CalculateDamage(servant, enemy, calc);
+                this.dataSource.push(damageCalculation);
             });
         });
 
         if (this.dataSort.sortByID.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.ID, b.inputServant.ID, this.dataSort.sortByID.asc));
+
         else if (this.dataSort.sortByName.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.Name, b.inputServant.Name, this.dataSort.sortByName.asc));
+
+        else if (this.dataSort.sortByClass.enabled)
+            this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.Class, b.inputServant.Class, this.dataSort.sortByClass.asc));
+
         else if (this.dataSort.sortByAttack.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.ServantAttack, b.ServantAttack, this.dataSort.sortByAttack.asc));
+
         else //sort by damage by default
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.CalculatedDamage, b.CalculatedDamage, this.dataSort.sortByDamage.asc));
     }
@@ -164,8 +168,12 @@ class Application {
 
 let application = new Application();
 
-data.Traits.forEach((trait) => {
-    application.insertTraitElement("checkbox", "EnemyTraits", trait, trait);
+data.Traits.forEach((item) => {
+    MySource.insertChechBox("checkbox", "EnemyTraits", item, item);
+});
+
+data.Classes.forEach((item) => {
+    MySource.insertChechBox("checkbox", "PlayerClasses", item, item, true);
 });
 
 document.querySelectorAll('input').forEach((e) => {
@@ -185,6 +193,13 @@ document.getElementById("Column_Servant").addEventListener('click', function () 
     application.sortReset();
     application.dataSort.sortByName.enabled = true;
     application.dataSort.sortByName.asc = !application.dataSort.sortByName.asc;
+    application.OnFilterChange();
+});
+
+document.getElementById("Column_Class").addEventListener('click', function () {
+    application.sortReset();
+    application.dataSort.sortByClass.enabled = true;
+    application.dataSort.sortByClass.asc = !application.dataSort.sortByClass.asc;
     application.OnFilterChange();
 });
 

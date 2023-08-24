@@ -59,4 +59,23 @@ class MySource {
             return 0.0;
         return parseFloat(checkboxes[0].value);
     }
+
+    static insertChechBox(type, parentElementId, elementId, name, checked = false) {
+        var element = document.getElementById(parentElementId);
+
+        var input = document.createElement("input");
+        input.type = type;
+        input.id = elementId;
+        input.name = parentElementId;
+        input.checked = checked;
+        input.value = elementId;
+
+        var label = document.createElement("label");
+        label.for = elementId;
+        label.style = "display: block;";
+
+        label.appendChild(input);
+        label.append(elementId);
+        element.appendChild(label);
+    }
 }

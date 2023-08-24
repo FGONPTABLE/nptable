@@ -49,10 +49,10 @@ th, td {
     min-height: 10px;
 }
 
-#EnemyTraits {
+.tablecontent > div {
     width: 290px;
-    float: left;
     margin-right: 10px;
+    float: left;
 }
 
 /*  background-color: #2196F3; */
