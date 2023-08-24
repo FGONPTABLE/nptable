@@ -119,7 +119,16 @@ class Application {
 
             let row = tbody.insertRow(tbody.rows.length);
 
-            row.insertCell().append(document.createTextNode(item.inputServant.ID));
+            let idNode = document.createElement("span");
+            idNode.appendChild(document.createTextNode(item.inputServant.ID));
+            idNode.classList.add("UUID");
+            idNode.id = item.uuid;
+
+            idNode.addEventListener('click', function () {
+                console.log(application.dataSource.find((element) => element.uuid == idNode.id));
+            });
+
+            row.insertCell().append(idNode);
             row.insertCell().append(document.createTextNode(item.inputServant.Name));
             row.insertCell().append(document.createTextNode(item.inputServant.Rarity));
             row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.CardType));
@@ -170,28 +179,28 @@ document.getElementById("Column_ID").addEventListener('click', function () {
     application.dataSort.sortByID.enabled = true;
     application.dataSort.sortByID.asc = !application.dataSort.sortByID.asc;
     application.OnFilterChange();
-})
+});
 
 document.getElementById("Column_Servant").addEventListener('click', function () {
     application.sortReset();
     application.dataSort.sortByName.enabled = true;
     application.dataSort.sortByName.asc = !application.dataSort.sortByName.asc;
     application.OnFilterChange();
-})
+});
 
 document.getElementById("Column_Attack").addEventListener('click', function () {
     application.sortReset();
     application.dataSort.sortByAttack.enabled = true;
     application.dataSort.sortByAttack.asc = !application.dataSort.sortByAttack.asc;
     application.OnFilterChange();
-})
+});
 
 document.getElementById("Column_Damage").addEventListener('click', function () {
     application.sortReset();
     application.dataSort.sortByDamage.enabled = true;
     application.dataSort.sortByDamage.asc = !application.dataSort.sortByDamage.asc;
     application.OnFilterChange();
-})
+});
 
 application.dataSort.sortByDamage.enabled = true;
 application.dataSort.sortByDamage.asc = false;

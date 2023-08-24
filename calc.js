@@ -1,6 +1,8 @@
 class DamageCalculation {
     constructor() { }
 
+    uuid = crypto.randomUUID();
+
     inputEnemy = null;
     inputServant = null;
     inputCalc = null;
@@ -44,7 +46,7 @@ class DamageCalculation {
     calculate() {
         this.TotalCardMod = (1 + this.CardMod - this.CardResistanceMod);
         this.TotalAttackMod = (1 + this.AttackMod - this.DefenceMod);
-        this.TotalNpMod = this.NpPowerMod * (1 + this.NPEffectivenessMod);
+        this.TotalNpMod = this.NpPowerMod * this.NPEffectivenessMod;
         this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod);
 
         this.CalculatedDamage =
