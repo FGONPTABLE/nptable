@@ -36,6 +36,7 @@ class DamageCalculation {
     SuperModValue = null;
     NPEffectivenessMod = null;
 
+    FormulaValues = null;
     CalculatedDamage = 0.0;
 
     TotalCardMod = null;
@@ -49,12 +50,29 @@ class DamageCalculation {
         this.TotalNpMod = this.NpPowerMod * this.NPEffectivenessMod;
         this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod);
 
+        this.FormulaValues = {
+            ServantAttack: this.ServantAttack,
+            NPValue: this.NPValue,
+            ScalingHpMod: this.ScalingHpMod,
+            ClassMod: this.ClassMod,
+            CardTypeMode: this.CardTypeMode,
+            TotalCardMod: this.TotalCardMod,
+            TriangleMod: this.TriangleMod,
+            AttributeMod: this.AttributeMod,
+            RandomMod: this.RandomMod,
+            Const: this.Const,
+            TotalAttackMod: this.TotalAttackMod,
+            SpecialDefMod: this.SpecialDefMod,
+            TotalPowerNpMod: this.TotalPowerNpMod,
+            SuperModValue: this.SuperModValue
+        };
+
         this.CalculatedDamage =
             this.ServantAttack
             * this.NPValue
             * this.ScalingHpMod
             * this.ClassMod
-            * this. CardTypeMode
+            * this.CardTypeMode
             * this.TotalCardMod 
             * this.TriangleMod
             * this.AttributeMod
