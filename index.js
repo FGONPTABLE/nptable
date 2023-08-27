@@ -50,13 +50,13 @@ class Application {
                 if (!traitMatch)
                     return;
 
-                let NPLevelMatch = !servant.IsFree && NPLevels.includes(calc.NPLevel);
-                if (!NPLevelMatch)
-                    return;
-
                 let FreeNp5 = servant.IsFree && calc.NPLevel == 5;
+                let NPLevelMatch = !servant.IsFree && NPLevels.includes(calc.NPLevel);
+                if (!NPLevelMatch && !FreeNp5)
+                    return;
+                
                 let LevelMatch = calc.ServantLevel <= maxLevel;
-                if (!(FreeNp5 || LevelMatch))
+                if (!LevelMatch)
                     return;
 
                 let damageCalculation = DamageCalculation.CalculateDamage(servant, enemy, calc);
