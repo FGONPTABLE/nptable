@@ -12,6 +12,7 @@ class Application {
     updateDataSource() {
         this.dataSource = [];
 
+        let servantFilter = MySource.documentGetTextValue("ServantFilter");
         let classes = MySource.documentGetSelectionArray("PlayerClasses");
         let cardTypes = MySource.documentGetSelectionArray("CardType");
         let NPLevels = MySource.documentGetSelectionArrayInt("NPLevels");
@@ -29,6 +30,12 @@ class Application {
 
         data.Servants.forEach((servant) => {
             servant.DamageCalculations.forEach((calc) => {
+
+                if (servantFilter.length > 0) {
+                    let servantMatch = servant.Name.includes(servantFilter);
+                    if (!servantMatch)
+                        return;
+                }
 
                 let targetTypeMatch = targetTypes.includes(calc.NoblePhantasm.TargetType);
                 if (!targetTypeMatch)

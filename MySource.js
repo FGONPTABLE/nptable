@@ -60,6 +60,10 @@ class MySource {
         return parseFloat(checkboxes[0].value);
     }
 
+    static documentGetTextValue(elementId) {
+        return document.getElementById(elementId).value;
+    }
+
     static insertChechBox(type, parentElementId, elementId, name, checked = false) {
         var element = document.getElementById(parentElementId);
 
