@@ -10,14 +10,14 @@ class Application {
     };
 
     SupportConfigurations = [
-        //ID, NPType, servantAttackBonus, cardBonus, attackBonus, powerBonus, NpBonus, SpecialDefence, NPEffectivenessUp
-        SupportConfiguration.Get('BHGSkadi2XOberon', 'Quick', 3400, 130, 40, 100, 110, 0, 100),
-        SupportConfiguration.Get('BHGCastoria2XOberon', 'Arts', 3400, 100, 40, 100, 110, 0, 100),
-        SupportConfiguration.Get('BHGKoyanskaya2XOberon', 'Buster', 3400, 150, 0, 100, 110, 0, 100),
+                                //ID, NPType,                           atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
+        SupportConfiguration.Get('BHGSkadi2XOberon',        'Quick',    3400,   130,    40,     0,      110, 0, 100),
+        SupportConfiguration.Get('BHGCastoria2XOberon',     'Arts',     3400,   100,    40,     0,      110, 0, 100),
+        SupportConfiguration.Get('BHGKoyanskaya2XOberon',   'Buster',   3400,   150,    0,      100,    110, 0, 100),
 
-        SupportConfiguration.Get('BHGSkadi2X', 'Quick', 3400, 130, 40, 100, 80, 0, 0),
-        SupportConfiguration.Get('BHGCastoria2X', 'Arts', 3400, 100, 40, 100, 80, 0, 0),
-        SupportConfiguration.Get('BHGKoyanskaya2X', 'Buster', 3400, 150, 0, 100, 80, 0, 0),
+        SupportConfiguration.Get('BHGSkadi2X',      'Quick',            3400,   130,    40,     0,      80, 0,  0),
+        SupportConfiguration.Get('BHGCastoria2X',   'Arts',             3400,   100,    40,     0,      80, 0,  0),
+        SupportConfiguration.Get('BHGKoyanskaya2X', 'Buster',           3400,   150,    0,      100,    80, 0,  0),
     ];
 
     updateDataSource() {
