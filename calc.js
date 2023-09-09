@@ -158,9 +158,10 @@ class SupportConfiguration {
         let config = new SupportConfiguration();
         config.ID = ID;
         config.NPType = NPType;
-        config.servantAttackBonus = servantAttackBonus / 100.0;
+        config.servantAttackBonus = servantAttackBonus;
         config.cardBonus = cardBonus / 100.0;
         config.attackBonus = attackBonus / 100.0;
+        config.powerBonus = powerBonus / 100.0;
         config.NpBonus = NpBonus / 100.0;
         config.SpecialDefence = SpecialDefence / 100.0;
         config.NPEffectivenessUp = NPEffectivenessUp / 100.0;
