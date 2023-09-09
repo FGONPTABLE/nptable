@@ -11,9 +11,13 @@ class Application {
 
     SupportConfigurations = [
         //ID, NPType, servantAttackBonus, cardBonus, attackBonus, powerBonus, NpBonus, SpecialDefence, NPEffectivenessUp
-        SupportConfiguration.Get('Skadi2XOberon', 'Quick', 3400, 130, 0, 40, 110, 0, 100),
-        SupportConfiguration.Get('Castoria2XOberon', 'Arts', 3400, 100, 0, 40, 110, 0, 100),
-        SupportConfiguration.Get('Koyanskaya2XOberonNoPower', 'Buster', 3400, 150, 100, 40, 110, 0, 100),
+        SupportConfiguration.Get('BHGSkadi2XOberon', 'Quick', 3400, 130, 40, 100, 110, 0, 100),
+        SupportConfiguration.Get('BHGCastoria2XOberon', 'Arts', 3400, 100, 40, 100, 110, 0, 100),
+        SupportConfiguration.Get('BHGKoyanskaya2XOberon', 'Buster', 3400, 150, 0, 100, 110, 0, 100),
+
+        SupportConfiguration.Get('BHGSkadi2X', 'Quick', 3400, 130, 40, 100, 80, 0, 0),
+        SupportConfiguration.Get('BHGCastoria2X', 'Arts', 3400, 100, 40, 100, 80, 0, 0),
+        SupportConfiguration.Get('BHGKoyanskaya2X', 'Buster', 3400, 150, 0, 100, 80, 0, 0),
     ];
 
     updateDataSource() {
@@ -21,13 +25,13 @@ class Application {
 
         let servantFilter   = MySource.documentGetTextValue("ServantFilter");
         let classes         = MySource.documentGetSelectionArray("PlayerClasses");
-        let cardTypes       = MySource.documentGetSelectionArray("CardType");
+        let cardTypes       = MySource.documentGetSelectionArrayByClass("CardType");
         let NPLevels        = MySource.documentGetSelectionArrayInt("NPLevels");
         let OCLevels        = MySource.documentGetSelectionArrayInt("OCLevels");
         let Traits          = MySource.documentGetSelectionArray("EnemyTraits");
         let targetTypes     = MySource.documentGetSelectionArray("TargetFilter");
         let levelFiler      = MySource.documentGetSelectionArray("LevelFilter");
-        let supportConfigs  = MySource.documentGetSelectionArray("SupportConfigurations");
+        let supportConfigs  = MySource.documentGetSelectionArrayByClass("SupportConfigurations");
 
         let maxLevel    = Math.max(90, Math.max.apply(null, levelFiler));
         let checker     = (arr, target) => arr.every(v => target.includes(v));
@@ -48,7 +52,7 @@ class Application {
         data.Servants.forEach((servant) => {
             servant.DamageCalculations.forEach((calc) => {
                 if (servantFilter.length > 0) {
-                    let servantMatch = servant.Name.includes(servantFilter);
+                    let servantMatch = servant.Name.toLowerCase().includes(servantFilter.toLowerCase());
                     if (!servantMatch)
                         return;
                 }
@@ -129,7 +133,7 @@ class Application {
 
         this.dataSource.forEach((item) => {
             let effectRow = document.createElement("div");
-            effectRow.classList.add("Column_Effects"); 
+            effectRow.classList.add("Column_Effects");
 
             item.inputCalc.Effects.forEach(function (item) {
                 let description = item.Description;
@@ -156,9 +160,9 @@ class Application {
                 }
             });
 
-            let row = tbody.insertRow(tbody.rows.length);
-
-            let idNode = document.createElement("span");
+            let idNode = document.createElement('a');
+            idNode.setAttribute('href', 'https://apps.atlasacademy.io/db/JP/servant/' + item.inputServant.ID.replace('ID', ''));
+            idNode.setAttribute('target', '_blank');
             idNode.appendChild(document.createTextNode(item.inputServant.ID));
             idNode.classList.add("UUID");
             idNode.id = item.uuid;
@@ -167,6 +171,7 @@ class Application {
                 console.log(application.dataSource.find((element) => element.uuid == idNode.id));
             });
 
+            let row = tbody.insertRow(tbody.rows.length);
             row.insertCell().append(idNode);
             row.insertCell().append(document.createTextNode(item.inputServant.Name));
             row.insertCell().append(document.createTextNode(item.inputServant.Rarity));
@@ -204,15 +209,15 @@ class Application {
 let application = new Application();
 
 application.SupportConfigurations.forEach((item) => {
-    MySource.insertChechBox("checkbox", "SupportConfigurations", item.ID, item.ID);
+    //MySource.insertInput("radio", item.NPType + "SupportConfigurations", item.ID, item.ID);
 })
 
 data.Traits.forEach((item) => {
-    MySource.insertChechBox("checkbox", "EnemyTraits", item, item);
+    MySource.insertInput("checkbox", "EnemyTraits", item, item);
 });
 
 data.Classes.forEach((item) => {
-    MySource.insertChechBox("checkbox", "PlayerClasses", item, item, true);
+    MySource.insertInput("checkbox", "ClassesContent", item, item, true);
 });
 
 document.querySelectorAll('input').forEach((e) => {
@@ -255,6 +260,58 @@ document.getElementById("Column_Damage").addEventListener('click', function () {
     application.dataSort.sortByDamage.asc = !application.dataSort.sortByDamage.asc;
     application.OnFilterChange();
 });
+
+document.getElementById("NPLevelReset").onclick = function () {
+    document.getElementById("NPLevels").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = false;
+    });
+    document.getElementById("np1").checked = true;
+    application.OnFilterChange();
+};
+
+document.getElementById("NPLevelSelectAll").onclick = function () {
+    document.getElementById("NPLevels").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = true;
+    });
+    application.OnFilterChange();
+};
+
+document.getElementById("OCLevelReset").onclick = function () {
+    document.getElementById("OCLevels").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = false;
+    });
+    document.getElementById("OC1").checked = true;
+    application.OnFilterChange();
+};
+
+document.getElementById("OCLevelSelectAll").onclick = function () {
+    document.getElementById("OCLevels").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = true;
+    });
+    application.OnFilterChange();
+};
+
+document.getElementById("ResetSupportConfiguration").onclick = function () {
+    document.getElementById("BusterSupportConfigurationsDefault").checked = true;
+    document.getElementById("ArtsSupportConfigurationsDefault").checked = true;
+    document.getElementById("QuickSupportConfigurationsDefault").checked = true;
+    application.OnFilterChange();
+};
+
+document.getElementById("ClassReset").onclick = function () {
+    document.getElementById("PlayerClasses").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = false;
+    });
+    application.OnFilterChange();
+};
+
+document.getElementById("ClassSelectAll").onclick = function () {
+    document.getElementById("PlayerClasses").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = true;
+    });
+    application.OnFilterChange();
+};
+
 
 application.dataSort.sortByDamage.enabled = true;
 application.dataSort.sortByDamage.asc = false;

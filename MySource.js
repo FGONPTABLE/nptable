@@ -48,6 +48,15 @@ class MySource {
         return array;
     }
 
+    static documentGetSelectionArrayByClass(className) {
+        let array = [];
+        let checkboxes = document.querySelectorAll('.' + className + ' input[type=checkbox]:checked');
+        for (let i = 0; i < checkboxes.length; i++) {
+            array.push(checkboxes[i].value)
+        }
+        return array;
+    }
+
     static documentGetRadio(elementId) {
         let checkboxes = document.getElementById(elementId).querySelectorAll('input[type=radio]:checked');
         return checkboxes[0].id;
@@ -64,7 +73,7 @@ class MySource {
         return document.getElementById(elementId).value;
     }
 
-    static insertChechBox(type, parentElementId, elementId, name, checked = false) {
+    static insertInput(type, parentElementId, elementId, name, checked = false) {
         var element = document.getElementById(parentElementId);
 
         var input = document.createElement("input");

@@ -50,9 +50,10 @@ th, td {
 }
 
 .tablecontent > div {
-    width: 290px;
+    width: fit-content;
     margin-right: 10px;
     float: left;
+    display: inline-block;
 }
 
 /*  background-color: #2196F3; */
@@ -105,6 +106,25 @@ th, td {
     text-align: left;
     display: block;
 }
+
+#ServantFilter{
+    margin-bottom: 10px;
+}
+
+.fieldset-button {
+    width: -webkit-fill-available;
+    margin-top: 5px;
+}
+
+#ResetSupportConfiguration {
+    width: 234px;
+    margin-bottom: 4px;
+}
+
+#NPTable {
+    min-width: 868px;
+}
+
     /*
 
 .traits {
