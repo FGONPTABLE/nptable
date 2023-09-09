@@ -131,6 +131,8 @@ class Application {
         document.getElementById("Column_Effects").hidden = !ShowDetails;
         document.getElementById("Column_Traits").hidden = !ShowTraits;
 
+        let rank = 1;
+
         this.dataSource.forEach((item) => {
             let effectRow = document.createElement("div");
             effectRow.classList.add("Column_Effects");
@@ -172,6 +174,7 @@ class Application {
             });
 
             let row = tbody.insertRow(tbody.rows.length);
+            row.insertCell().append(document.createTextNode(rank)); rank = rank + 1;
             row.insertCell().append(idNode);
             row.insertCell().append(document.createTextNode(item.inputServant.Name));
             row.insertCell().append(document.createTextNode(item.inputServant.Rarity));
