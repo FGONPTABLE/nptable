@@ -89,7 +89,7 @@ class DamageCalculation {
         return this;
     }
 
-    static CalculateDamage(servant, enemy, calc) {
+    static CalculateDamage(servant, enemy, calc, supportConfiguration) {
         let damageCalculationObject = new DamageCalculation();
 
         damageCalculationObject.inputServant = servant;
@@ -98,13 +98,15 @@ class DamageCalculation {
 
         damageCalculationObject.TriangleMod = parseFloat(getTriangleMod(servant, enemy));
         damageCalculationObject.AttributeMod = parseFloat(getAttributeMod(servant, enemy));
-        damageCalculationObject.svtAtkConfig = document.getElementById("servantAttackBonus").value ?? 0.0;
-        damageCalculationObject.cardConfig = document.getElementById("cardBonus").value / 100.0 ?? 0.0;
-        damageCalculationObject.atkConfig = document.getElementById("attackBonus").value / 100.0 ?? 0.0;
-        damageCalculationObject.powerConfig = document.getElementById("powerBonus").value / 100.0 ?? 0.0;
-        damageCalculationObject.npConfig = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
-        damageCalculationObject.specialDefConfig = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
-        damageCalculationObject.NpEffectivenessConfig = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
+
+        //config
+        damageCalculationObject.svtAtkConfig = supportConfiguration.servantAttackBonus;
+        damageCalculationObject.cardConfig = supportConfiguration.cardBonus;
+        damageCalculationObject.atkConfig = supportConfiguration.attackBonus;
+        damageCalculationObject.powerConfig = supportConfiguration.powerBonus;
+        damageCalculationObject.npConfig = supportConfiguration.NpBonus;
+        damageCalculationObject.specialDefConfig = supportConfiguration.SpecialDefence;
+        damageCalculationObject.NpEffectivenessConfig = supportConfiguration.NPEffectivenessUp;
 
         damageCalculationObject.ServantAttack = parseInt(calc.ServantAtk) + parseInt(damageCalculationObject.svtAtkConfig);
         damageCalculationObject.NPValue = parseFloat(calc.NpValue);
@@ -148,4 +150,31 @@ function getAttributeMod(servant, enemy) {
         return 1.0;
 
     return item.Value;
+}
+
+class SupportConfiguration {
+    constructor() { }
+    static Get(ID, NPType, servantAttackBonus, cardBonus, attackBonus, powerBonus, NpBonus, SpecialDefence, NPEffectivenessUp) {
+        let config = new SupportConfiguration();
+        config.ID = ID;
+        config.NPType = NPType;
+        config.servantAttackBonus = servantAttackBonus / 100.0;
+        config.cardBonus = cardBonus / 100.0;
+        config.attackBonus = attackBonus / 100.0;
+        config.NpBonus = NpBonus / 100.0;
+        config.SpecialDefence = SpecialDefence / 100.0;
+        config.NPEffectivenessUp = NPEffectivenessUp / 100.0;
+        return config;
+    }
+
+    ID = null;
+    NPType = null;
+
+    servantAttackBonus = 0;
+    cardBonus = 0;
+    attackBonus = 0;
+    powerBonus = 0;
+    NpBonus = 0;
+    SpecialDefence = 0;
+    NPEffectivenessUp = 0;
 }

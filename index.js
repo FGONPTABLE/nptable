@@ -9,28 +9,44 @@ class Application {
         sortByDamage: MySource.getSortableField()
     };
 
+    SupportConfigurations = [
+        //ID, NPType, servantAttackBonus, cardBonus, attackBonus, powerBonus, NpBonus, SpecialDefence, NPEffectivenessUp
+        SupportConfiguration.Get('Skadi2XOberon', 'Quick', 3400, 130, 0, 40, 110, 0, 100),
+        SupportConfiguration.Get('Castoria2XOberon', 'Arts', 3400, 100, 0, 40, 110, 0, 100),
+        SupportConfiguration.Get('Koyanskaya2XOberonNoPower', 'Buster', 3400, 150, 100, 40, 110, 0, 100),
+    ];
+
     updateDataSource() {
         this.dataSource = [];
 
-        let servantFilter = MySource.documentGetTextValue("ServantFilter");
-        let classes = MySource.documentGetSelectionArray("PlayerClasses");
-        let cardTypes = MySource.documentGetSelectionArray("CardType");
-        let NPLevels = MySource.documentGetSelectionArrayInt("NPLevels");
-        let OCLevels = MySource.documentGetSelectionArrayInt("OCLevels");
-        let Traits = MySource.documentGetSelectionArray("EnemyTraits");
-        let targetTypes = MySource.documentGetSelectionArray("TargetFilter");
-        let levelFiler = MySource.documentGetSelectionArray("LevelFilter");
+        let servantFilter   = MySource.documentGetTextValue("ServantFilter");
+        let classes         = MySource.documentGetSelectionArray("PlayerClasses");
+        let cardTypes       = MySource.documentGetSelectionArray("CardType");
+        let NPLevels        = MySource.documentGetSelectionArrayInt("NPLevels");
+        let OCLevels        = MySource.documentGetSelectionArrayInt("OCLevels");
+        let Traits          = MySource.documentGetSelectionArray("EnemyTraits");
+        let targetTypes     = MySource.documentGetSelectionArray("TargetFilter");
+        let levelFiler      = MySource.documentGetSelectionArray("LevelFilter");
+        let supportConfigs  = MySource.documentGetSelectionArray("SupportConfigurations");
 
-        let maxLevel = Math.max(90, Math.max.apply(null, levelFiler));
-        let checker = (arr, target) => arr.every(v => target.includes(v));
+        let maxLevel    = Math.max(90, Math.max.apply(null, levelFiler));
+        let checker     = (arr, target) => arr.every(v => target.includes(v));
 
-        let enemy = data.Enemy;
-        enemy.Class = MySource.documentGetRadio("EnemyClass");
+        let enemy       = data.Enemy;
+        enemy.Class     = MySource.documentGetRadio("EnemyClass");
         enemy.Attribute = MySource.documentGetRadio("EnemyAttribute");
+
+        let defaultSupportConfiguration                 = new SupportConfiguration();
+        defaultSupportConfiguration.servantAttackBonus  = parseInt(document.getElementById("servantAttackBonus").value ?? 0);
+        defaultSupportConfiguration.cardBonus           = document.getElementById("cardBonus").value / 100.0 ?? 0.0;
+        defaultSupportConfiguration.attackBonus         = document.getElementById("attackBonus").value / 100.0 ?? 0.0;
+        defaultSupportConfiguration.powerBonus          = document.getElementById("powerBonus").value / 100.0 ?? 0.0;
+        defaultSupportConfiguration.NpBonus             = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
+        defaultSupportConfiguration.SpecialDefence      = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
+        defaultSupportConfiguration.NPEffectivenessUp   = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
 
         data.Servants.forEach((servant) => {
             servant.DamageCalculations.forEach((calc) => {
-
                 if (servantFilter.length > 0) {
                     let servantMatch = servant.Name.includes(servantFilter);
                     if (!servantMatch)
@@ -66,7 +82,19 @@ class Application {
                 if (!LevelMatch)
                     return;
 
-                let damageCalculation = DamageCalculation.CalculateDamage(servant, enemy, calc);
+                let supportConfiguration = defaultSupportConfiguration;
+                let selectedConfiguration = this.SupportConfigurations.filter((item) => {
+                    let checked = document.getElementById(item.ID).checked;
+                    let npmatch = item.NPType == calc.NoblePhantasm.CardType;
+                    return checked && npmatch
+                })[0];
+
+                if (selectedConfiguration != null) {
+                    supportConfiguration = selectedConfiguration;
+                    //console.log(defaultSupportConfiguration, selectedConfiguration);
+                };                
+
+                let damageCalculation = DamageCalculation.CalculateDamage(servant, enemy, calc, supportConfiguration);
                 this.dataSource.push(damageCalculation);
             });
         });
@@ -174,6 +202,10 @@ class Application {
 }
 
 let application = new Application();
+
+application.SupportConfigurations.forEach((item) => {
+    MySource.insertChechBox("checkbox", "SupportConfigurations", item.ID, item.ID);
+})
 
 data.Traits.forEach((item) => {
     MySource.insertChechBox("checkbox", "EnemyTraits", item, item);
