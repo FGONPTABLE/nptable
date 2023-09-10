@@ -50,24 +50,34 @@ class Application {
         defaultSupportConfiguration.NPEffectivenessUp   = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
 
         data.Servants.forEach((servant) => {
+            if (servant.ID == "ID356")
+                console.log(servant);
             servant.DamageCalculations.forEach((calc) => {
                 if (servantFilter.length > 0) {
                     let servantMatch = servant.Name.toLowerCase().includes(servantFilter.toLowerCase());
-                    if (!servantMatch)
+                    if (!servantMatch) {
+                        //console.log("servant mismatch, removed");
                         return;
+                    }
                 }
 
                 let targetTypeMatch = targetTypes.includes(calc.NoblePhantasm.TargetType);
-                if (!targetTypeMatch)
+                if (!targetTypeMatch) {
+                    //console.log("targetTypeMatch mismatch, removed");
                     return;
+                }
 
                 let classMatch = classes.includes(calc.ClassType);
-                if (!classMatch)
+                if (!classMatch) {
+                    //console.log("targetTypeMatch mismatch, removed");
                     return;
+                }
 
                 let cardTypeMatch = cardTypes.includes(calc.NoblePhantasm.CardType);
-                if (!cardTypeMatch)
+                if (!cardTypeMatch) {
+                    //console.log("targetTypeMatch mismatch, removed");
                     return;
+                }
 
                 let OCmatch = OCLevels.includes(calc.OCLevel);
                 if (!OCmatch)
@@ -211,11 +221,7 @@ class Application {
 
 let application = new Application();
 
-application.SupportConfigurations.forEach((item) => {
-    //MySource.insertInput("radio", item.NPType + "SupportConfigurations", item.ID, item.ID);
-})
-
-data.Traits.forEach((item) => {
+data.Traits.sort().forEach((item) => {
     MySource.insertInput("checkbox", "EnemyTraits", item, item);
 });
 
