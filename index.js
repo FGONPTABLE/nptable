@@ -50,8 +50,7 @@ class Application {
         defaultSupportConfiguration.NPEffectivenessUp   = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
 
         data.Servants.forEach((servant) => {
-            if (servant.ID == "ID356")
-                console.log(servant);
+            //if (servant.ID == "ID356") console.log(servant);
             servant.DamageCalculations.forEach((calc) => {
                 if (servantFilter.length > 0) {
                     let servantMatch = servant.Name.toLowerCase().includes(servantFilter.toLowerCase());
@@ -213,7 +212,21 @@ class Application {
         this.dataSort.sortByDamage.enabled = false;
     }
 
+    updateTraits() {
+        let checkUncheck = function (id1, id2) {
+            if (MySource.IsChecked(id1) && !MySource.IsChecked(id2)) MySource.Check(id2);
+            if (!MySource.IsChecked(id1) && MySource.IsChecked(id2)) MySource.Uncheck(id2);
+        };
+
+        checkUncheck('Saber', 'SaberClassServant');
+        checkUncheck('Sky', 'AttributeSky');
+        checkUncheck('Earth', 'AttributeEarth');
+        checkUncheck('Man', 'AttributeMan');
+    }
+
     OnFilterChange() {
+        //console.log("filter changed");
+        //console.trace();
         this.updateDataSource();
         this.updateTable();
     }
@@ -227,12 +240,6 @@ data.Traits.sort().forEach((item) => {
 
 data.Classes.forEach((item) => {
     MySource.insertInput("checkbox", "ClassesContent", item, item, true);
-});
-
-document.querySelectorAll('input').forEach((e) => {
-    e.addEventListener('change', function () {
-        application.OnFilterChange();
-    });
 });
 
 document.getElementById("Column_ID").addEventListener('click', function () {
@@ -321,6 +328,44 @@ document.getElementById("ClassSelectAll").onclick = function () {
     application.OnFilterChange();
 };
 
+document.getElementById("TraitReset").onclick = function () {
+    document.getElementById("EnemyTraits").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = false;
+    });
+    application.OnFilterChange();
+};
+
+document.getElementById("TraitSelectAll").onclick = function () {
+    document.getElementById("EnemyTraits").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        item.checked = true;
+    });
+    application.OnFilterChange();
+};
+
+document.getElementById("EnemyClass").addEventListener('change', function () {
+    application.sortReset();
+    application.dataSort.sortByDamage.enabled = true;
+    application.dataSort.sortByDamage.asc = !application.dataSort.sortByDamage.asc;
+    application.updateTraits();
+    application.OnFilterChange();
+});
+
+document.getElementById("EnemyAttribute").addEventListener('change', function () {
+    application.sortReset();
+    application.dataSort.sortByDamage.enabled = true;
+    application.dataSort.sortByDamage.asc = !application.dataSort.sortByDamage.asc;
+    application.updateTraits();
+    application.OnFilterChange();
+});
+
+document.querySelectorAll('input').forEach((e) => {
+    if (e.closest('.custom-handler') == null) {
+        e.addEventListener('change', function () {
+            console.log("generic filter change");
+            application.OnFilterChange();
+        });
+    };    
+});
 
 application.dataSort.sortByDamage.enabled = true;
 application.dataSort.sortByDamage.asc = false;

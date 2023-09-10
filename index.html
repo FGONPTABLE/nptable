@@ -47,7 +47,7 @@
                 </div>
 
                 <div>
-                    <button id="NPLevelSelectAll" class="fieldset-button">SelectAll</button>
+                    <button id="NPLevelSelectAll" class="fieldset-button">Select All</button>
                 </div>
             </fieldset>
 
@@ -84,12 +84,12 @@
                 </div>
 
                 <div>
-                    <button id="OCLevelSelectAll" class="fieldset-button">SelectAll</button>
+                    <button id="OCLevelSelectAll" class="fieldset-button">Select All</button>
                 </div>
 
             </fieldset>
 
-            <fieldset id="EnemyClass">
+            <fieldset id="EnemyClass" class="custom-handler">
                 <legend>Enemy Class:</legend>
 
                 <div>
@@ -115,7 +115,7 @@
 
             </fieldset>
 
-            <fieldset id="EnemyAttribute">
+            <fieldset id="EnemyAttribute" class="custom-handler">
                 <legend>Enemy Attribute:</legend>
                 <label for="Star"><input type="radio" name="attribute" id="Star" checked>Star</label>
                 <label for="Sky"><input type="radio" name="attribute" id="Sky">Sky</label>
@@ -308,12 +308,20 @@
                     </div>
 
                     <div>
-                        <button id="ClassSelectAll" class="fieldset-button">SelectAll</button>
+                        <button id="ClassSelectAll" class="fieldset-button">Select All</button>
                     </div>
                 </fieldset>
 
                 <fieldset id="EnemyTraits">
                     <legend>Enemy Traits:</legend>
+
+                    <div>
+                        <button id="TraitReset" class="fieldset-button">Reset</button>
+                    </div>
+
+                    <div>
+                        <button id="TraitSelectAll" class="fieldset-button">Select All</button>
+                    </div>
                 </fieldset>
 
             </div>

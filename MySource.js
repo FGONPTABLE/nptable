@@ -73,6 +73,18 @@ class MySource {
         return document.getElementById(elementId).value;
     }
 
+    static IsChecked(elementId) {
+        return document.getElementById(elementId).checked;
+    }
+
+    static Check(elementId) {
+        return document.getElementById(elementId).checked = true;
+    }
+
+    static Uncheck(elementId) {
+        return document.getElementById(elementId).checked = false;
+    }
+
     static insertInput(type, parentElementId, elementId, name, checked = false) {
         var element = document.getElementById(parentElementId);
 
