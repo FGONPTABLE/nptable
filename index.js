@@ -343,17 +343,11 @@ document.getElementById("TraitSelectAll").onclick = function () {
 };
 
 document.getElementById("EnemyClass").addEventListener('change', function () {
-    application.sortReset();
-    application.dataSort.sortByDamage.enabled = true;
-    application.dataSort.sortByDamage.asc = !application.dataSort.sortByDamage.asc;
     application.updateTraits();
     application.OnFilterChange();
 });
 
 document.getElementById("EnemyAttribute").addEventListener('change', function () {
-    application.sortReset();
-    application.dataSort.sortByDamage.enabled = true;
-    application.dataSort.sortByDamage.asc = !application.dataSort.sortByDamage.asc;
     application.updateTraits();
     application.OnFilterChange();
 });
