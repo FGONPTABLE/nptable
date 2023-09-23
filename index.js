@@ -219,8 +219,13 @@ class Application {
         };
 
         checkUncheck('Saber', 'SaberClassServant');
+
         checkUncheck('Sky', 'AttributeSky');
+        //checkUncheck('Sky', 'SkyOrEarth');
+
         checkUncheck('Earth', 'AttributeEarth');
+        //checkUncheck('Earth', 'SkyOrEarth');
+
         checkUncheck('Man', 'AttributeMan');
     }
 
