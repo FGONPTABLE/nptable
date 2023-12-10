@@ -139,3 +139,4 @@ document.querySelectorAll('input').forEach((e) => {
 application.sortFunctions.sortByDamage.enabled = true;
 application.sortFunctions.sortByDamage.asc = false;
 application.OnFilterChange();
+document.getElementById("ClassSelectAll").click();
