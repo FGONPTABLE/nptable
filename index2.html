@@ -14,66 +14,68 @@
                 <legend>NP/OC Levels:</legend>
 
                 <div class="two-column-div">
-                    <div class="content-div">
-                        <label>NP Levels</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="np1" name="np1" checked value="1" />
-                        <label for="np1">Level 1</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="np2" name="np2" value="2" />
-                        <label for="np2">Level 2</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="np3" name="np3" value="3" />
-                        <label for="np3">Level 3</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="np4" name="np4" value="4" />
-                        <label for="np4">Level 4</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="np5" name="np5" value="5" />
-                        <label for="np5">Level 5</label>
-                    </div>
-                    <div class="content-div">
-                        <button id="NPLevelReset" class="fieldset-button">Reset</button>
-                    </div>
-                    <div class="content-div">
-                        <button id="NPLevelSelectAll" class="fieldset-button">Select All</button>
-                    </div>
+                    <fieldset id="NPLevels">
+                        <legend>NP Levels</legend>
+
+                        <div class="content-div">
+                            <input type="checkbox" id="np1" name="np1" checked value="1" />
+                            <label for="np1">Level 1</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="np2" name="np2" value="2" />
+                            <label for="np2">Level 2</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="np3" name="np3" value="3" />
+                            <label for="np3">Level 3</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="np4" name="np4" value="4" />
+                            <label for="np4">Level 4</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="np5" name="np5" value="5" />
+                            <label for="np5">Level 5</label>
+                        </div>
+                        <div class="content-div">
+                            <button id="NPLevelReset" class="fieldset-button">Reset</button>
+                        </div>
+                        <div class="content-div">
+                            <button id="NPLevelSelectAll" class="fieldset-button">Select All</button>
+                        </div>
+                    </fieldset>                    
                 </div>
                 <div class="two-column-div">
-                    <div class="content-div">
-                        <label>OC Levels</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="OC1" name="OC1" checked value="1" />
-                        <label for="OC1">Level 1</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="OC2" name="OC2" value="2" />
-                        <label for="OC2">Level 2</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="OC3" name="OC3" value="3" />
-                        <label for="OC3">Level 3</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="OC4" name="OC4" value="4" />
-                        <label for="OC4">Level 4</label>
-                    </div>
-                    <div class="content-div">
-                        <input type="checkbox" id="OC5" name="OC5" value="5" />
-                        <label for="OC5">Level 5</label>
-                    </div>
-                    <div class="content-div">
-                        <button id="OCLevelReset" class="fieldset-button">Reset</button>
-                    </div>
-                    <div class="content-div">
-                        <button id="OCLevelSelectAll" class="fieldset-button">Select All</button>
-                    </div>
+                    <fieldset id="OCLevels">
+                        <legend>OC Levels</legend>
+
+                        <div class="content-div">
+                            <input type="checkbox" id="OC1" name="OC1" checked value="1" />
+                            <label for="OC1">Level 1</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="OC2" name="OC2" value="2" />
+                            <label for="OC2">Level 2</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="OC3" name="OC3" value="3" />
+                            <label for="OC3">Level 3</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="OC4" name="OC4" value="4" />
+                            <label for="OC4">Level 4</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="OC5" name="OC5" value="5" />
+                            <label for="OC5">Level 5</label>
+                        </div>
+                        <div class="content-div">
+                            <button id="OCLevelReset" class="fieldset-button">Reset</button>
+                        </div>
+                        <div class="content-div">
+                            <button id="OCLevelSelectAll" class="fieldset-button">Select All</button>
+                        </div>
+                    </fieldset>
                 </div>
             </fieldset>
 
@@ -215,8 +217,64 @@
             <fieldset id="Config">
                 <legend>Configuration:</legend>
 
+                <div class="two-column-div" id="EnemyAttribute">
+                    <fieldset id="LevelFilter">
+                        <legend>Enemy Attribute:</legend>
+
+                        <div class="content-div">
+                            <input type="radio" name="attribute" id="Star" checked>
+                            <label for="Star">Star</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="radio" name="attribute" id="Sky">
+                            <label for="Sky">Sky</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="radio" name="attribute" id="Earth">
+                            <label for="Earth">Earth</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="radio" name="attribute" id="Man">
+                            <label for="Man">Man</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="radio" name="attribute" id="Beast">
+                            <label for="Beast">Beast</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="two-column-div">
+                    <fieldset id="LevelFilter">
+                        <legend>Servant Level</legend>
+                        <div class="content-div">
+                            <input type="checkbox" id="Include90" name="LevelFilter" value="90" checked />
+                            <label for="Include90">Level 90</label>
+                        </div>
+
+                        <div class="content-div">
+                            <input type="checkbox" id="Include100" name="LevelFilter" value="100" />
+                            <label for="Include100">Level 100</label>
+                        </div>
+
+                        <div class="content-div">
+                            <input type="checkbox" id="Include120" name="LevelFilter" value="120" />
+                            <label for="Include120">Level 120</label>
+                        </div>
+                    </fieldset>
+                    <fieldset id="TargetFilter">
+                        <legend>Target</legend>
+                        <div class="content-div">
+                            <input type="checkbox" id="TargetEnemy" name="TargetFilter" value="Enemy" checked />
+                            <label for="TargetEnemy">Enemy</label>
+                        </div>
+                        <div class="content-div">
+                            <input type="checkbox" id="TargetEnemyTeam" name="TargetFilter" value="EnemyTeam" checked />
+                            <label for="TargetEnemyTeam">Team</label>
+                        </div>
+                    </fieldset>
+                </div>
                 <div class="content-div">
-                    <button id="ResetSupportConfiguration" title="Class-type configurations override this configuration!">Reset card-type configurations</button>
+                    <hr />
                 </div>
                 <div class="content-div">
                     <label for="cardBonus">
@@ -229,6 +287,13 @@
                         <img src="media/atk.png" class="icon" />
                     </label>
                     <input type="number" id="servantAttackBonus" name="servantAttackBonus" min="0" max="9999" value="1000" />
+                </div>
+
+                <div class="content-div">
+                    <label for="attackBonus">
+                        <img src="media/atk.png" class="icon" />
+                    </label>
+                    <input type="number" id="attackBonus" name="attackBonus" min="0" max="999" value="0" />
                 </div>
                 <div class="content-div">
                     <label for="powerBonus">
@@ -247,6 +312,28 @@
                         <img src="media/spdef.png" class="icon" />
                     </label>
                     <input type="number" id="SpecialDefence" name="SpecialDefence" min="0" max="99" value="0" />
+                </div>
+
+                <div class="content-div">
+                    <hr />
+                </div>
+
+                <div class="content-div">
+                    <input type="checkbox" id="NPEffectivenessUp" name="NPEffectivenessUp" value="100" />
+                    <label for="NPEffectiveness">NP Effectiveness Up</label>
+                </div>
+
+                <div class="content-div">
+                    <input type="checkbox" id="ShowDetails" name="ShowDetails" />
+                    <label for="ShowDetails">Show effects</label>
+                </div>
+
+                <div class="content-div">
+                    <hr />
+                </div>
+
+                <div class="content-div">
+                    <button id="ResetSupportConfiguration" title="Class-type configurations override this configuration!">Reset card-type configurations</button>
                 </div>
             </fieldset>
         </div>
@@ -284,6 +371,7 @@
                         <th id="Column_Effects" hidden>Effects</th>
                     </tr>
                 </thead>
+                <tbody></tbody>
             </table>
         </div>
 

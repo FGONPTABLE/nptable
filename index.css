@@ -1,161 +1,82 @@
-body{
+body {
     margin: 0px;
     background-color: white;
 }
 
-content{
-    width: max-content;
-    margin: auto;
+.left {
+    grid-area: menu;
+    width: 300px;
+}
+
+.center {
+    grid-area: main;
+    width: 1260px;
+}
+
+.right {
+    grid-area: right;
+    width: 300px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'menu main right'
+        'footer footer  footer';
+    gap: 10px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
 }
 
 table {
+    width: 100%;
     color: #212529;
     border-collapse: collapse;
     border: 0;
 }
 
-th, td {
+table th, td {
     vertical-align: middle;
     border: 1px solid #dee2e6;
     text-align: center;
     padding: 4px;
 }
 
-.header {
-    background-color: black;
-    color: aliceblue;
-    height: 30px;
+label {
     display: flex;
-    direction: rtl;
+    align-items: center;
 }
 
-.header > div {
-    margin-right: 30px;
-    margin-top: auto;
-    margin-bottom: auto;
+hr {
+    width: 100%;
 }
 
-.content>div {
-    width: max-content;
-    margin: auto;
-    overflow: auto;
+button {
+    width: 100%; 
+    margin: 2px;
 }
 
-.filtered:hover{
-    color: cornflowerblue;
+input[type=number]{
+    width: 60px; 
 }
 
-.separator{
-    min-height: 10px;
-}
-
-.tablecontent > div {
-    width: fit-content;
-    margin-right: 10px;
-    float: left;
-    display: inline-block;
-}
-
-/*  background-color: #2196F3; */
-.settings fieldset {
-    width: 80px;
-    display: inline-block;
+.two-column-div {
+    width: 50%;
     float: left;
 }
 
-#EnemyClass {
-    width: 190px;
-}
-
-#EnemyClass div {
-    display: grid;
+.content-div {
+    display: inline-flex;
     float: left;
+    width: 100%;
 }
 
-#EnemyAttribute label {
-    width: 120px;
-    display: block;
+.icon {
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px 0px 10px;
+    vertical-align: central;
 }
-
-#Config {
-    width: 250px;
-}
-
-#Config label {
-    width: 150px;
-    display: inline-block;
-}
-
-#Config input[type=number] {
-    width: 80px;
-}
-
-#LevelFilter {
-    width: 120px;
-}
-
-#TargetFilter {
-    width: 120px;
-}
-
-.Column_Effects{
-    margin: unset;
-}
-
-.Column_Effects span {
-    text-align: left;
-    display: block;
-}
-
-#ServantFilter{
-    margin-bottom: 10px;
-}
-
-.fieldset-button {
-    width: -webkit-fill-available;
-    margin-top: 5px;
-}
-
-#ResetSupportConfiguration {
-    width: 234px;
-    margin-bottom: 4px;
-}
-
-#NPTable {
-    min-width: 868px;
-}
-
-#ClassesContent .ClassesContentItems {
-    display: grid;
-    float: left;
-}
-
-    /*
-
-.traits {
-    grid-area: traits;
-    width: 290px;
-}
-
-.nptable {
-    grid-area: nptable;
-}
-
-#NPTable{
-    margin:0px 10px 0px 10px;
-}
-
-#Column_Traits {
-    text-align: center;
-    width: max-content;
-}
-
-#Column_Effects{
-    text-align:center;
-}
-
-#NPTable tr {
-    text-align: center;
-}
-
-*/

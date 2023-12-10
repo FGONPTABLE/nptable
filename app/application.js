@@ -74,32 +74,40 @@ class Application {
 
                 let classMatch = classes.includes(calc.ClassType);
                 if (!classMatch) {
-                    //console.log("targetTypeMatch mismatch, removed");
+                    //console.log("classMatch mismatch, removed");
                     return;
                 }
 
                 let cardTypeMatch = cardTypes.includes(calc.NoblePhantasm.CardType);
                 if (!cardTypeMatch) {
-                    //console.log("targetTypeMatch mismatch, removed");
+                    //console.log("cardTypeMatch mismatch, removed");
                     return;
                 }
 
                 let OCmatch = OCLevels.includes(calc.OCLevel);
-                if (!OCmatch)
+                if (!OCmatch) {
+                    //console.log("OCmatch mismatch, removed");
                     return;
+                }
 
                 let traitMatch = calc.Traits.length == 0 || (Traits.length > 0 && checker(calc.Traits, Traits));
-                if (!traitMatch)
+                if (!traitMatch) {
+                   // console.log("traitMatch mismatch, removed");
                     return;
+                }
 
                 let FreeNp5 = servant.IsFree && calc.NPLevel == 5;
                 let NPLevelMatch = !servant.IsFree && NPLevels.includes(calc.NPLevel);
-                if (!NPLevelMatch && !FreeNp5)
+                if (!NPLevelMatch && !FreeNp5) {
+                    //console.log("NPLevelMatch mismatch, removed");
                     return;
+                }
 
                 let LevelMatch = levelFilter.includes(calc.ServantLevel.toString());
-                if (!LevelMatch)
+                if (!LevelMatch) {
+                    console.log("levelMatch mismatch, removed");
                     return;
+                }
 
                 let supportConfiguration = defaultSupportConfiguration;
                 let selectedConfiguration = this.SupportConfigurations.filter((item) => {
@@ -110,7 +118,7 @@ class Application {
 
                 if (selectedConfiguration != null) {
                     supportConfiguration = selectedConfiguration;
-                    //console.log(defaultSupportConfiguration, selectedConfiguration);
+                    console.log(defaultSupportConfiguration, selectedConfiguration);
                 };
 
                 let damageCalculation = damage.CalculateDamage(servant, enemy, calc, supportConfiguration);
@@ -150,6 +158,8 @@ class Application {
         document.getElementById("Column_Traits").hidden = !ShowTraits;
 
         let rank = 1;
+
+        //console.log(this.dataSource.length);
 
         this.dataSource.forEach((item) => {
             let effectRow = document.createElement("div");

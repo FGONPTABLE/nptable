@@ -1,0 +1,161 @@
+body{
+    margin: 0px;
+    background-color: white;
+}
+
+content{
+    width: max-content;
+    margin: auto;
+}
+
+table {
+    color: #212529;
+    border-collapse: collapse;
+    border: 0;
+}
+
+th, td {
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    padding: 4px;
+}
+
+.header {
+    background-color: black;
+    color: aliceblue;
+    height: 30px;
+    display: flex;
+    direction: rtl;
+}
+
+.header > div {
+    margin-right: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.content>div {
+    width: max-content;
+    margin: auto;
+    overflow: auto;
+}
+
+.filtered:hover{
+    color: cornflowerblue;
+}
+
+.separator{
+    min-height: 10px;
+}
+
+.tablecontent > div {
+    width: fit-content;
+    margin-right: 10px;
+    float: left;
+    display: inline-block;
+}
+
+/*  background-color: #2196F3; */
+.settings fieldset {
+    width: 80px;
+    display: inline-block;
+    float: left;
+}
+
+#EnemyClass {
+    width: 190px;
+}
+
+#EnemyClass div {
+    display: grid;
+    float: left;
+}
+
+#EnemyAttribute label {
+    width: 120px;
+    display: block;
+}
+
+#Config {
+    width: 250px;
+}
+
+#Config label {
+    width: 150px;
+    display: inline-block;
+}
+
+#Config input[type=number] {
+    width: 80px;
+}
+
+#LevelFilter {
+    width: 120px;
+}
+
+#TargetFilter {
+    width: 120px;
+}
+
+.Column_Effects{
+    margin: unset;
+}
+
+.Column_Effects span {
+    text-align: left;
+    display: block;
+}
+
+#ServantFilter{
+    margin-bottom: 10px;
+}
+
+.fieldset-button {
+    width: -webkit-fill-available;
+    margin-top: 5px;
+}
+
+#ResetSupportConfiguration {
+    width: 234px;
+    margin-bottom: 4px;
+}
+
+#NPTable {
+    min-width: 868px;
+}
+
+#ClassesContent .ClassesContentItems {
+    display: grid;
+    float: left;
+}
+
+    /*
+
+.traits {
+    grid-area: traits;
+    width: 290px;
+}
+
+.nptable {
+    grid-area: nptable;
+}
+
+#NPTable{
+    margin:0px 10px 0px 10px;
+}
+
+#Column_Traits {
+    text-align: center;
+    width: max-content;
+}
+
+#Column_Effects{
+    text-align:center;
+}
+
+#NPTable tr {
+    text-align: center;
+}
+
+*/
