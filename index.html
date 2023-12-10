@@ -100,11 +100,11 @@
                     <label for="Rider"> <input type="radio" name="class" id="Rider">Rider</label>
                     <label for="Caster"> <input type="radio" name="class" id="Caster">Caster</label>
                     <label for="Assassin"> <input type="radio" name="class" id="Assassin">Assassin</label>
-                    <label for="Berserker"> <input type="radio" name="class" id="Berserker">Berserker</label>
 
                 </div>
 
                 <div>
+                    <label for="Berserker"> <input type="radio" name="class" id="Berserker">Berserker</label>
                     <label for="Ruler"> <input type="radio" name="class" id="Ruler">Ruler</label>
                     <label for="Avenger"> <input type="radio" name="class" id="Avenger">Avenger</label>
                     <label for="Alterego"> <input type="radio" name="class" id="Alterego">Alterego</label>
@@ -126,6 +126,11 @@
 
             <fieldset id="LevelFilter">
                 <legend>Level filter</legend>
+                <div>
+                    <input type="checkbox" id="Include90" name="LevelFilter" value="90" checked />
+                    <label for="Include90">Level 90</label>
+                </div>
+
                 <div>
                     <input type="checkbox" id="Include100" name="LevelFilter" value="100" />
                     <label for="Include100">Level 100</label>
@@ -218,13 +223,10 @@
                     </div>
 
                     <div class="SupportConfigurations" id="BusterSupportConfigurations">
-
                         <label style="display: block;"><input type="radio" name="BusterSupportConfigurations" value="Default" id="BusterSupportConfigurationsDefault" checked>Default</label>
-
                         <label style="display: block;"><input type="radio" id="BHGKoyanskaya2XOberon" name="BusterSupportConfigurations" value="BHGKoyanskaya2XOberon" title="2x Koyan + Oberon, BHG Level 100, 100% power up">(BHG) 2x Koyan + Oberon</label>
-
+                        <label style="display: block;"><input type="radio" id="BHGKoyanskayaOberon" name="BusterSupportConfigurations" value="BHGKoyanskayaOberon" title="1x Koyan + Oberon, BHG Level 100, 100% power up">(BHG) 1x Koyan + Oberon</label>
                         <label style="display: block;"><input type="radio" id="BHGKoyanskaya2X" name="BusterSupportConfigurations" value="BHGKoyanskaya2XN" title="2x Koyan + Oberon, BHG Level 100, 100% power up">(BHG) 2x Koyan</label>
-
                     </div>
 
                 </fieldset>
@@ -238,13 +240,10 @@
                     </div>
 
                     <div class="SupportConfigurations" id="ArtsSupportConfigurations">
-
                         <label style="display: block;"><input type="radio" name="ArtsSupportConfigurations" value="Default" id="ArtsSupportConfigurationsDefault" checked>Default</label>
-
                         <label style="display: block;"><input type="radio" id="BHGCastoria2XOberon" name="ArtsSupportConfigurations" value="BHGCastoria2XOberon" title="2x Castoria + Oberon, BHG Level 100">(BHG) 2x Castoria + Oberon</label>
-
+                        <label style="display: block;"><input type="radio" id="BHGCastoriaOberon" name="ArtsSupportConfigurations" value="BHGCastoriaOberon" title="1x Castoria + Oberon, BHG Level 100">(BHG) 1x Castoria + Oberon</label>
                         <label style="display: block;"><input type="radio" id="BHGCastoria2X" name="ArtsSupportConfigurations" value="BHGCastoria2X" title="2x Castoria, BHG Level 100">(BHG) 2x Castoria</label>
-
                     </div>
 
                 </fieldset>
@@ -258,28 +257,25 @@
                     </div>
 
                     <div class="SupportConfigurations" id="QuickSupportConfigurations">
-
                         <label style="display: block;"><input type="radio" name="QuickSupportConfigurations" value="Default" id="QuickSupportConfigurationsDefault" checked>Default</label>
-
                         <label style="display: block;"><input type="radio" id="BHGSkadi2XOberon" name="QuickSupportConfigurations" value="BHGSkadi2XOberon" title="2x Skadi + Oberon, BHG Level 100">(BHG) 2x Skadi + Oberon</label>
-
+                        <label style="display: block;"><input type="radio" id="BHGSkadiOberon" name="QuickSupportConfigurations" value="BHGSkadiOberon" title="1x Skadi + Oberon, BHG Level 100">(BHG) 1x Skadi + Oberon</label>
                         <label style="display: block;"><input type="radio" id="BHGSkadi2X" name="QuickSupportConfigurations" title="2x Skadi, BHG Level 100">(BHG) 2x Skadi</label>
-
                     </div>
 
                 </fieldset>
             </div>
 
             <div>
-                <table id="NPTable">
+                <table id="NPTable" style="max-width: 1300px;">
                     <thead>
                         <tr>
                             <th id="RowNumber" class="filtered">Rank#</th>
                             <th id="Column_ID" class="filtered">ID</th>
                             <th id="Column_Servant" class="filtered">Servant</th>
                             <th>Rarity</th>
-                            <th>Card Type</th>
-                            <th>NP Type</th>
+                            <th>Card<br/>Type</th>
+                            <th>NP<br/>Type</th>
                             <th c id="Column_Class" class="filtered">Class</th>
                             <th>Attribute</th>
                             <th title="Character level">CL</th>
@@ -287,6 +283,18 @@
                             <th title="OC level">OC</th>
                             <th id="Column_Attack" class="filtered">Attack</th>
                             <th id="Column_Damage" class="filtered">Damage</th>
+
+                            <th id="Column_AttackRating" class="filtered">Attack<br/>Rating</th>
+                            <th id="Column_CardTotal">
+                                <img src="media/allcard.png" height="24" width="24" />
+                            </th>
+                            <th id="Column_AtkTotal">
+                                <img src="media/atk.png" height="24" width="24" />
+                            </th>
+                            <th id="Column_PowerTotal">
+                                <img src="media/power.png" height="24" width="24" />
+                            </th>
+
                             <th id="Column_Traits" hidden>Traits</th>
                             <th id="Column_Effects" hidden>Effects</th>
                         </tr>
@@ -297,31 +305,48 @@
             <div>
 
                 <fieldset id="PlayerClasses">
-                    <input type="text" id="ServantFilter" placeholder="Filter by Servant..." />
+                    <input type="text" id="ServantFilter" style="width: 265px" placeholder="Filter by Servant..." />
 
                     <legend>By Class:</legend>
 
-                    <div id="ClassesContent"></div>
+                    <div id="ClassesContent">
+                        <div class="ClassesContentItems" style="width: 130px;">
+                            <label style="display: block;"><input type="checkbox" id="Saber" name="ClassesContent" value="Saber">Saber</label>
+                            <label style="display: block;"><input type="checkbox" id="Archer" name="ClassesContent" value="Archer">Archer</label>
+                            <label style="display: block;"><input type="checkbox" id="Lancer" name="ClassesContent" value="Lancer">Lancer</label>
+                            <label style="display: block;"><input type="checkbox" id="Rider" name="ClassesContent" value="Rider">Rider</label>
+                            <label style="display: block;"><input type="checkbox" id="Caster" name="ClassesContent" value="Caster">Caster</label>
+                            <label style="display: block;"><input type="checkbox" id="Assassin" name="ClassesContent" value="Assassin">Assassin</label>
+                            <label style="display: block;"><input type="checkbox" id="Berserker" name="ClassesContent" value="Berserker">Berserker</label>
+                        </div>
 
-                    <div>
-                        <button id="ClassReset" class="fieldset-button">Reset</button>
+                        <div class="ClassesContentItems">
+                            <label style="display: block;"><input type="checkbox" id="Ruler" name="ClassesContent" value="Ruler">Ruler</label>
+                            <label style="display: block;"><input type="checkbox" id="Avenger" name="ClassesContent" value="Avenger">Avenger</label>
+                            <label style="display: block;"><input type="checkbox" id="Alterego" name="ClassesContent" value="Alterego">Alterego</label>
+                            <label style="display: block;"><input type="checkbox" id="Mooncancer" name="ClassesContent" value="Mooncancer">Mooncancer</label>
+                            <label style="display: block;"><input type="checkbox" id="Foreigner" name="ClassesContent" value="Foreigner">Foreigner</label>
+                            <label style="display: block;"><input type="checkbox" id="Pretender" name="ClassesContent" value="Pretender">Pretender</label>
+                            <label style="display: block;"><input type="checkbox" id="Beast" name="ClassesContent" value="Beast">Beast</label>
+                        </divclass="ClassesContentItems">
                     </div>
 
                     <div>
-                        <button id="ClassSelectAll" class="fieldset-button">Select All</button>
+                        <button id="ClassReset" class="fieldset-button" style="width: 130px">Reset</button>
+                        <button id="ClassSelectAll" class="fieldset-button" style="width: 130px">Select All</button>
                     </div>
+
                 </fieldset>
 
                 <fieldset id="EnemyTraits">
                     <legend>Enemy Traits:</legend>
 
                     <div>
-                        <button id="TraitReset" class="fieldset-button">Reset</button>
+                        <button id="TraitReset" class="fieldset-button" style="width: 130px">Reset</button>
+                        <button id="TraitSelectAll" class="fieldset-button" style="width: 130px">Select All</button>
+                        <hr />
                     </div>
 
-                    <div>
-                        <button id="TraitSelectAll" class="fieldset-button">Select All</button>
-                    </div>
                 </fieldset>
 
             </div>
@@ -330,10 +355,10 @@
 
     </div>
 
-
-    <script src="MySource.js"></script>
+    <script src="lib/MySource.js"></script>
+    <script src="app/application.js"></script>
+    <script src="app/damage.js"></script>
     <script src="data.js"></script>
-    <script src="calc.js"></script>
     <script src="index.js"></script>
 
 </body>

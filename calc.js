@@ -18,7 +18,6 @@ class DamageCalculation {
     specialDefConfig = 0;
     NpEffectivenessConfig = 0;
 
-
     ServantAttack = null;
     NPValue = null;
     ScalingHpMod = null;

@@ -1,0 +1,80 @@
+body {
+    margin: 0px;
+    background-color: white;
+}
+
+.left {
+    grid-area: menu;
+    width: 300px;
+}
+
+.center {
+    grid-area: main;
+    width: 1260px;
+}
+
+.right {
+    grid-area: right;
+    width: 300px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'menu main right'
+        'footer footer  footer';
+    gap: 10px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+}
+
+table {
+    width: 100%;
+    color: #212529;
+    border-collapse: collapse;
+    border: 0;
+}
+
+table th, td {
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    padding: 4px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+hr {
+    width: 100%;
+}
+
+button {
+    width: 100%; 
+    margin: 2px;
+}
+
+.two-column-div {
+    width: 50%;
+    float: left;
+}
+
+.content-div {
+    display: inline-flex;
+    float: left;
+    width: 100%;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px 0px 10px;
+    vertical-align: central;
+}

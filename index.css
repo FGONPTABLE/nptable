@@ -125,6 +125,11 @@ th, td {
     min-width: 868px;
 }
 
+#ClassesContent .ClassesContentItems {
+    display: grid;
+    float: left;
+}
+
     /*
 
 .traits {
