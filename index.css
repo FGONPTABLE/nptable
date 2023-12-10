@@ -55,7 +55,7 @@ hr {
 }
 
 button {
-    width: 100%; 
+    width: -moz-available; 
     margin: 2px;
 }
 

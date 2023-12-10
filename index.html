@@ -75,7 +75,6 @@
                 </div>
             </fieldset>
 
-
             <fieldset id="Config">
                 <legend>Configuration:</legend>
 
@@ -200,7 +199,13 @@
                 </div>
 
                 <div class="content-div">
-                    <button id="ResetSupportConfiguration" title="Class-type configurations override this configuration!">Reset card-type configurations</button>
+
+                    <div class="two-column-div">
+                        <button id="ConfigReset" title="Reset">Reset</button>
+                    </div>
+                    <div class="two-column-div">
+                        <button id="ConfigAllMax" title="Max">Max</button>
+                    </div>
                 </div>
             </fieldset>
 
@@ -227,6 +232,7 @@
                     <label for="BHGKoyanskaya2X">(BHG) 2x Koyan</label>
                 </div>
             </fieldset>
+            
             <fieldset id="CardTypeArts" class="CardType">
                 <legend>Arts:</legend>
                 <div class="content-div">
@@ -250,6 +256,7 @@
                     <label for="BHGCastoria2X">(BHG) 2x Castoria</label>
                 </div>
             </fieldset>
+            
             <fieldset id="CardTypeQuick" class="CardType">
                 <legend>Quick:</legend>
                 <div class="content-div">
@@ -343,10 +350,10 @@
                 </div>
             </fieldset>
 
-
         </div>
 
         <div class="center">
+
             <table id="NPTable">
                 <thead>
                     <tr>
@@ -381,6 +388,7 @@
                 </thead>
                 <tbody></tbody>
             </table>
+
         </div>
 
         <div class="right">
@@ -484,6 +492,7 @@
     <script src="app/application.js"></script>
     <script src="app/damage.js"></script>
     <script src="data.js"></script>
+    <script src="model.js"></script>
     <script src="index.js"></script>
 
 </body>

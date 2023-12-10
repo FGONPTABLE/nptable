@@ -1,1 +1,0 @@
-var notes = "Euryale supermod is fixed at 250%;"
