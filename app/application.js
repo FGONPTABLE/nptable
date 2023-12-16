@@ -104,7 +104,8 @@ class Application {
                 }
 
                 let LevelMatch = levelFilter.includes(calc.ServantLevel.toString());
-                if (!LevelMatch) {
+                let LevelMatch2 = levelFilter.includes("90") && calc.ServantLevel <= 90;
+                if (!LevelMatch && !LevelMatch2) {
                     console.log("levelMatch mismatch, removed");
                     return;
                 }
