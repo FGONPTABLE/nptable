@@ -106,5 +106,21 @@ document.getElementById("ConfigAllMax").onclick = function () {
     application.OnFilterChange();
 };
 
+document.querySelectorAll(".cardtype-icon").forEach((e) => {
+    var eid = e.id.replace("Icon", "");
+    var clname = "cardtype-icon-disabled";
+    e.onclick = function () {
+        if (document.getElementById(eid).checked)
+            e.classList.add(clname);
+        else
+            e.classList.remove(clname);
+        document.getElementById(eid).checked = !document.getElementById(eid).checked;
+        application.OnFilterChange();
+    }
+});
 
-document.getElementById("ConfigReset").click();
+[].forEach.call(document.getElementsByClassName("ClickableSupportIcon"), function (el) {
+    el.onclick = function () {
+        application.OnSupportClick(el.id);
+    };
+});

@@ -143,21 +143,6 @@ function ConfigNPEffectivenessSet(checked) {
     document.getElementById("NPEffectivenessUp").checked = checked;
 }
 
-function BusterSupportConfigurationReset() {
-    document.getElementById("Buster").checked = true;
-    document.getElementById("BusterSupportConfigurationsDefault").checked = true;
-}
-
-function ArtsSupportConfigurationReset() {
-    document.getElementById("Arts").checked = true;
-    document.getElementById("ArtsSupportConfigurationsDefault").checked = true;
-}
-
-function QuickSupportConfigurationReset() {
-    document.getElementById("Quick").checked = true;
-    document.getElementById("QuickSupportConfigurationsDefault").checked = true;
-}
-
 function ServantNameFilterValueSet(name) {
     document.getElementById("ServantFilter").value = ""
 }
@@ -224,10 +209,7 @@ function Reset() {
     ConfigPowerBonusValueSet(0);
     ConfigNpBonusValueSet(0);
     ConfigSpecialDefenceValueSet(0);
-    BusterSupportConfigurationReset();
     ConfigNPEffectivenessSet(false);
-    ArtsSupportConfigurationReset();
-    QuickSupportConfigurationReset();
     NPLevelReset();
     NPLevelSelect(1);
     OCLevelReset();

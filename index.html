@@ -8,6 +8,65 @@
 <body>
 
     <div class="grid-container">
+        <div class="header CardTypeFilterContainer">
+
+            <div class="CardTypeFilter">
+                <img class="cardtype-icon" id="BusterIcon" src="media/card/buster.png" />
+                <input type="checkbox" id="Buster" name="cardtype" checked value="Buster" />
+            </div>
+            <div class="CardTypeFilter">
+                <img class="cardtype-icon" id="ArtsIcon" src="media/card/arts.png" />
+                <input type="checkbox" id="Arts" name="cardtype" checked value="Arts" />
+            </div>
+            <div class="CardTypeFilter">
+                <img class="cardtype-icon" id="QuickIcon" src="media/card/quick.png" />
+                <input type="checkbox" id="Quick" name="cardtype" checked value="Quick" />
+            </div>
+
+        </div>
+
+        <div class="header">
+
+            <div class="SupportCastoria SupportDiv">
+                <img class="support-icon SupportCount0 ClickableSupportIcon" id="SupportCastoria" src="media/support/castoria.png" />
+                <img class="support-icon SupportCount1" id="SupportCastoria1" src="media/support/castoria.png" hidden />
+                <img class="support-icon SupportCount2" id="SupportCastoria2" src="media/support/castoria.png" hidden />
+            </div>
+
+            <div class="SupportSkadiRuler SupportDiv">
+                <img class="support-icon SupportCount0 ClickableSupportIcon" id="SupportSkadiRuler" src="media/support/SupportSkadiRuler.png" />
+                <img class="support-icon SupportCount1" id="SupportSkadiRuler1" src="media/support/SupportSkadiRuler.png" hidden />
+                <img class="support-icon SupportCount2" id="SupportSkadiRuler2" src="media/support/SupportSkadiRuler.png" hidden />
+            </div>
+
+            <div class="SupportSkadi SupportDiv">
+                <img class="support-icon SupportCount0 ClickableSupportIcon" id="SupportSkadi" src="media/support/SupportSkadi.png" />
+                <img class="support-icon SupportCount1" id="SupportSkadi1" src="media/support/SupportSkadi.png" hidden />
+                <img class="support-icon SupportCount2" id="SupportSkadi2" src="media/support/SupportSkadi.png" hidden />
+            </div>
+
+            <div class="SupportKoyanskayaLight SupportDiv">
+                <img class="support-icon SupportCount0 ClickableSupportIcon" id="SupportKoyanskayaLight" src="media/support/SupportKoyanskayaLight.png" />
+                <img class="support-icon SupportCount1" id="SupportKoyanskayaLight1" src="media/support/SupportKoyanskayaLight.png" hidden />
+                <img class="support-icon SupportCount2" id="SupportKoyanskayaLight2" src="media/support/SupportKoyanskayaLight.png" hidden />
+            </div>
+
+            <div class="SupportOberon SupportDiv">
+                <img class="support-icon SupportCount0 ClickableSupportIcon" id="SupportOberon" src="media/support/SupportOberon.png" />
+                <img class="support-icon SupportCount1" id="SupportOberon1" src="media/support/SupportOberon.png" hidden />
+                <img class="support-icon SupportCount2" id="SupportOberon2" src="media/support/SupportOberon.png" hidden />
+            </div>
+
+
+            <!--
+    <div class=" SupportDiv">
+    <img class="support-icon SupportCount0" id="" src="media/support/.png" />
+    <img class="support-icon SupportCount1" id="1" src="media/support/.png" hidden />
+    <img class="support-icon SupportCount2" id="2" src="media/support/.png" hidden />
+    </div>
+    -->
+        </div>
+         
         <div class="left">
 
             <fieldset id="EnemyClass" class="custom-handler">
@@ -206,78 +265,6 @@
                     <div class="two-column-div">
                         <button id="ConfigAllMax" title="Max">Max</button>
                     </div>
-                </div>
-            </fieldset>
-
-            <fieldset id="CardTypeBuster" class="CardType">
-                <legend>Buster:</legend>
-                <div class="content-div">
-                    <input type="checkbox" id="Buster" name="cardtype" checked value="Buster" />
-                    <label for="buster">Show</label>
-                </div>
-                <div class="content-div" id="BusterSupportConfigurations">
-                    <input type="radio" id="BusterSupportConfigurationsDefault" name="BusterSupportConfigurations" value="Default" checked>
-                    <label for="BusterSupportConfigurationsDefault">Default</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGKoyanskaya2XOberon" name="BusterSupportConfigurations" value="BHGKoyanskaya2XOberon" title="2x Koyan + Oberon, BHG Level 100, 100% power up">
-                    <label for="BHGKoyanskaya2XOberon">(BHG) 2x Koyan + Oberon</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGKoyanskayaOberon" name="BusterSupportConfigurations" value="BHGKoyanskayaOberon" title="1x Koyan + Oberon, BHG Level 100, 100% power up">
-                    <label for="BHGKoyanskayaOberon">(BHG) 1x Koyan + Oberon</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGKoyanskaya2X" name="BusterSupportConfigurations" value="BHGKoyanskaya2XN" title="2x Koyan + Oberon, BHG Level 100, 100% power up">
-                    <label for="BHGKoyanskaya2X">(BHG) 2x Koyan</label>
-                </div>
-            </fieldset>
-            
-            <fieldset id="CardTypeArts" class="CardType">
-                <legend>Arts:</legend>
-                <div class="content-div">
-                    <input type="checkbox" id="Arts" name="cardtype" checked value="Arts" />
-                    <label for="arts">Show</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="ArtsSupportConfigurationsDefault" name="ArtsSupportConfigurations" value="Default" checked>
-                    <label for="ArtsSupportConfigurationsDefault">Default</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGCastoria2XOberon" name="ArtsSupportConfigurations" value="BHGCastoria2XOberon" title="2x Castoria + Oberon, BHG Level 100">
-                    <label for="BHGCastoria2XOberon">(BHG) 2x Castoria + Oberon</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGCastoriaOberon" name="ArtsSupportConfigurations" value="BHGCastoriaOberon" title="1x Castoria + Oberon, BHG Level 100">
-                    <label for="BHGCastoriaOberon">(BHG) 1x Castoria + Oberon</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGCastoria2X" name="ArtsSupportConfigurations" value="BHGCastoria2X" title="2x Castoria, BHG Level 100">
-                    <label for="BHGCastoria2X">(BHG) 2x Castoria</label>
-                </div>
-            </fieldset>
-            
-            <fieldset id="CardTypeQuick" class="CardType">
-                <legend>Quick:</legend>
-                <div class="content-div">
-                    <input type="checkbox" id="Quick" name="cardtype" checked value="Quick" />
-                    <label for="quick">Show</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" name="QuickSupportConfigurations" value="Default" id="QuickSupportConfigurationsDefault" checked>
-                    <label for="QuickSupportConfigurations">Default</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGSkadi2XOberon" name="QuickSupportConfigurations" value="BHGSkadi2XOberon" title="2x Skadi + Oberon, BHG Level 100">
-                    <label for="BHGSkadi2XOberon">(BHG) 2x Skadi + Oberon</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGSkadiOberon" name="QuickSupportConfigurations" value="BHGSkadiOberon" title="1x Skadi + Oberon, BHG Level 100">
-                    <label for="BHGSkadiOberon">(BHG) 1x Skadi + Oberon</label>
-                </div>
-                <div class="content-div">
-                    <input type="radio" id="BHGSkadi2X" name="QuickSupportConfigurations" title="2x Skadi, BHG Level 100">
-                    <label for="BHGSkadi2X">(BHG) 2x Skadi</label>
                 </div>
             </fieldset>
 

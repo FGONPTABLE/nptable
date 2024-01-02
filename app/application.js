@@ -27,6 +27,17 @@ class Application {
         SupportConfiguration.Get('BHGKoyanskayaOberon', 'Buster', 3400, 100, 0, 50, 110, 0, 100),
     ];
 
+    Supports = [
+        //ID, NPType,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
+        SupportConfiguration.Get('SupportCastoria', 'Arts',             0, 50, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportSkadiRuler', 'Quick',          0, 65, 15, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportSkadi', 'Quick',               0, 50, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportKoyanskayaLight', 'Buster',    0, 50, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportOberon', 'Quick',              0, 0, 0, 0, 30, 0, 100),
+        SupportConfiguration.Get('SupportOberon', 'Arts',               0, 0, 0, 0, 30, 0, 100),
+        SupportConfiguration.Get('SupportOberon', 'Buster',             0, 50, 0, 0, 30, 0, 100),        
+    ];
+
     updateDataSource() {
         this.dataSource = [];
 
@@ -38,7 +49,6 @@ class Application {
         let Traits = MySource.documentGetSelectionArray("EnemyTraits");
         let targetTypes = MySource.documentGetSelectionArray("TargetFilter");
         let levelFilter = MySource.documentGetSelectionArray("LevelFilter");
-        //let supportConfigs = MySource.documentGetSelectionArrayByClass("SupportConfigurations");
 
         let checker = (arr, target) => arr.every(v => target.includes(v));
 
@@ -106,23 +116,26 @@ class Application {
                 let LevelMatch = levelFilter.includes(calc.ServantLevel.toString());
                 let LevelMatch2 = levelFilter.includes("90") && calc.ServantLevel <= 90;
                 if (!LevelMatch && !LevelMatch2) {
-                    console.log("levelMatch mismatch, removed");
+                    //console.log("levelMatch mismatch, removed");
                     return;
                 }
 
-                let supportConfiguration = defaultSupportConfiguration;
-                let selectedConfiguration = this.SupportConfigurations.filter((item) => {
-                    let checked = document.getElementById(item.ID).checked;
-                    let npmatch = item.NPType == calc.NoblePhantasm.CardType;
-                    return checked && npmatch
-                })[0];
+                let selectedSupports = [defaultSupportConfiguration];
+                this.Supports.forEach((item) => {
+                    let type = item.NPType;
+                    if (type != calc.NoblePhantasm.CardType) return;
+                    let count2ID = item.ID + "2";
+                    let count1ID = item.ID + "1";
+                    //console.log(item.ID, count2ID, count1ID);
+                    if (!document.getElementById(count1ID).hidden) {
+                        selectedSupports.push(item);
+                    }
+                    if (!document.getElementById(count2ID).hidden) {
+                        selectedSupports.push(item);
+                    }
+                });
 
-                if (selectedConfiguration != null) {
-                    supportConfiguration = selectedConfiguration;
-                    console.log(defaultSupportConfiguration, selectedConfiguration);
-                };
-
-                let damageCalculation = damage.CalculateDamage(servant, enemy, calc, supportConfiguration);
+                let damageCalculation = damage.CalculateDamage(servant, enemy, calc, selectedSupports);
                 this.dataSource.push(damageCalculation);
             });
         });
@@ -264,5 +277,23 @@ class Application {
         //console.trace();
         this.updateDataSource();
         this.updateTable();
+    }
+
+    OnSupportClick(elementId) {
+        let element1 = document.getElementById(elementId + '1');
+        let element2 = document.getElementById(elementId + '2');
+        if (element1.hidden && element2.hidden) {
+            element1.hidden = false;
+            this.OnFilterChange();
+            return;
+        }
+        if (!element1.hidden && element2.hidden) {
+            element2.hidden = false;
+            this.OnFilterChange();
+            return;
+        }
+        element1.hidden = true;
+        element2.hidden = true;
+        this.OnFilterChange();
     }
 }
