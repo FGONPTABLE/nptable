@@ -106,7 +106,7 @@ document.getElementById("ConfigAllMax").onclick = function () {
     application.OnFilterChange();
 };
 
-[].forEach.call(document.getElementsByClassName("ClickableSupportIcon"), function (el) {
+[].forEach.call(document.querySelectorAll(".SupportDiv .SupportCount0"), function (el) {
     el.onclick = function () {
         application.OnSupportClick(el.id);
     };

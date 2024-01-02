@@ -29,13 +29,58 @@ class Application {
 
     Supports = [
         //ID, NPType,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
+        //SupportConfiguration.Get('', '',            0, 0, 0, 0, 0, 0, 0),
         SupportConfiguration.Get('SupportCastoria', 'Arts',             0, 50, 20, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportSkadiRuler', 'Quick',          0, 65, 15, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportSkadi', 'Quick',               0, 50, 30, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportKoyanskayaLight', 'Buster',    0, 50, 0, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportOberon', 'Quick',              0, 0, 0, 0, 30, 0, 100),
         SupportConfiguration.Get('SupportOberon', 'Arts',               0, 0, 0, 0, 30, 0, 100),
-        SupportConfiguration.Get('SupportOberon', 'Buster',             0, 50, 0, 0, 30, 0, 100),        
+        SupportConfiguration.Get('SupportOberon', 'Buster',             0, 50, 0, 0, 30, 0, 100),
+
+        SupportConfiguration.Get('SupportHelena', 'Quick',              0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportHelena', 'Arts',               0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportHelena', 'Buster',             0, 20, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportPara', 'Arts',                 0, 20, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportShakes', 'Buster',             0, 40, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportMarlin', 'Arts',               0, 50, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportCnoc', 'Quick',                0, 0, 70, 0, 20, 0, 0),
+        SupportConfiguration.Get('SupportCnoc', 'Arts',                 0, 0, 70, 0, 20, 0, 0),
+        SupportConfiguration.Get('SupportCnoc', 'Buster',               0, 0, 70, 0, 20, 0, 0),
+
+        SupportConfiguration.Get('SupportXuFu', 'Arts',                 0, 20, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportMarthaSanta', 'Quick',         0, 0, 70, 50, 0, 0, 0),
+        SupportConfiguration.Get('SupportMarthaSanta', 'Arts',          0, 0, 70, 50, 0, 0, 0),
+        SupportConfiguration.Get('SupportMarthaSanta', 'Buster',        0, 0, 70, 50, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportNeroSaber', 'Quick',           0, 0, 40, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportNeroSaber', 'Arts',            0, 0, 40, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportNeroSaber', 'Buster',          0, 0, 40, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportReines', 'Quick',              0, 0, 40, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportReines', 'Arts',               0, 0, 40, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportReines', 'Buster',             0, 0, 40, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportTamamo', 'Arts',               0, 50, 0, 0, 30, 0, 0),
+
+        SupportConfiguration.Get('SupportWaver', 'Quick',               0, 0, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportWaver', 'Arts',                0, 0, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportWaver', 'Buster',              0, 0, 30, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportMerlin', 'Buster',             0, 50, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('SupportCrane', 'Quick',               0, 0, 20, 0, 30, 0, 0),
+        SupportConfiguration.Get('SupportCrane', 'Arts',                0, 0, 20, 0, 30, 0, 0),
+        SupportConfiguration.Get('SupportCrane', 'Buster',              0, 0, 20, 0, 30, 0, 0)
     ];
 
     updateDataSource() {
