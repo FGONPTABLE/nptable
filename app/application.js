@@ -43,7 +43,7 @@ class Application {
 
         let servantFilter = MySource.documentGetTextValue("ServantFilter");
         let classes = MySource.documentGetSelectionArray("PlayerClasses");
-        let cardTypes = MySource.documentGetSelectionArrayByClass("CardType");
+        let cardTypes = MySource.documentGetSelectionArrayByClass("CardTypeFilterContainer");
         let NPLevels = MySource.documentGetSelectionArrayInt("NPLevels");
         let OCLevels = MySource.documentGetSelectionArrayInt("OCLevels");
         let Traits = MySource.documentGetSelectionArray("EnemyTraits");
@@ -65,58 +65,69 @@ class Application {
         defaultSupportConfiguration.SpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
         defaultSupportConfiguration.NPEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
 
+        let count = 0;
+        //MISMATCH
+        let servantMatchCount = 0;
+        let targetTypeMatchCount = 0
+        let classMatchCount = 0;
+        let cardTypeMatchCount = 0;
+        let OCmatchCount = 0;
+        let traitMatchCount = 0;
+        let NPLevelMatchCount = 0;
+        let levelMatchCount = 0;
+
         data.Servants.forEach((servant) => {
             //if (servant.ID == "ID356") console.log(servant);
             servant.DamageCalculations.forEach((calc) => {
                 if (servantFilter.length > 0) {
                     let servantMatch = servant.Name.toLowerCase().includes(servantFilter.toLowerCase());
                     if (!servantMatch) {
-                        //console.log("servant mismatch, removed");
+                        servantMatchCount++;
                         return;
                     }
                 }
 
                 let targetTypeMatch = targetTypes.includes(calc.NoblePhantasm.TargetType);
                 if (!targetTypeMatch) {
-                    //console.log("targetTypeMatch mismatch, removed");
+                    targetTypeMatchCount++;
                     return;
                 }
 
                 let classMatch = classes.includes(calc.ClassType);
                 if (!classMatch) {
-                    //console.log("classMatch mismatch, removed");
+                    classMatchCount++;
                     return;
                 }
 
                 let cardTypeMatch = cardTypes.includes(calc.NoblePhantasm.CardType);
                 if (!cardTypeMatch) {
-                    //console.log("cardTypeMatch mismatch, removed");
+                    cardTypeMatchCount++;
                     return;
                 }
 
                 let OCmatch = OCLevels.includes(calc.OCLevel);
                 if (!OCmatch) {
-                    //console.log("OCmatch mismatch, removed");
+                    OCmatchCount++;
                     return;
                 }
 
                 let traitMatch = calc.Traits.length == 0 || (Traits.length > 0 && checker(calc.Traits, Traits));
                 if (!traitMatch) {
-                   // console.log("traitMatch mismatch, removed");
+                    traitMatchCount++;
                     return;
                 }
 
                 let FreeNp5 = servant.IsFree && calc.NPLevel == 5;
                 let NPLevelMatch = !servant.IsFree && NPLevels.includes(calc.NPLevel);
                 if (!NPLevelMatch && !FreeNp5) {
-                    //console.log("NPLevelMatch mismatch, removed");
+                    NPLevelMatchCount++;
                     return;
                 }
 
                 let LevelMatch = levelFilter.includes(calc.ServantLevel.toString());
                 let LevelMatch2 = levelFilter.includes("90") && calc.ServantLevel <= 90;
                 if (!LevelMatch && !LevelMatch2) {
-                    //console.log("levelMatch mismatch, removed");
+                    levelMatchCount++;
                     return;
                 }
 
@@ -137,8 +148,19 @@ class Application {
 
                 let damageCalculation = damage.CalculateDamage(servant, enemy, calc, selectedSupports);
                 this.dataSource.push(damageCalculation);
+                count++;
             });
         });
+
+        console.log("after filtering: " + count);
+        console.log("MISMATCH: servantMatchCount: " + servantMatchCount);
+        console.log("MISMATCH: targetTypeMatchCount: " + targetTypeMatchCount);
+        console.log("MISMATCH: classMatchCount: " + classMatchCount);
+        console.log("MISMATCH: cardTypeMatchCount: " + cardTypeMatchCount);
+        console.log("MISMATCH: OCmatchCount: " + OCmatchCount);
+        console.log("MISMATCH: traitMatchCount: " + traitMatchCount);
+        console.log("MISMATCH: NPLevelMatchCount: " + NPLevelMatchCount);
+        console.log("MISMATCH: levelMatchCount: " + levelMatchCount);
 
         if (this.sortFunctions.sortByID.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.ID, b.inputServant.ID, this.sortFunctions.sortByID.asc));

@@ -5,17 +5,17 @@ body {
 
 .left {
     grid-area: menu;
-    width: 300px;
+    width: 320px;
 }
 
 .center {
     grid-area: main;
-    width: 1260px;
+    width: 1220px;
 }
 
 .right {
     grid-area: right;
-    width: 300px;
+    width: 320px;
 }
 
 .grid-container {
@@ -64,9 +64,40 @@ input[type=number]{
     width: 60px; 
 }
 
+.image-input input {
+    visibility: collapse;
+    display: contents;
+}
+
+.image-input input:not(:checked) ~ label {
+    filter: grayscale(1);
+}
+
+.cardtype-icon{
+    display: block ruby;
+}
+
+.cardtype-icon img {
+    height: 37px;
+    width: 75px;
+}
+
+.class-icon img {
+    width: 37px;
+    height: 37px;
+}
+
 .two-column-div {
     width: 50%;
     float: left;
+}
+
+.two-row-div{
+    height: 50%; 
+}
+
+.two-row-div > div {
+    display: ruby;
 }
 
 .content-div {
@@ -83,8 +114,8 @@ input[type=number]{
 }
 
 .support-icon {
-    width: 30px;
-    height: 30px;
+    width: 42px;
+    height: 42px;
     margin: 0px 10px 0px 10px;
 }
 
@@ -117,29 +148,4 @@ input[type=number]{
     margin-top: -10px;
     padding-left: 10px;
     opacity: 66%;
-}
-
-.CardTypeFilterContainer {
-    display: block ruby;
-    align-items: center;
-}
-
-.CardTypeFilter{
-    height: 37px;
-    width: 75px;
-}
-
-.cardtype-icon {
-    width: inherit;
-    height: inherit;
-}
-
-.cardtype-icon-disabled {
-    filter: grayscale(1);
-}
-
-.CardTypeFilter > input{
-    visibility: collapse;
-    height: 0px;
-    width: 0px;
 }

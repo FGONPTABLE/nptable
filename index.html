@@ -8,19 +8,24 @@
 <body>
 
     <div class="grid-container">
-        <div class="header CardTypeFilterContainer">
-
+        <div class="header CardTypeFilterContainer image-input cardtype-icon">
             <div class="CardTypeFilter">
-                <img class="cardtype-icon" id="BusterIcon" src="media/card/buster.png" />
                 <input type="checkbox" id="Buster" name="cardtype" checked value="Buster" />
+                <label for="Buster">
+                    <img src="media/card/buster.png" />
+                </label>
             </div>
             <div class="CardTypeFilter">
-                <img class="cardtype-icon" id="ArtsIcon" src="media/card/arts.png" />
                 <input type="checkbox" id="Arts" name="cardtype" checked value="Arts" />
+                <label for="Arts">
+                    <img src="media/card/arts.png" />
+                </label>
             </div>
             <div class="CardTypeFilter">
-                <img class="cardtype-icon" id="QuickIcon" src="media/card/quick.png" />
                 <input type="checkbox" id="Quick" name="cardtype" checked value="Quick" />
+                <label for="Quick">
+                    <img src="media/card/quick.png" />
+                </label>
             </div>
 
         </div>
@@ -69,67 +74,95 @@
          
         <div class="left">
 
-            <fieldset id="EnemyClass" class="custom-handler">
+            <fieldset id="EnemyClass" class="custom-handler image-input class-icon">
                 <legend>Enemy Class:</legend>
 
-                <div class="two-column-div">
-                    <div class="content-div">
+                <div class="two-row-div">
+                    <div>
                         <input type="radio" name="class" id="Shielder" checked>
-                        <label for="Shielder">Shielder</label>
+                        <label for="Shielder">
+                            <img src="media/class/Unknown.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Saber" />
-                        <label for="Saber">Saber</label>
+                        <label for="Saber">
+                            <img src="media/class/Saber.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Archer">
-                        <label for="Archer">Archer</label>
+                        <label for="Archer">
+                            <img src="media/class/Archer.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Lancer">
-                        <label for="Lancer">Lancer</label>
+                        <label for="Lancer">
+                            <img src="media/class/Lancer.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Rider">
-                        <label for="Rider">Rider</label>
+                        <label for="Rider">
+                            <img id="RiderIcon" src="media/class/Rider.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Caster">
-                        <label for="Caster">Caster</label>
+                        <label for="Caster">
+                            <img id="CasterIcon" src="media/class/Caster.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Assassin">
-                        <label for="Assassin">Assassin</label>
+                        <label for="Assassin">
+                            <img id="AssassinIcon" src="media/class/Assassin.png" />
+                        </label>
                     </div>
                 </div>
-                <div class="two-column-div">
-                    <div class="content-div">
+                <div class="two-row-div">
+                    <div>
                         <input type="radio" name="class" id="Berserker">
-                        <label for="Berserker">Berserker</label>
+                        <label for="Berserker">
+                            <img id="BerserkerIcon" src="media/class/Berserker.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Ruler">
-                        <label for="Ruler">Ruler</label>
+                        <label for="Ruler">
+                            <img id="RulerIcon" src="media/class/Ruler.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Avenger">
-                        <label for="Avenger">Avenger</label>
+                        <label for="Avenger">
+                            <img id="AvengerIcon" src="media/class/Avenger.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Alterego">
-                        <label for="Alterego">Alterego</label>
+                        <label for="Alterego">
+                            <img src="media/class/Alterego.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Mooncancer">
-                        <label for="Mooncancer">Mooncancer</label>
+                        <label for="Mooncancer">
+                            <img src="media/class/Mooncancer.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Foreigner">
-                        <label for="Foreigner">Foreigner</label>
+                        <label for="Foreigner">
+                            <img src="media/class/Foreigner.png" />
+                        </label>
                     </div>
-                    <div class="content-div">
+                    <div>
                         <input type="radio" name="class" id="Pretender">
-                        <label for="Pretender">Pretender</label>
+                        <label for="Pretender">
+                            <img src="media/class/Pretender.png" />
+                        </label>
                     </div>
                 </div>
             </fieldset>
@@ -384,72 +417,100 @@
                 <input type="text" id="ServantFilter" style="width: 265px" placeholder="Filter by Servant..." />
                 <legend>By Class:</legend>
                 <hr />
-                <div id="ClassesContent">
-                    <div class="two-column-div">
-                        <div class="content-div">
+                <div id="ClassesContent" class="image-input class-icon">
+                    <div class="two-row-div">
+                        <div>
                             <input type="checkbox" id="Saber" name="ClassesContent" value="Saber">
-                            <label for="Saber">Saber</label>
+                            <label for="Saber">
+                                <img src="media/class/Saber.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
+                        <div>
                             <input type="checkbox" id="Archer" name="ClassesContent" value="Archer">
-                            <label for="Archer">Archer</label>
+                            <label for="Archer">
+                                <img src="media/class/Archer.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
+                        <div>
                             <input type="checkbox" id="Lancer" name="ClassesContent" value="Lancer">
-                            <label for="Lancer">Lancer</label>
+                            <label for="Lancer">
+                                <img src="media/class/Lancer.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
+                        <div>
                             <input type="checkbox" id="Rider" name="ClassesContent" value="Rider">
-                            <label for="Rider">Rider</label>
+                            <label for="Rider">
+                                <img src="media/class/Rider.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
+                        <div>
                             <input type="checkbox" id="Caster" name="ClassesContent" value="Caster">
-                            <label for="Caster">Caster</label>
+                            <label for="Caster">
+                                <img src="media/class/Caster.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
+                        <div>
                             <input type="checkbox" id="Assassin" name="ClassesContent" value="Assassin">
-                            <label for="Assassin">Assassin</label>
+                            <label for="Assassin">
+                                <img src="media/class/Assassin.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
+                        <div>
                             <input type="checkbox" id="Berserker" name="ClassesContent" value="Berserker">
-                            <label for="Berserker">Berserker</label>
+                            <label for="Berserker">
+                                <img src="media/class/Berserker.png" />
+                            </label>
                         </div>
-                        <div class="content-div">
-                            <button id="ClassReset" class="fieldset-button ResetButton">Reset</button>
+                    </div>
+                    <div class="two-row-div">
+                        <div>
+                            <input type="checkbox" id="Ruler" name="ClassesContent" value="Ruler">
+                            <label for="Ruler">
+                                <img src="media/class/Ruler.png" />
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Avenger" name="ClassesContent" value="Avenger">
+                            <label for="Avenger">
+                                <img src="media/class/Avenger.png" />
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Alterego" name="ClassesContent" value="Alterego">
+                            <label for="Alterego">
+                                <img src="media/class/Alterego.png" />
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Mooncancer" name="ClassesContent" value="Mooncancer">
+                            <label for="Mooncancer">
+                                <img src="media/class/Mooncancer.png" />
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Foreigner" name="ClassesContent" value="Foreigner">
+                            <label for="Foreigner">
+                                <img src="media/class/Foreigner.png" />
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Pretender" name="ClassesContent" value="Pretender">
+                            <label for="Pretender">
+                                <img src="media/class/Pretender.png" />
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Beast" name="ClassesContent" value="Beast">
+                            <label for="Beast">
+                                <img src="media/class/Beast.png" />
+                            </label>
                         </div>
                     </div>
                     <div class="two-column-div">
-                        <div class="content-div">
-                            <input type="checkbox" id="Ruler" name="ClassesContent" value="Ruler">
-                            <label for="Ruler">Ruler</label>
-                        </div>
-                        <div class="content-div">
-                            <input type="checkbox" id="Avenger" name="ClassesContent" value="Avenger">
-                            <label for="Avenger">Avenger</label>
-                        </div>
-                        <div class="content-div">
-                            <input type="checkbox" id="Alterego" name="ClassesContent" value="Alterego">
-                            <label for="Alterego">Alterego</label>
-                        </div>
-                        <div class="content-div">
-                            <input type="checkbox" id="Mooncancer" name="ClassesContent" value="Mooncancer">
-                            <label for="Mooncancer">Mooncancer</label>
-                        </div>
-                        <div class="content-div">
-                            <input type="checkbox" id="Foreigner" name="ClassesContent" value="Foreigner">
-                            <label for="Foreigner">Foreigner</label>
-                        </div>
-                        <div class="content-div">
-                            <input type="checkbox" id="Pretender" name="ClassesContent" value="Pretender">
-                            <label for="Pretender">Pretender</label>
-                        </div>
-                        <div class="content-div">
-                            <input type="checkbox" id="Beast" name="ClassesContent" value="Beast">
-                            <label for="Beast">Beast</label>
-                        </div>
-                        <div class="content-div">
-                            <button id="ClassSelectAll" class="fieldset-button SelectAllButton">Select All</button>
-                        </div>
+                        <button id="ClassReset" class="fieldset-button ResetButton">Reset</button>
+                    </div>
+                    <div class="two-column-div">
+                        <button id="ClassSelectAll" class="fieldset-button SelectAllButton">Select All</button>
                     </div>
                 </div>
             </fieldset>
