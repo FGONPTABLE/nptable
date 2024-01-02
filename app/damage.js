@@ -91,47 +91,6 @@ class damage {
         return this;
     }
 
-    /*
-    static CalculateDamage(servant, enemy, calc, supportConfiguration) {
-        let damageCalculationObject = new damage();
-
-        damageCalculationObject.inputServant = servant;
-        damageCalculationObject.inputEnemy = enemy
-        damageCalculationObject.inputCalc = calc;
-
-        damageCalculationObject.TriangleMod = parseFloat(getTriangleMod(servant, enemy));
-        damageCalculationObject.AttributeMod = parseFloat(getAttributeMod(servant, enemy));
-
-        //config
-        damageCalculationObject.svtAtkConfig = supportConfiguration.servantAttackBonus;
-        damageCalculationObject.cardConfig = supportConfiguration.cardBonus;
-        damageCalculationObject.atkConfig = supportConfiguration.attackBonus;
-        damageCalculationObject.powerConfig = supportConfiguration.powerBonus;
-        damageCalculationObject.npConfig = supportConfiguration.NpBonus;
-        damageCalculationObject.specialDefConfig = supportConfiguration.SpecialDefence;
-        damageCalculationObject.NpEffectivenessConfig = supportConfiguration.NPEffectivenessUp;
-
-        damageCalculationObject.ServantAttack = parseInt(calc.ServantAtk) + parseInt(damageCalculationObject.svtAtkConfig);
-        damageCalculationObject.NPValue = parseFloat(calc.NpValue);
-        damageCalculationObject.ScalingHpMod = parseFloat(calc.ScalingHpMod);
-        damageCalculationObject.ClassMod = parseFloat(calc.ClassMod);
-        damageCalculationObject.CardMod = parseFloat(calc.CardMod) + parseFloat(damageCalculationObject.cardConfig);
-        damageCalculationObject.CardTypeMode = parseFloat(calc.CardTypeMode);
-        damageCalculationObject.CardResistanceMod = parseFloat(calc.CardResistanceMod);
-        damageCalculationObject.RandomMod = parseFloat(calc.RandomMod);
-        damageCalculationObject.Const = parseFloat(calc.Const);
-        damageCalculationObject.AttackMod = parseFloat(calc.AttackMod) + parseFloat(damageCalculationObject.atkConfig);
-        damageCalculationObject.DefenceMod = parseFloat(calc.DefenceMod);
-        damageCalculationObject.SpecialDefMod = parseFloat(calc.SpecialDefMod) - parseFloat(damageCalculationObject.specialDefConfig);
-        damageCalculationObject.PowerMod = parseFloat(calc.PowerMod) + parseFloat(damageCalculationObject.powerConfig);
-        damageCalculationObject.NpPowerMod = parseFloat(calc.NpPowerMod) + parseFloat(damageCalculationObject.npConfig);
-        damageCalculationObject.SuperModValue = parseFloat(calc.SuperModValue);
-        damageCalculationObject.NPEffectivenessMod = Math.min(2, 1 + parseFloat(calc.NPEffectivenessMod) + parseFloat(damageCalculationObject.NpEffectivenessConfig));
-
-        return damageCalculationObject.calculate();
-    }
-    */
-
     static CalculateDamage(servant, enemy, calc, supportConfigurations) {
         let damageCalculationObject = new damage();
 

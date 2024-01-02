@@ -171,12 +171,11 @@ class Application {
                     if (type != calc.NoblePhantasm.CardType) return;
                     let count2ID = item.ID + "2";
                     let count1ID = item.ID + "1";
-                    //console.log(item.ID, count2ID, count1ID);
                     if (!document.getElementById(count1ID).hidden) {
                         selectedSupports.push(item);
                     }
                     let el2 = document.getElementById(count2ID);
-                    if (el2 != null && el2.hidden) {
+                    if (el2 != null && !el2.hidden) {
                         selectedSupports.push(item);
                     }
                 });
@@ -340,20 +339,30 @@ class Application {
         let element1 = document.getElementById(elementId + '1');
         let element2 = document.getElementById(elementId + '2');
         let element2exists = element2 != null;
-        let element2hidden = element2exists ? element2.hidden : true;
-        if (element1.hidden && element2hidden) {
+
+        if (!element2exists) {
+            if (element1.hidden) {
+                element1.hidden = false;
+                this.OnFilterChange();
+                return;
+            }
+            element1.hidden = true;
+            this.OnFilterChange();
+            return;
+        }
+
+        if (element1.hidden && element2.hidden) {
             element1.hidden = false;
             this.OnFilterChange();
             return;
         }
-        if (element2exists && !element1.hidden && element2hidden) {
+        if (!element1.hidden && element2.hidden) {
             element2.hidden = false;
             this.OnFilterChange();
             return;
         }
         element1.hidden = true;
-        if (element2exists)
-            element2.hidden = true;
+        element2.hidden = true;
         this.OnFilterChange();
     }
 }
