@@ -204,7 +204,7 @@ function Reset() {
     LevelFilterSelect(90);
     TargetFilterSelectAll();
     ConfigCardValueSet(0);
-    ConfigServantAttackValueSet(1000);
+    ConfigServantAttackValueSet(0);
     ConfigAttackBonusValueSet(0);
     ConfigPowerBonusValueSet(0);
     ConfigNpBonusValueSet(0);

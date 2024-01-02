@@ -12,21 +12,6 @@ class Application {
         sortByAttackRating: MySource.getSortableField(),
     };
 
-    SupportConfigurations = [
-        //ID, NPType,                           atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
-        SupportConfiguration.Get('BHGSkadi2XOberon', 'Quick', 3400, 130, 40, 0, 110, 0, 100),
-        SupportConfiguration.Get('BHGCastoria2XOberon', 'Arts', 3400, 100, 40, 0, 110, 0, 100),
-        SupportConfiguration.Get('BHGKoyanskaya2XOberon', 'Buster', 3400, 150, 0, 100, 110, 0, 100),
-
-        SupportConfiguration.Get('BHGSkadi2X', 'Quick', 3400, 130, 40, 0, 80, 0, 0),
-        SupportConfiguration.Get('BHGCastoria2X', 'Arts', 3400, 100, 40, 0, 80, 0, 0),
-        SupportConfiguration.Get('BHGKoyanskaya2X', 'Buster', 3400, 150, 0, 100, 80, 0, 0),
-
-        SupportConfiguration.Get('BHGSkadiOberon', 'Quick', 3400, 80, 25, 0, 110, 0, 100),
-        SupportConfiguration.Get('BHGCastoriaOberon', 'Arts', 3400, 50, 20, 0, 110, 0, 100),
-        SupportConfiguration.Get('BHGKoyanskayaOberon', 'Buster', 3400, 100, 0, 50, 110, 0, 100),
-    ];
-
     Supports = [
         //ID, NPType,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
         //SupportConfiguration.Get('', '',            0, 0, 0, 0, 0, 0, 0),
