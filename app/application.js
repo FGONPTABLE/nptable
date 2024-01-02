@@ -80,7 +80,11 @@ class Application {
 
         SupportConfiguration.Get('SupportCrane', 'Quick',               0, 0, 20, 0, 30, 0, 0),
         SupportConfiguration.Get('SupportCrane', 'Arts',                0, 0, 20, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportCrane', 'Buster',              0, 0, 20, 0, 30, 0, 0)
+        SupportConfiguration.Get('SupportCrane', 'Buster',              0, 0, 20, 0, 30, 0, 0),
+
+        SupportConfiguration.Get('CEBlackGrail', 'Quick',               2400, 0, 0, 0, 80, 0, 0),
+        SupportConfiguration.Get('CEBlackGrail', 'Arts',                2400, 0, 0, 0, 80, 0, 0),
+        SupportConfiguration.Get('CEBlackGrail', 'Buster',              2400, 0, 0, 0, 80, 0, 0)
     ];
 
     updateDataSource() {
@@ -186,7 +190,8 @@ class Application {
                     if (!document.getElementById(count1ID).hidden) {
                         selectedSupports.push(item);
                     }
-                    if (!document.getElementById(count2ID).hidden) {
+                    let el2 = document.getElementById(count2ID);
+                    if (el2 != null && el2.hidden) {
                         selectedSupports.push(item);
                     }
                 });
@@ -349,18 +354,21 @@ class Application {
     OnSupportClick(elementId) {
         let element1 = document.getElementById(elementId + '1');
         let element2 = document.getElementById(elementId + '2');
-        if (element1.hidden && element2.hidden) {
+        let element2exists = element2 != null;
+        let element2hidden = element2exists ? element2.hidden : true;
+        if (element1.hidden && element2hidden) {
             element1.hidden = false;
             this.OnFilterChange();
             return;
         }
-        if (!element1.hidden && element2.hidden) {
+        if (element2exists && !element1.hidden && element2hidden) {
             element2.hidden = false;
             this.OnFilterChange();
             return;
         }
         element1.hidden = true;
-        element2.hidden = true;
+        if (element2exists)
+            element2.hidden = true;
         this.OnFilterChange();
     }
 }
