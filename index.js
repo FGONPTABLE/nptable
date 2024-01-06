@@ -100,9 +100,18 @@ document.getElementById("ConfigReset").onclick = function () {
 
 document.getElementById("ConfigAllMax").onclick = function () {
     Reset();
-    LevelFilterSelect(120);
+    LevelFilterSelect(100);
     TargetFilterSelectAll();
     NPLevelSelect(5);
+    TraitSelect("Servant");
+    TraitSelect("StandardClassServant");
+    TraitSelect("Burn");
+    TraitSelect("Curse");
+    TraitSelect("Poison");
+    TraitSelect("SkillSeal");
+    TraitSelect("Bound");
+    TraitSelect("BuffCharm");
+    TraitSelect("BuffNegativeEffect");
     application.OnFilterChange();
 };
 

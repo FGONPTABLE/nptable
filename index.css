@@ -5,12 +5,12 @@ body {
 
 .left {
     grid-area: menu;
-    width: 320px;
+    width: 360px;
 }
 
 .center {
     grid-area: main;
-    width: 1220px;
+    width: 1180px;
 }
 
 .right {

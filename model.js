@@ -181,6 +181,15 @@ function TraitSelectAll() {
     })
 }
 
+function TraitSelect(traitname) {
+    document.getElementById("EnemyTraits").querySelectorAll('input[type=checkbox]').forEach((item) => {
+        if (item.id == traitname) {
+            item.checked = true;
+            return;
+        }
+    })
+}
+
 function EnemyClassSelect(classname) {
     document.getElementById("EnemyClass").querySelectorAll('input[type=radio]').forEach((item) => {
         if (item.id == classname)
@@ -196,15 +205,15 @@ function EnemyAttributeSelect(attrname) {
 }
 
 function Reset() {
-    console.log("reset");
+    //console.log("reset");
     SortByDamage(false);
-    EnemyClassSelect("Shielder");
+    EnemyClassSelect("Unknown");
     EnemyAttributeSelect("Star");
     LevelFilterReset();
     LevelFilterSelect(90);
     TargetFilterSelectAll();
     ConfigCardValueSet(0);
-    ConfigServantAttackValueSet(0);
+    ConfigServantAttackValueSet(1000);
     ConfigAttackBonusValueSet(0);
     ConfigPowerBonusValueSet(0);
     ConfigNpBonusValueSet(0);
