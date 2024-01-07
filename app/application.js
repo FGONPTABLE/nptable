@@ -57,6 +57,8 @@ class Application {
 
         SupportConfiguration.Get('SupportTamamo', 'Arts',               0, 50, 0, 0, 30, 0, 0),
 
+        SupportConfiguration.Get('SupportGilCaster', 'Arts',            0, 30, 20, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportWaver', 'Quick',               0, 0, 30, 0, 0, 0, 0),
         SupportConfiguration.Get('SupportWaver', 'Arts',                0, 0, 30, 0, 0, 0, 0),
         SupportConfiguration.Get('SupportWaver', 'Buster',              0, 0, 30, 0, 0, 0, 0),
