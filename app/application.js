@@ -69,6 +69,10 @@ class Application {
         SupportConfiguration.Get('SupportCrane', 'Arts',                0, 0, 20, 0, 30, 0, 0),
         SupportConfiguration.Get('SupportCrane', 'Buster',              0, 0, 20, 0, 30, 0, 0),
 
+        SupportConfiguration.Get('SupportShoushetsu', 'Quick',          0, 0, 20, 0, 50, 0, 0),
+        SupportConfiguration.Get('SupportShoushetsu', 'Arts',           0, 30, 20, 0, 50, 0, 0),
+        SupportConfiguration.Get('SupportShoushetsu', 'Buster',         0, 0, 20, 0, 50, 0, 0),
+
         SupportConfiguration.Get('CEBlackGrail', 'Quick',               2400, 0, 0, 0, 80, 0, 0),
         SupportConfiguration.Get('CEBlackGrail', 'Arts',                2400, 0, 0, 0, 80, 0, 0),
         SupportConfiguration.Get('CEBlackGrail', 'Buster',              2400, 0, 0, 0, 80, 0, 0)
