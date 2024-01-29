@@ -17,7 +17,7 @@ class Application {
         //SupportConfiguration.Get('', '',            0, 0, 0, 0, 0, 0, 0),
         SupportConfiguration.Get('SupportCastoria', 'Arts',             0, 50, 20, 0, 0, 0, 0),
 
-        SupportConfiguration.Get('SupportSkadiRuler', 'Quick',          0, 65, 15, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportSkadiRuler', 'Quick',          0, 65, 20, 0, 0, 0, 0),
 
         SupportConfiguration.Get('SupportSkadi', 'Quick',               0, 50, 30, 0, 0, 0, 0),
 
