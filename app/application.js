@@ -281,10 +281,19 @@ class Application {
             row.insertCell().append(document.createTextNode(rank)); rank = rank + 1;
             row.insertCell().append(idNode);
             row.insertCell().append(document.createTextNode(item.inputServant.Name));
-            row.insertCell().append(document.createTextNode(item.inputServant.Rarity));
+
+            let rarityIcon = document.createElement("img");
+            rarityIcon.setAttribute("src", "media/rarity/" + item.inputServant.Rarity + ".png");
+            row.insertCell().append(rarityIcon);
+
             row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.CardType));
             row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.TargetType));
-            row.insertCell().append(document.createTextNode(item.inputServant.Class));
+
+            let classIcon = document.createElement("img");
+            classIcon.setAttribute("src", "media/class/" + item.inputServant.Class + ".png");
+            classIcon.classList.add("class-icon-table");
+            row.insertCell().append(classIcon);
+
             row.insertCell().append(document.createTextNode(item.inputServant.Attribute));
             row.insertCell().append(document.createTextNode(item.inputCalc.ServantLevel));
             row.insertCell().append(document.createTextNode(item.inputCalc.NPLevel));

@@ -87,6 +87,11 @@ input[type=number]{
     height: 37px;
 }
 
+.class-icon-table {
+    width: 37px;
+    height: 37px;
+}
+
 .two-column-div {
     width: 50%;
     float: left;
