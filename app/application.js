@@ -298,6 +298,7 @@ class Application {
             row.insertCell().append(document.createTextNode(item.inputCalc.ServantLevel));
             row.insertCell().append(document.createTextNode(item.inputCalc.NPLevel));
             row.insertCell().append(document.createTextNode(item.inputCalc.OCLevel));
+            row.insertCell().append(document.createTextNode(item.inputCalc.StackLevel));
             row.insertCell().append(document.createTextNode(item.ServantAttack));
             row.insertCell().append(document.createTextNode(item.CalculatedDamage));
 
