@@ -15,26 +15,72 @@ class Application {
     Supports = [
         //ID,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
         //SupportConfiguration.Get('', '',            0, 0, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportCastoria', 0, 50, 20, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportSkadiRuler', 0, 65, 20, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportSkadi', 0, 50, 30, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportKoyanskayaLight', 0, 50, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportOberon', 0, 0, 0, 0, 30, 0, 100),
+        SupportConfiguration.Get('ArtsSupportCastoria',   0, 50, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportCastoria',   0, 0, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportCastoria',   0, 0, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportSkadiRuler', 0, 0, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportSkadiRuler', 0, 65, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportSkadiRuler', 0, 0, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportSkadi',      0, 0, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportSkadi',      0, 50, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportSkadi',      0, 0, 30, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportKoyanskayaLight', 0, 0, 0, 50, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportKoyanskayaLight', 0, 0, 0, 50, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportKoyanskayaLight', 0, 50, 0, 50, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportOberon', 0, 0, 0, 0, 30, 0, 100),
+        SupportConfiguration.Get('QuickSupportOberon', 0, 0, 0, 0, 30, 0, 100),
+        SupportConfiguration.Get('BusterSupportOberon', 0, 50, 0, 0, 30, 0, 100),
+
         SupportConfiguration.Get('SupportHelena', 0, 20, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportPara', 0, 20, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportShakes', 0, 40, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportMarlin', 0, 50, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportPara', 0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportPara', 0, 0, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportPara', 0, 0, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportShakes', 0, 0, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportShakes', 0, 0, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportShakes', 0, 40, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportMarlin', 0, 50, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportMarlin', 0, 0, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportMarlin', 0, 0, 20, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportCnoc', 0, 0, 70, 0, 20, 0, 0),
-        SupportConfiguration.Get('SupportXuFu', 0, 20, 0, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportXuFu', 0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportXuFu', 0, 0, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportXuFu', 0, 0, 0, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportMarthaSanta', 0, 0, 70, 50, 0, 0, 0),
+
         SupportConfiguration.Get('SupportNeroSaber', 0, 0, 40, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportReines', 0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportTamamo', 0, 50, 0, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportGilCaster', 0, 30, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportTamamo', 0, 50, 0, 0, 30, 0, 0),
+        SupportConfiguration.Get('QuickSupportTamamo', 0, 0, 0, 0, 30, 0, 0),
+        SupportConfiguration.Get('BusterSupportTamamo', 0, 0, 0, 0, 30, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportGilCaster', 0, 30, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportGilCaster', 0, 0, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportGilCaster', 0, 0, 20, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportWaver', 0, 0, 30, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportMerlin', 0, 50, 20, 0, 0, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportMerlin', 0, 0, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('QuickSupportMerlin', 0, 0, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('BusterSupportMerlin', 0, 50, 20, 0, 0, 0, 0),
+
         SupportConfiguration.Get('SupportCrane', 0, 0, 20, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportShoushetsu', 0, 0, 20, 0, 50, 0, 0),
+
+        SupportConfiguration.Get('ArtsSupportShoushetsu', 0, 30, 20, 0, 50, 0, 0),
+        SupportConfiguration.Get('QuickSupportShoushetsu', 0, 0, 20, 0, 50, 0, 0),
+        SupportConfiguration.Get('BusterSupportShoushetsu', 0, 0, 20, 0, 50, 0, 0),
+
         SupportConfiguration.Get('CEBlackGrail', 2400, 0, 0, 0, 80, 0, 0)
     ];
 
@@ -133,15 +179,22 @@ class Application {
 
                 let selectedSupports = [defaultSupportConfiguration];
                 this.Supports.forEach((item) => {
-                    let count1ID = calc.NoblePhantasm.CardType + item.ID + "1";
-                    let count2ID = calc.NoblePhantasm.CardType + item.ID + "2";
-                    if (!document.getElementById(count1ID).hidden) {
-                        selectedSupports.push(item);
+                    let count1ID = item.ID + "1";
+                    let count2ID = item.ID + "2";
+                    if (!item.ID.includes(calc.NoblePhantasm.CardType + "Support")) {
+                        count1ID = calc.NoblePhantasm.CardType + item.ID + "1";
+                        count2ID = calc.NoblePhantasm.CardType + item.ID + "2";
                     }
-                    let el2 = document.getElementById(count2ID);
-                    if (el2 != null && !el2.hidden) {
+
+                    let element1 = document.getElementById(count1ID);
+                    let element2 = document.getElementById(count2ID);
+
+                    if (element1 != null && !element1.hidden) {
                         selectedSupports.push(item);
-                    }
+                        if (element2 != null && !element2.hidden) {
+                            selectedSupports.push(item);
+                        }
+                    }                  
                 });
 
                 let damageCalculation = damage.CalculateDamage(servant, enemy, calc, selectedSupports);
