@@ -242,9 +242,14 @@ class Application {
             if (ShowDetails)
                 row.insertCell().append(idNode);
 
-            let servantNameCell = row.insertCell();
+            let servantNameCell = document.createElement('a');
+            servantNameCell.setAttribute('href', 'https://apps.atlasacademy.io/db/JP/servant/' + item.inputServant.ID.replace('ID', ''));
+            servantNameCell.setAttribute('target', '_blank');
+            servantNameCell.appendChild(document.createTextNode(item.inputServant.Name));
+            servantNameCell.classList.add("UUID");
+            servantNameCell.id = item.uuid;
             servantNameCell.classList.add("servantCardType" + item.inputCalc.NoblePhantasm.CardType);
-            servantNameCell.append(document.createTextNode(item.inputServant.Name));
+            row.insertCell().append(servantNameCell);
 
             let rarityIcon = document.createElement("img");
             rarityIcon.setAttribute("src", "media/rarity/" + item.inputServant.Rarity + ".png");
