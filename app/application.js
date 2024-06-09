@@ -13,69 +13,29 @@ class Application {
     };
 
     Supports = [
-        //ID, NPType,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
+        //ID,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
         //SupportConfiguration.Get('', '',            0, 0, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportCastoria', 'Arts',             0, 50, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportSkadiRuler', 'Quick',          0, 65, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportSkadi', 'Quick',               0, 50, 30, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportKoyanskayaLight', 'Buster',    0, 50, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportOberon', 'Quick',              0, 0, 0, 0, 30, 0, 100),
-        SupportConfiguration.Get('SupportOberon', 'Arts',               0, 0, 0, 0, 30, 0, 100),
-        SupportConfiguration.Get('SupportOberon', 'Buster',             0, 50, 0, 0, 30, 0, 100),
-
-        SupportConfiguration.Get('SupportHelena', 'Quick',              0, 20, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportHelena', 'Arts',               0, 20, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportHelena', 'Buster',             0, 20, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportPara', 'Arts',                 0, 20, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportShakes', 'Buster',             0, 40, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportMarlin', 'Arts',               0, 50, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportCnoc', 'Quick',                0, 0, 70, 0, 20, 0, 0),
-        SupportConfiguration.Get('SupportCnoc', 'Arts',                 0, 0, 70, 0, 20, 0, 0),
-        SupportConfiguration.Get('SupportCnoc', 'Buster',               0, 0, 70, 0, 20, 0, 0),
-
-        SupportConfiguration.Get('SupportXuFu', 'Arts',                 0, 20, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportMarthaSanta', 'Quick',         0, 0, 70, 50, 0, 0, 0),
-        SupportConfiguration.Get('SupportMarthaSanta', 'Arts',          0, 0, 70, 50, 0, 0, 0),
-        SupportConfiguration.Get('SupportMarthaSanta', 'Buster',        0, 0, 70, 50, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportNeroSaber', 'Quick',           0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportNeroSaber', 'Arts',            0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportNeroSaber', 'Buster',          0, 0, 40, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportReines', 'Quick',              0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportReines', 'Arts',               0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportReines', 'Buster',             0, 0, 40, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportTamamo', 'Arts',               0, 50, 0, 0, 30, 0, 0),
-
-        SupportConfiguration.Get('SupportGilCaster', 'Arts',            0, 30, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportWaver', 'Quick',               0, 0, 30, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportWaver', 'Arts',                0, 0, 30, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportWaver', 'Buster',              0, 0, 30, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportMerlin', 'Buster',             0, 50, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportCrane', 'Quick',               0, 0, 20, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportCrane', 'Arts',                0, 0, 20, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportCrane', 'Buster',              0, 0, 20, 0, 30, 0, 0),
-
-        SupportConfiguration.Get('SupportShoushetsu', 'Quick',          0, 0, 20, 0, 50, 0, 0),
-        SupportConfiguration.Get('SupportShoushetsu', 'Arts',           0, 30, 20, 0, 50, 0, 0),
-        SupportConfiguration.Get('SupportShoushetsu', 'Buster',         0, 0, 20, 0, 50, 0, 0),
-
-        SupportConfiguration.Get('CEBlackGrail', 'Quick',               2400, 0, 0, 0, 80, 0, 0),
-        SupportConfiguration.Get('CEBlackGrail', 'Arts',                2400, 0, 0, 0, 80, 0, 0),
-        SupportConfiguration.Get('CEBlackGrail', 'Buster',              2400, 0, 0, 0, 80, 0, 0)
+        SupportConfiguration.Get('SupportCastoria', 0, 50, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportSkadiRuler', 0, 65, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportSkadi', 0, 50, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportKoyanskayaLight', 0, 50, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportOberon', 0, 0, 0, 0, 30, 0, 100),
+        SupportConfiguration.Get('SupportHelena', 0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportPara', 0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportShakes', 0, 40, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportMarlin', 0, 50, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportCnoc', 0, 0, 70, 0, 20, 0, 0),
+        SupportConfiguration.Get('SupportXuFu', 0, 20, 0, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportMarthaSanta', 0, 0, 70, 50, 0, 0, 0),
+        SupportConfiguration.Get('SupportNeroSaber', 0, 0, 40, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportReines', 0, 0, 40, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportTamamo', 0, 50, 0, 0, 30, 0, 0),
+        SupportConfiguration.Get('SupportGilCaster', 0, 30, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportWaver', 0, 0, 30, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportMerlin', 0, 50, 20, 0, 0, 0, 0),
+        SupportConfiguration.Get('SupportCrane', 0, 0, 20, 0, 30, 0, 0),
+        SupportConfiguration.Get('SupportShoushetsu', 0, 0, 20, 0, 50, 0, 0),
+        SupportConfiguration.Get('CEBlackGrail', 2400, 0, 0, 0, 80, 0, 0)
     ];
 
     updateDataSource() {
@@ -173,10 +133,8 @@ class Application {
 
                 let selectedSupports = [defaultSupportConfiguration];
                 this.Supports.forEach((item) => {
-                    let type = item.NPType;
-                    if (type != calc.NoblePhantasm.CardType) return;
-                    let count2ID = item.ID + "2";
-                    let count1ID = item.ID + "1";
+                    let count1ID = calc.NoblePhantasm.CardType + item.ID + "1";
+                    let count2ID = calc.NoblePhantasm.CardType + item.ID + "2";
                     if (!document.getElementById(count1ID).hidden) {
                         selectedSupports.push(item);
                     }
@@ -279,7 +237,10 @@ class Application {
 
             let row = tbody.insertRow(tbody.rows.length);
             row.insertCell().append(document.createTextNode(rank)); rank = rank + 1;
-            row.insertCell().append(idNode);
+
+            if (ShowTraits)
+                row.insertCell().append(idNode);
+
             row.insertCell().append(document.createTextNode(item.inputServant.Name));
 
             let rarityIcon = document.createElement("img");

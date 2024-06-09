@@ -37,6 +37,7 @@ table {
     color: #212529;
     border-collapse: collapse;
     border: 0;
+    margin-top: 10px;
 }
 
 table th, td {
@@ -153,4 +154,8 @@ input[type=number]{
     margin-top: -10px;
     padding-left: 10px;
     opacity: 66%;
+}
+
+.supportSelection{
+    height: 60px;
 }

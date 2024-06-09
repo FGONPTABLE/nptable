@@ -158,10 +158,10 @@ function getAttributeMod(servant, enemy) {
 
 class SupportConfiguration {
     constructor() { }
-    static Get(ID, NPType, servantAttackBonus, cardBonus, attackBonus, powerBonus, NpBonus, SpecialDefence, NPEffectivenessUp) {
+
+    static Get(ID, servantAttackBonus, cardBonus, attackBonus, powerBonus, NpBonus, SpecialDefence, NPEffectivenessUp) {
         let config = new SupportConfiguration();
         config.ID = ID;
-        config.NPType = NPType;
         config.servantAttackBonus = servantAttackBonus;
         config.cardBonus = cardBonus / 100.0;
         config.attackBonus = attackBonus / 100.0;
