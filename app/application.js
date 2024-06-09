@@ -188,6 +188,7 @@ class Application {
 
         let ShowDetails = document.getElementById("ShowDetails").checked;
         let ShowTraits = MySource.documentGetSelectionArray("EnemyTraits").length > 0;
+        document.getElementById("Column_ID").hidden = !ShowDetails;
         document.getElementById("Column_Effects").hidden = !ShowDetails;
         document.getElementById("Column_Traits").hidden = !ShowTraits;
 
@@ -238,16 +239,18 @@ class Application {
             let row = tbody.insertRow(tbody.rows.length);
             row.insertCell().append(document.createTextNode(rank)); rank = rank + 1;
 
-            if (ShowTraits)
+            if (ShowDetails)
                 row.insertCell().append(idNode);
 
-            row.insertCell().append(document.createTextNode(item.inputServant.Name));
+            let servantNameCell = row.insertCell();
+            servantNameCell.classList.add("servantCardType" + item.inputCalc.NoblePhantasm.CardType);
+            servantNameCell.append(document.createTextNode(item.inputServant.Name));
 
             let rarityIcon = document.createElement("img");
             rarityIcon.setAttribute("src", "media/rarity/" + item.inputServant.Rarity + ".png");
             row.insertCell().append(rarityIcon);
 
-            row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.CardType));
+            //row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.CardType));           
             row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.TargetType));
 
             let classIcon = document.createElement("img");
