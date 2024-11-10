@@ -90,21 +90,19 @@ class Application {
                     return;
                 }
 
-                /*
-                let traitMatch = noblePhantasm.Traits.length == 0 || (noblePhantasm.Traits.length > 0 && checker(noblePhantasm.Traits, this.enemy.Traits));
-                if (!traitMatch) {
-                    traitMatchCount++;
-                    return;
-                }
-                */
-
-                let FreeNp5 = false;
-                //let FreeNp5 = servant.IsFree && noblePhantasm.NPLevel == 5;
-                let NPLevelMatch = NPLevels.includes(noblePhantasm.Level);
-                if (!NPLevelMatch && !FreeNp5) {
-                    NPLevelMatchCount++;
-                    return;
-                }
+                let FreeNp5 = ((servant.Rarity == "1" || servant.Rarity == "2" || servant.Rarity == "3") || servant.Free);
+                if (FreeNp5) {
+                    if (noblePhantasm.Level != 5) {
+                        NPLevelMatchCount++;
+                        return;
+                    }
+                } else {
+                    let NPLevelMatch = NPLevels.includes(noblePhantasm.Level);
+                    if (!NPLevelMatch) {
+                        NPLevelMatchCount++;
+                        return;
+                    }
+                }                
 
                 let LevelMatch = levelFilter.includes(noblePhantasm.ServantLevel.toString());
                 let LevelMatch2 = levelFilter.includes("90") && noblePhantasm.ServantLevel <= 90;
