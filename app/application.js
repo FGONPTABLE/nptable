@@ -413,11 +413,6 @@ class DamageCalculation {
         this.ClassMod = parseFloat(servant.ClassMod);
         this.CardTypeMode = parseFloat(noblePhantasm.CardTypeMode);
 
-        this.CardMod += parseFloat(this.configCardBonus);
-        this.AttackMod += parseFloat(this.configAtttackBonus);
-        this.PowerMod += parseFloat(this.configPowerBonus);
-        this.NpPowerMod += parseFloat(this.configNpBonus);
-
         let parseEffect = ((skill, effect, isSkill) => {
             if (
                 (effect.Type == "upCommandall" || effect.Type == "downDefencecommandall")
@@ -489,10 +484,10 @@ class DamageCalculation {
         }
         this.NPEffectivenessMod = Math.min(2, 1 + parseFloat(this.configNpEffectivenessUp));
 
-        this.TotalCardMod = (1 + this.CardMod - this.CardResistanceMod + this.configCardBonus);
-        this.TotalAttackMod = (1 + this.AttackMod - this.DefenceMod);
-        this.TotalNpMod = this.NpPowerMod * this.NPEffectivenessMod;
-        this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod);
+        this.TotalCardMod = (1 + this.CardMod - this.CardResistanceMod + parseFloat(this.configCardBonus));
+        this.TotalAttackMod = (1 + this.AttackMod - this.DefenceMod + parseFloat(this.configAtttackBonus));
+        this.TotalNpMod = (this.NpPowerMod +  parseFloat(this.configNpBonus)) * this.NPEffectivenessMod;
+        this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod + parseFloat(this.configPowerBonus));
         this.TotalNpRateUp = 1 + this.NPGainUp + parseFloat(this.configNpRateBonus);
         this.TotalBaseRefund = this.TotalNpRateUp * this.inputNoblePhantasm.NpGainCardMod * this.inputNoblePhantasm.NPGain * this.inputNoblePhantasm.Hits;
         if (this.inputNoblePhantasm.AOE)
@@ -537,7 +532,7 @@ class DamageCalculation {
         this.CalculatedDamage = Math.round(this.CalculatedDamage);
         this.MiscAttackRating = Math.round(this.ServantAttack * this.ClassMod);
 
-        if (servant.Name == "Mordred")
+        if (servant.ID == "253")
             console.log(this);
 
         return this;
