@@ -2,6 +2,7 @@
 
 class Application {
     dataSource = [];
+    enemy = null;
 
     sortFunctions = {
         sortByID: MySource.getSortableField(),
@@ -10,73 +11,8 @@ class Application {
         sortByAttack: MySource.getSortableField(),
         sortByDamage: MySource.getSortableField(),
         sortByAttackRating: MySource.getSortableField(),
+        sortByRefund: MySource.getSortableField()
     };
-
-    Supports = [
-        //ID, NPType,                                                   atk,    card,   atkUp,  pwr,    np,     SpecialDefence, NPEffectivenessUp
-        //SupportConfiguration.Get('', '',            0, 0, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportCastoria', 'Arts',             0, 50, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportSkadiRuler', 'Quick',          0, 65, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportSkadi', 'Quick',               0, 50, 30, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportKoyanskayaLight', 'Buster',    0, 50, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportOberon', 'Quick',              0, 0, 0, 0, 30, 0, 100),
-        SupportConfiguration.Get('SupportOberon', 'Arts',               0, 0, 0, 0, 30, 0, 100),
-        SupportConfiguration.Get('SupportOberon', 'Buster',             0, 50, 0, 0, 30, 0, 100),
-
-        SupportConfiguration.Get('SupportHelena', 'Quick',              0, 20, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportHelena', 'Arts',               0, 20, 0, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportHelena', 'Buster',             0, 20, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportPara', 'Arts',                 0, 20, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportShakes', 'Buster',             0, 40, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportMarlin', 'Arts',               0, 50, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportCnoc', 'Quick',                0, 0, 70, 0, 20, 0, 0),
-        SupportConfiguration.Get('SupportCnoc', 'Arts',                 0, 0, 70, 0, 20, 0, 0),
-        SupportConfiguration.Get('SupportCnoc', 'Buster',               0, 0, 70, 0, 20, 0, 0),
-
-        SupportConfiguration.Get('SupportXuFu', 'Arts',                 0, 20, 0, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportMarthaSanta', 'Quick',         0, 0, 70, 50, 0, 0, 0),
-        SupportConfiguration.Get('SupportMarthaSanta', 'Arts',          0, 0, 70, 50, 0, 0, 0),
-        SupportConfiguration.Get('SupportMarthaSanta', 'Buster',        0, 0, 70, 50, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportNeroSaber', 'Quick',           0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportNeroSaber', 'Arts',            0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportNeroSaber', 'Buster',          0, 0, 40, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportReines', 'Quick',              0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportReines', 'Arts',               0, 0, 40, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportReines', 'Buster',             0, 0, 40, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportTamamo', 'Arts',               0, 50, 0, 0, 30, 0, 0),
-
-        SupportConfiguration.Get('SupportGilCaster', 'Arts',            0, 30, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportWaver', 'Quick',               0, 0, 30, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportWaver', 'Arts',                0, 0, 30, 0, 0, 0, 0),
-        SupportConfiguration.Get('SupportWaver', 'Buster',              0, 0, 30, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportMerlin', 'Buster',             0, 50, 20, 0, 0, 0, 0),
-
-        SupportConfiguration.Get('SupportCrane', 'Quick',               0, 0, 20, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportCrane', 'Arts',                0, 0, 20, 0, 30, 0, 0),
-        SupportConfiguration.Get('SupportCrane', 'Buster',              0, 0, 20, 0, 30, 0, 0),
-
-        SupportConfiguration.Get('SupportShoushetsu', 'Quick',          0, 0, 20, 0, 50, 0, 0),
-        SupportConfiguration.Get('SupportShoushetsu', 'Arts',           0, 30, 20, 0, 50, 0, 0),
-        SupportConfiguration.Get('SupportShoushetsu', 'Buster',         0, 0, 20, 0, 50, 0, 0),
-
-        SupportConfiguration.Get('CEBlackGrail', 'Quick',               2400, 0, 0, 0, 80, 0, 0),
-        SupportConfiguration.Get('CEBlackGrail', 'Arts',                2400, 0, 0, 0, 80, 0, 0),
-        SupportConfiguration.Get('CEBlackGrail', 'Buster',              2400, 0, 0, 0, 80, 0, 0)
-    ];
 
     updateDataSource() {
         this.dataSource = [];
@@ -84,26 +20,19 @@ class Application {
         let servantFilter = MySource.documentGetTextValue("ServantFilter");
         let classes = MySource.documentGetSelectionArray("PlayerClasses");
         let cardTypes = MySource.documentGetSelectionArrayByClass("CardTypeFilterContainer");
-        let NPLevels = MySource.documentGetSelectionArrayInt("NPLevels");
-        let OCLevels = MySource.documentGetSelectionArrayInt("OCLevels");
-        let Traits = MySource.documentGetSelectionArray("EnemyTraits");
+        let NPLevels = MySource.documentGetSelectionArray("NPLevels");
+        let OCLevels = MySource.documentGetSelectionArray("OCLevels");
         let targetTypes = MySource.documentGetSelectionArray("TargetFilter");
         let levelFilter = MySource.documentGetSelectionArray("LevelFilter");
+        let stackLevels = MySource.documentGetSelectionArrayByClass("StackLevels");
+        console.log(servantFilter, classes, cardTypes, NPLevels, OCLevels, targetTypes, levelFilter);
 
-        let checker = (arr, target) => arr.every(v => target.includes(v));
+        //let checker = (arr, target) => arr.every(v => target.includes(v));
 
-        let enemy = data.Enemy;
-        enemy.Class = MySource.documentGetRadio("EnemyClass");
-        enemy.Attribute = MySource.documentGetRadio("EnemyAttribute");
-
-        let defaultSupportConfiguration = new SupportConfiguration();
-        defaultSupportConfiguration.servantAttackBonus = parseInt(document.getElementById("servantAttackBonus").value ?? 0);
-        defaultSupportConfiguration.cardBonus = document.getElementById("cardBonus").value / 100.0 ?? 0.0;
-        defaultSupportConfiguration.attackBonus = document.getElementById("attackBonus").value / 100.0 ?? 0.0;
-        defaultSupportConfiguration.powerBonus = document.getElementById("powerBonus").value / 100.0 ?? 0.0;
-        defaultSupportConfiguration.NpBonus = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
-        defaultSupportConfiguration.SpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
-        defaultSupportConfiguration.NPEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
+        this.enemy = new Enemy();
+        this.enemy.Class = MySource.documentGetRadio("EnemyClass");
+        this.enemy.Attribute = MySource.documentGetRadio("EnemyAttribute");
+        this.enemy.Traits = MySource.documentGetSelectionArray("EnemyTraits");
 
         let count = 0;
         //MISMATCH
@@ -115,10 +44,13 @@ class Application {
         let traitMatchCount = 0;
         let NPLevelMatchCount = 0;
         let levelMatchCount = 0;
+        let StackMatchCount = 0;
 
-        data.Servants.forEach((servant) => {
+        data.forEach((servant) => {
             //if (servant.ID == "ID356") console.log(servant);
-            servant.DamageCalculations.forEach((calc) => {
+            servant.NoblePhantasms.forEach((noblePhantasm) => {
+                //console.log(noblePhantasm);
+
                 if (servantFilter.length > 0) {
                     let servantMatch = servant.Name.toLowerCase().includes(servantFilter.toLowerCase());
                     if (!servantMatch) {
@@ -127,67 +59,71 @@ class Application {
                     }
                 }
 
-                let targetTypeMatch = targetTypes.includes(calc.NoblePhantasm.TargetType);
+                let targetTypeMatch = targetTypes.includes(this.GetTargetString(noblePhantasm.AOE));
                 if (!targetTypeMatch) {
                     targetTypeMatchCount++;
                     return;
                 }
 
-                let classMatch = classes.includes(calc.ClassType);
+                let classMatch = classes.includes(servant.Class);
                 if (!classMatch) {
                     classMatchCount++;
                     return;
                 }
 
-                let cardTypeMatch = cardTypes.includes(calc.NoblePhantasm.CardType);
+
+                let cardTypeMatch = cardTypes.includes(noblePhantasm.CardType);
                 if (!cardTypeMatch) {
                     cardTypeMatchCount++;
                     return;
                 }
 
-                let OCmatch = OCLevels.includes(calc.OCLevel);
+                let OCmatch = OCLevels.includes(noblePhantasm.Overcharge);
                 if (!OCmatch) {
                     OCmatchCount++;
                     return;
                 }
 
-                let traitMatch = calc.Traits.length == 0 || (Traits.length > 0 && checker(calc.Traits, Traits));
+                let stackMatch = stackLevels.includes(noblePhantasm.Stack+"")
+                if (!stackMatch) {
+                    StackMatchCount++;
+                    return;
+                }
+
+                /*
+                let traitMatch = noblePhantasm.Traits.length == 0 || (noblePhantasm.Traits.length > 0 && checker(noblePhantasm.Traits, this.enemy.Traits));
                 if (!traitMatch) {
                     traitMatchCount++;
                     return;
                 }
+                */
 
-                let FreeNp5 = servant.IsFree && calc.NPLevel == 5;
-                let NPLevelMatch = !servant.IsFree && NPLevels.includes(calc.NPLevel);
+                let FreeNp5 = false;
+                //let FreeNp5 = servant.IsFree && noblePhantasm.NPLevel == 5;
+                let NPLevelMatch = NPLevels.includes(noblePhantasm.Level);
                 if (!NPLevelMatch && !FreeNp5) {
                     NPLevelMatchCount++;
                     return;
                 }
 
-                let LevelMatch = levelFilter.includes(calc.ServantLevel.toString());
-                let LevelMatch2 = levelFilter.includes("90") && calc.ServantLevel <= 90;
+                let LevelMatch = levelFilter.includes(noblePhantasm.ServantLevel.toString());
+                let LevelMatch2 = levelFilter.includes("90") && noblePhantasm.ServantLevel <= 90;
                 if (!LevelMatch && !LevelMatch2) {
                     levelMatchCount++;
                     return;
                 }
 
-                let selectedSupports = [defaultSupportConfiguration];
-                this.Supports.forEach((item) => {
-                    let type = item.NPType;
-                    if (type != calc.NoblePhantasm.CardType) return;
-                    let count2ID = item.ID + "2";
-                    let count1ID = item.ID + "1";
-                    if (!document.getElementById(count1ID).hidden) {
-                        selectedSupports.push(item);
-                    }
-                    let el2 = document.getElementById(count2ID);
-                    if (el2 != null && !el2.hidden) {
-                        selectedSupports.push(item);
-                    }
-                });
-
-                let damageCalculation = damage.CalculateDamage(servant, enemy, calc, selectedSupports);
+                let damageCalculation = DamageCalculation.Get(servant, this.enemy, noblePhantasm);
+                damageCalculation.servantAttackBonus = parseInt(document.getElementById("servantAttackBonus").value ?? 0);
+                damageCalculation.cardBonus = document.getElementById("cardBonus").value / 100.0 ?? 0.0;
+                damageCalculation.attackBonus = document.getElementById("attackBonus").value / 100.0 ?? 0.0;
+                damageCalculation.powerBonus = document.getElementById("powerBonus").value / 100.0 ?? 0.0;
+                damageCalculation.NpBonus = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
+                damageCalculation.SpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
+                damageCalculation.NPEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
+                damageCalculation.calculate();
                 this.dataSource.push(damageCalculation);
+                //console.log(damageCalculation);
                 count++;
             });
         });
@@ -201,6 +137,7 @@ class Application {
         console.log("MISMATCH: traitMatchCount: " + traitMatchCount);
         console.log("MISMATCH: NPLevelMatchCount: " + NPLevelMatchCount);
         console.log("MISMATCH: levelMatchCount: " + levelMatchCount);
+        console.log("MISMATCH: StackMatchCount: " + StackMatchCount);
 
         if (this.sortFunctions.sortByID.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.ID, b.inputServant.ID, this.sortFunctions.sortByID.asc));
@@ -216,6 +153,9 @@ class Application {
 
         else if (this.sortFunctions.sortByAttackRating.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.MiscAttackRating, b.MiscAttackRating, this.sortFunctions.sortByAttackRating.asc));
+
+        else if (this.sortFunctions.sortByRefund.enabled)
+            this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.TotalBaseRefund, b.TotalBaseRefund, this.sortFunctions.sortByRefund.asc));
 
         else //sort by damage by default
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.CalculatedDamage, b.CalculatedDamage, this.sortFunctions.sortByDamage.asc));
@@ -241,31 +181,6 @@ class Application {
             let effectRow = document.createElement("div");
             effectRow.classList.add("Column_Effects");
 
-            item.inputCalc.Effects.forEach(function (item) {
-                let description = item.Description;
-                if (description !== "") {
-                    let p = document.createElement("span");
-                    p.textContent = description;
-                    effectRow.append(p);
-                }
-            });
-
-            item.inputCalc.SuperModTraits.forEach(function (item) {
-                let p = document.createElement("div");
-                p.textContent = "Super Effective against " + item;
-                effectRow.append(p);
-            });
-
-            let traitRow = document.createElement("div");
-            item.inputCalc.Traits.forEach(function (item) {
-                let description = item;
-                if (description !== "") {
-                    let p = document.createElement("div");
-                    p.textContent = description;
-                    traitRow.append(p);
-                }
-            });
-
             let idNode = document.createElement('a');
             idNode.setAttribute('href', 'https://apps.atlasacademy.io/db/JP/servant/' + item.inputServant.ID.replace('ID', ''));
             idNode.setAttribute('target', '_blank');
@@ -280,28 +195,45 @@ class Application {
             let row = tbody.insertRow(tbody.rows.length);
             row.insertCell().append(document.createTextNode(rank)); rank = rank + 1;
             row.insertCell().append(idNode);
-            row.insertCell().append(document.createTextNode(item.inputServant.Name));
-            row.insertCell().append(document.createTextNode(item.inputServant.Rarity));
-            row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.CardType));
-            row.insertCell().append(document.createTextNode(item.inputCalc.NoblePhantasm.TargetType));
+
+            let servantNameNode = document.createElement("div");
+            servantNameNode.classList.add("font-" + item.inputNoblePhantasm.CardType);
+            servantNameNode.append(document.createTextNode(item.inputServant.Name));
+            row.insertCell().append(servantNameNode);  
+
             row.insertCell().append(document.createTextNode(item.inputServant.Class));
-            row.insertCell().append(document.createTextNode(item.inputServant.Attribute));
-            row.insertCell().append(document.createTextNode(item.inputCalc.ServantLevel));
-            row.insertCell().append(document.createTextNode(item.inputCalc.NPLevel));
-            row.insertCell().append(document.createTextNode(item.inputCalc.OCLevel));
-            row.insertCell().append(document.createTextNode(item.ServantAttack));
-            row.insertCell().append(document.createTextNode(item.CalculatedDamage));
+            row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.ServantLevel));
+            row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.Level));
+            row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.Overcharge));
 
             row.insertCell().append(document.createTextNode(item.MiscAttackRating));
+            row.insertCell().append(document.createTextNode(item.CalculatedDamage));
+
+            row.insertCell().append(document.createTextNode(this.round(item.inputNoblePhantasm.NPMod * 100)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalCardMod)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalAttackMod)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalPowerNpMod)));
+            row.insertCell().append(document.createTextNode(this.round(item.TotalBaseRefund)));
 
-            if (ShowTraits)
+            if (ShowTraits) {
+                let traitRow = document.createElement("div");
+                item.appliedTraits.forEach(function (item) {
+                    let p = document.createElement("div");
+                    p.textContent = item;
+                    traitRow.append(p);
+                });
                 row.insertCell().append(traitRow);
+            };
 
-            if (ShowDetails)
-                row.insertCell().append(effectRow);
+            if (ShowDetails) {
+                let traitRow = document.createElement("div");
+                item.effectText.forEach(function (item) {
+                    let p = document.createElement("div");
+                    p.textContent = item;
+                    traitRow.append(p);
+                });
+                row.insertCell().append(traitRow);
+            };
         });
     };
 
@@ -309,15 +241,23 @@ class Application {
         return Math.round((num + Number.EPSILON) * 100) / 100
     }
 
-    sortReset() {
+    Sort(sortFunction, asc) {
+        this.sortFunctions.sortByAttack.enabled = false
+        this.sortFunctions.sortByAttackRating.enabled = false;
+        this.sortFunctions.sortByClass.enabled = false;
+        this.sortFunctions.sortByDamage.enabled = false;
         this.sortFunctions.sortByID.enabled = false;
         this.sortFunctions.sortByName.enabled = false;
-        this.sortFunctions.sortByAttack.enabled = false;
-        this.sortFunctions.sortByDamage.enabled = false;
-        this.sortFunctions.sortByAttackRating.enabled = false;
+        this.sortFunctions.sortByRefund.enabled = false;
+        sortFunction.enabled = true;
+        if (asc == undefined)
+            sortFunction.asc = !sortFunction.asc;
+        else
+            sortFunction.asc = asc;
     }
 
     updateTraits() {
+        /*
         let checkUncheck = function (id1, id2) {
             if (MySource.IsChecked(id1) && !MySource.IsChecked(id2)) MySource.Check(id2);
             if (!MySource.IsChecked(id1) && MySource.IsChecked(id2)) MySource.Uncheck(id2);
@@ -332,6 +272,7 @@ class Application {
         //checkUncheck('Earth', 'SkyOrEarth');
 
         checkUncheck('Man', 'AttributeMan');
+        */
     }
 
     OnFilterChange() {
@@ -370,5 +311,774 @@ class Application {
         element1.hidden = true;
         element2.hidden = true;
         this.OnFilterChange();
+    }
+
+    GetTargetString(isAoe) {
+        let returnValue = isAoe ? "EnemyTeam" : "Enemy";
+        return returnValue.toLowerCase();
+    }
+
+    GetTraits() {
+        let traits = [];
+        data.forEach((servant) => {
+            servant.Skills.forEach((skillItem) => {
+                skillItem.Effects.forEach((effectItem) => {
+                    effectItem.Traits.forEach((trait) => {
+                        if (!traits.includes(trait))
+                            traits.push(trait);
+                    });
+                });
+            });
+            servant.NoblePhantasms.forEach((npItem) => {
+                npItem.Traits.forEach((trait) => {
+                    if (!traits.includes(trait))
+                        traits.push(trait);
+                });
+            });
+        });
+        return traits;
+    }
+}
+
+class Enemy {
+    Class = "saber";
+    Attribute = "star";
+    Traits = [];
+}
+
+class DamageCalculation {
+    constructor() { }
+
+    uuid = crypto.randomUUID();
+
+    inputEnemy = null;
+    inputServant = null;
+    inputNoblePhantasm = null;
+
+    TriangleMod = null;
+    AttributeMod = null;
+
+    svtAtkConfig = 0;
+    cardConfig = 0;
+    atkConfig = 0;
+    powerConfig = 0;
+    npConfig = 0;
+    specialDefConfig = 0;
+    NpEffectivenessConfig = 0;
+
+    ServantAttack = null;
+    NPValue = null;
+    ScalingHpMod = 1;
+    ClassMod = 0;
+    CardTypeMode = 1;
+    CardMod = 0;
+    CardResistanceMod = 0;
+    RandomMod = 0.9;
+    Const = 0.23;
+    AttackMod = 0;
+    DefenceMod = 0;
+    SpecialDefMod = 0;
+    PowerMod = 0;
+    NpPowerMod = 0;
+    SuperModValue = 1;
+    NPEffectivenessMod = 1;
+
+    TotalCardMod = null;
+    TotalAttackMod = null;
+    TotalNpMod = null;
+    TotalPowerNpMod = null;
+    TotalBaseRefund = null;
+
+    MiscAttackRating = 0;
+    CalculatedDamage = 0.0;
+
+    effectText = [];
+    appliedTraits = [];
+
+    static Get(servant, enemy, noblePhantasm) {
+        let damageCalculationObject = new DamageCalculation();
+
+        damageCalculationObject.inputServant = servant;
+        damageCalculationObject.inputEnemy = enemy
+        damageCalculationObject.inputNoblePhantasm = noblePhantasm;
+
+        damageCalculationObject.TriangleMod = parseFloat(DamageTriangle.getTriangleMod(servant, enemy));
+        damageCalculationObject.AttributeMod = parseFloat(DamageTriangle.getAttributeMod(servant, enemy));
+
+        damageCalculationObject.ServantAttack = parseInt(noblePhantasm.ServantAttack) + parseInt(damageCalculationObject.svtAtkConfig);
+        damageCalculationObject.NPValue = parseFloat(noblePhantasm.NPMod);
+        //damageCalculationObject.ScalingHpMod = parseFloat(noblePhantasm.ScalingHpMod);
+        damageCalculationObject.ClassMod = parseFloat(servant.ClassMod);
+        damageCalculationObject.CardTypeMode = parseFloat(noblePhantasm.CardTypeMode);
+
+        damageCalculationObject.CardMod += parseFloat(damageCalculationObject.cardConfig);
+        damageCalculationObject.AttackMod += parseFloat(damageCalculationObject.atkConfig);
+        damageCalculationObject.PowerMod += parseFloat(damageCalculationObject.powerConfig);
+        damageCalculationObject.NpPowerMod += parseFloat(damageCalculationObject.npConfig);
+
+        let skillsArray = servant.Skills.concat(noblePhantasm.NoblePhantasmBuff);
+        skillsArray.forEach((skill) => {
+            skill.Effects.forEach((effect) => {
+                if (
+                    (effect.Type == "upCommandall" || effect.Type == "downDefencecommandall")
+                    && this.matchValue(noblePhantasm.CardType, effect.Cards)) {
+                    if (damageCalculationObject.matchTrait(effect.Traits, enemy.Traits, true)) {
+                        damageCalculationObject.CardMod += effect.Value;
+                        damageCalculationObject.effectText.push(this.getEffectString(skill, effect));
+                    }
+                }
+                if (effect.Type == "upAtk") {
+                    if (damageCalculationObject.matchTrait(effect.Traits, enemy.Traits, true)) {
+                        damageCalculationObject.AttackMod += effect.Value;
+                        damageCalculationObject.effectText.push(this.getEffectString(skill, effect));
+                    }
+                }
+                if (effect.Type == "downDefence") {
+                    let targetMatch = (noblePhantasm.AOE && effect.AOE || !noblePhantasm.AOE);
+                    if (targetMatch && damageCalculationObject.matchTrait(effect.Traits, enemy.Traits, true)) {
+                        damageCalculationObject.AttackMod += effect.Value;
+                        damageCalculationObject.effectText.push(this.getEffectString(skill, effect));
+                    }
+                }
+                if (effect.Type == "upDamage" || effect.Type == "upDamageIndividuality") {
+                    //console.log(effect.Traits, enemy.Traits);
+                    if (damageCalculationObject.matchTrait(effect.Traits, enemy.Traits, false)) {
+                        damageCalculationObject.PowerMod += effect.Value;
+                        damageCalculationObject.effectText.push(this.getEffectString(skill, effect));
+                    }
+                }
+                if (effect.Type == "upNpdamage") {
+                    if (damageCalculationObject.matchTrait(effect.Traits, enemy.Traits, true)) {
+                        damageCalculationObject.NpPowerMod += effect.Value;
+                        damageCalculationObject.effectText.push(this.getEffectString(skill, effect));
+                    }
+                }
+            });
+        });
+
+
+        //damageCalculationObject.CardResistanceMod = parseFloat(noblePhantasm.CardResistanceMod);
+        //damageCalculationObject.DefenceMod = parseFloat(noblePhantasm.DefenceMod);
+        damageCalculationObject.SpecialDefMod = parseFloat(damageCalculationObject.specialDefConfig);
+        if (damageCalculationObject.matchTrait(noblePhantasm.Traits, enemy.Traits, false)) {
+            //console.log(noblePhantasm.Traits, enemy.Traits);
+            damageCalculationObject.SuperModValue = parseFloat(noblePhantasm.SuperMod) * parseFloat(noblePhantasm.StackMod);
+        }
+        damageCalculationObject.NPEffectivenessMod = Math.min(2, 1 + parseFloat(damageCalculationObject.NpEffectivenessConfig));
+
+        return damageCalculationObject;
+    }
+
+    calculate() {
+        this.TotalCardMod = (1 + this.CardMod - this.CardResistanceMod);
+        this.TotalAttackMod = (1 + this.AttackMod - this.DefenceMod);
+        this.TotalNpMod = this.NpPowerMod * this.NPEffectivenessMod;
+        this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod);
+        this.TotalBaseRefund = this.inputNoblePhantasm.NpGainCardMod * this.inputNoblePhantasm.NPGain * this.inputNoblePhantasm.Hits;
+        if (this.inputNoblePhantasm.AOE)
+            this.TotalBaseRefund *= 3;
+
+        let debug = false;
+        if(debug)
+            console.log(this.ServantAttack
+                , this.NPValue
+                , this.ScalingHpMod
+                , this.ClassMod
+                , this.CardTypeMode
+                , this.TotalCardMod
+                , this.TriangleMod
+                , this.AttributeMod
+                , this.RandomMod
+                , this.Const
+                , this.TotalAttackMod
+                , this.SpecialDefMod
+                , this.TotalPowerNpMod
+                , this.SuperModValue
+            );
+
+        this.CalculatedDamage =
+            this.ServantAttack
+            * this.NPValue
+            * this.ScalingHpMod
+            * this.ClassMod
+            * this.CardTypeMode
+            * this.TotalCardMod
+            * this.TriangleMod
+            * this.AttributeMod
+            * this.RandomMod
+            * this.Const
+            * this.TotalAttackMod
+            * (1 - this.SpecialDefMod)
+            * this.TotalPowerNpMod
+            * this.SuperModValue
+            ;
+        this.CalculatedDamage = Math.round(this.CalculatedDamage);
+        this.MiscAttackRating = Math.round(this.ServantAttack * this.ClassMod);
+
+        //console.log(this);
+        return this;
+    }
+
+    static matchValue(value, array) {
+        return array.includes(value.toLowerCase());
+    }
+
+    matchTrait(traitArray, enemyArray, onArrayEmpty) {
+        if (traitArray.length == 0)
+            return onArrayEmpty;
+        enemyArray = enemyArray.map(v => v.toLowerCase());
+        for (let i = 0; i < traitArray.length; i++) {
+            let selectedTrait = traitArray[i].toLowerCase();
+            if (enemyArray.includes(selectedTrait)) {
+                if (!this.appliedTraits.includes(selectedTrait))
+                    this.appliedTraits.push(selectedTrait);
+                return true;    
+            }
+        };
+        return false;
+    }
+
+    static getEffectString(skill, effect) {
+        return "[" + skill.Name + "] " + effect.Name + " " + effect.Value * 100.0;
+    }
+}
+
+class DamageTriangle {
+    static ClassTriangle = [
+        {
+            "Attacker": "Berserker",
+            "Defender": "Unknown",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Unknown",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Saber",
+            "Defender": "Archer",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Saber",
+            "Defender": "Lancer",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Saber",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Saber",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Saber",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Archer",
+            "Defender": "Saber",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Archer",
+            "Defender": "Lancer",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Archer",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Archer",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Archer",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Lancer",
+            "Defender": "Saber",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Lancer",
+            "Defender": "Archer",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Lancer",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Lancer",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Lancer",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Rider",
+            "Defender": "Assassin",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Rider",
+            "Defender": "Caster",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Rider",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Rider",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Rider",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Caster",
+            "Defender": "Rider",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Caster",
+            "Defender": "Assassin",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Caster",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Caster",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Caster",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Assassin",
+            "Defender": "Rider",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Assassin",
+            "Defender": "Caster",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Assassin",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Assassin",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Assassin",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Saber",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Archer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Lancer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Rider",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Caster",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Assassin",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Berserker",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Ruler",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Avenger",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Alterego",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Mooncancer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Pretender",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Foreigner",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Berserker",
+            "Defender": "Beast",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Ruler",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Ruler",
+            "Defender": "Avenger",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Ruler",
+            "Defender": "Mooncancer",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Ruler",
+            "Defender": "Beast",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Saber",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Archer",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Lancer",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Rider",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Caster",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Assassin",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Foreigner",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Alterego",
+            "Defender": "Beast",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Avenger",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Avenger",
+            "Defender": "Ruler",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Avenger",
+            "Defender": "Mooncancer",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Avenger",
+            "Defender": "Beast",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Mooncancer",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Mooncancer",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Mooncancer",
+            "Defender": "Avenger",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Mooncancer",
+            "Defender": "Beast",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Foreigner",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Foreigner",
+            "Defender": "Alterego",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Foreigner",
+            "Defender": "Foreigner",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Foreigner",
+            "Defender": "Pretender",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Foreigner",
+            "Defender": "Beast",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Saber",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Archer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Lancer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Rider",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Caster",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Assassin",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Alterego",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Foreigner",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Pretender",
+            "Defender": "Beast",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Saber",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Archer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Lancer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Rider",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Caster",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Assassin",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Berserker",
+            "Value": 2.0
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Ruler",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Alterego",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Avenger",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Mooncancer",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Foreigner",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "Beast",
+            "Defender": "Pretender",
+            "Value": 0.5
+        }
+    ];
+
+    static AttributeTriangle = [
+        {
+            "Attacker": "Sky",
+            "Defender": "Earth",
+            "Value": 1.1
+        },
+        {
+            "Attacker": "Earth",
+            "Defender": "Sky",
+            "Value": 0.9
+        },
+        {
+            "Attacker": "Earth",
+            "Defender": "Man",
+            "Value": 1.1
+        },
+        {
+            "Attacker": "Man",
+            "Defender": "Earth",
+            "Value": 0.9
+        },
+        {
+            "Attacker": "Man",
+            "Defender": "Sky",
+            "Value": 1.1
+        },
+        {
+            "Attacker": "Sky",
+            "Defender": "Man",
+            "Value": 0.9
+        },
+        {
+            "Attacker": "Star",
+            "Defender": "Beast",
+            "Value": 1.1
+        }
+    ];
+
+    static getTriangleMod(servant, enemy) {
+        let item = DamageTriangle.ClassTriangle.find((element) => {
+            return (element.Attacker.toLowerCase() == servant.Class && element.Defender.toLowerCase() == enemy.Class);
+        });
+
+        if (item === undefined)
+            return 1.0;
+
+        return item.Value;
+    }
+
+    static getAttributeMod(servant, enemy) {
+        let item = DamageTriangle.AttributeTriangle.find((element) => {
+            return element.Attacker.toLowerCase() == servant.Attribute && element.Defender.toLowerCase() == enemy.Attribute;
+        });
+
+        if (item === undefined)
+            return 1.0;
+
+        return item.Value;
     }
 }

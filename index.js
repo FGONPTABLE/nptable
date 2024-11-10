@@ -1,58 +1,38 @@
 let application = new Application();
 
-data.Traits.sort().forEach((item) => {
+application.GetTraits().sort().forEach((item) => {
     MySource.insertInput("checkbox", "EnemyTraitsList", item, item);
 });
 
 document.getElementById("Column_ID").addEventListener('click', function () {
-    SortByID();
+    application.Sort(application.sortFunctions.sortByID);
     application.OnFilterChange();
 });
 
 document.getElementById("Column_Servant").addEventListener('click', function () {
-    SortByServant();
+    application.Sort(application.sortFunctions.sortByName);
     application.OnFilterChange();
 });
 
 document.getElementById("Column_Class").addEventListener('click', function () {
-    SortByClass();
-    application.OnFilterChange();
-});
-
-document.getElementById("Column_Attack").addEventListener('click', function () {
-    SortByAttack();
+    application.Sort(application.sortFunctions.sortByClass);
     application.OnFilterChange();
 });
 
 document.getElementById("Column_Damage").addEventListener('click', function () {
-    SortByDamage();
+    application.Sort(application.sortFunctions.sortByDamage);
+    application.OnFilterChange();
+});
+
+document.getElementById("Column_Refund").addEventListener('click', function () {
+    application.Sort(application.sortFunctions.sortByRefund);
     application.OnFilterChange();
 });
 
 document.getElementById("Column_AttackRating").addEventListener('click', function () {
-    SortByAttackRating();
+    application.Sort(application.sortFunctions.sortByAttackRating);
     application.OnFilterChange();
 });
-
-document.getElementById("NPLevelReset").onclick = function () {
-    NPLevelReset();
-    application.OnFilterChange();
-};
-
-document.getElementById("NPLevelSelectAll").onclick = function () {
-    NPLevelSelectAll();    
-    application.OnFilterChange();
-};
-
-document.getElementById("OCLevelReset").onclick = function () {
-    OCLevelReset();
-    application.OnFilterChange();
-};
-
-document.getElementById("OCLevelSelectAll").onclick = function () {
-    OCLevelSelectAll();
-    application.OnFilterChange();
-};
 
 document.getElementById("ClassReset").onclick = function () {
     ClassReset();
@@ -79,11 +59,6 @@ document.getElementById("EnemyClass").addEventListener('change', function () {
     application.OnFilterChange();
 });
 
-document.getElementById("EnemyAttribute").addEventListener('change', function () {
-    application.updateTraits();
-    application.OnFilterChange();
-});
-
 document.querySelectorAll('input').forEach((e) => {
     if (e.closest('.custom-handler') == null) {
         e.addEventListener('change', function () {
@@ -103,15 +78,15 @@ document.getElementById("ConfigAllMax").onclick = function () {
     LevelFilterSelect(100);
     TargetFilterSelectAll();
     NPLevelSelect(5);
-    TraitSelect("Servant");
-    TraitSelect("StandardClassServant");
-    TraitSelect("Burn");
-    TraitSelect("Curse");
-    TraitSelect("Poison");
-    TraitSelect("SkillSeal");
-    TraitSelect("Bound");
-    TraitSelect("BuffCharm");
-    TraitSelect("BuffNegativeEffect");
+    //TraitSelect("Servant");
+    //TraitSelect("StandardClassServant");
+    //TraitSelect("Burn");
+    //TraitSelect("Curse");
+    //TraitSelect("Poison");
+    //TraitSelect("SkillSeal");
+    //TraitSelect("Bound");
+    //TraitSelect("BuffCharm");
+    //TraitSelect("BuffNegativeEffect");
     application.OnFilterChange();
 };
 

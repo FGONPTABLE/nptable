@@ -1,42 +1,3 @@
-function SortByID() {
-    application.sortReset();
-    application.sortFunctions.sortByID.enabled = true;
-    application.sortFunctions.sortByID.asc = !application.sortFunctions.sortByID.asc;
-}
-
-function SortByServant() {
-    application.sortReset();
-    application.sortFunctions.sortByName.enabled = true;
-    application.sortFunctions.sortByName.asc = !application.sortFunctions.sortByName.asc;
-}
-
-function SortByClass() {
-    application.sortReset();
-    application.sortFunctions.sortByClass.enabled = true;
-    application.sortFunctions.sortByClass.asc = !application.sortFunctions.sortByClass.asc;
-}
-
-function SortByAttack() {
-    application.sortReset();
-    application.sortFunctions.sortByAttack.enabled = true;
-    application.sortFunctions.sortByAttack.asc = !application.sortFunctions.sortByAttack.asc;
-}
-
-function SortByDamage(asc) {
-    application.sortReset();
-    application.sortFunctions.sortByDamage.enabled = true;
-    if (asc == undefined)
-        application.sortFunctions.sortByDamage.asc = !application.sortFunctions.sortByDamage.asc;
-    else
-        application.sortFunctions.sortByDamage.asc = asc;
-}
-
-function SortByAttackRating() {
-    application.sortReset();
-    application.sortFunctions.sortByAttackRating.enabled = true;
-    application.sortFunctions.sortByAttackRating.asc = !application.sortFunctions.sortByAttackRating.asc;
-}
-
 function NPLevelReset() {
     document.getElementById("NPLevels").querySelectorAll('input[type=checkbox]').forEach((item) => {
         item.checked = false;
@@ -206,7 +167,7 @@ function EnemyAttributeSelect(attrname) {
 
 function Reset() {
     //console.log("reset");
-    SortByDamage(false);
+    application.Sort(application.sortFunctions.sortByDamage, false);
     EnemyClassSelect("Unknown");
     EnemyAttributeSelect("Star");
     LevelFilterReset();
