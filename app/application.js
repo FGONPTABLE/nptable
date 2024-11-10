@@ -25,7 +25,7 @@ class Application {
         let targetTypes = MySource.documentGetSelectionArray("TargetFilter");
         let levelFilter = MySource.documentGetSelectionArray("LevelFilter");
         let stackLevels = MySource.documentGetSelectionArrayByClass("StackLevels");
-        console.log(servantFilter, classes, cardTypes, NPLevels, OCLevels, targetTypes, levelFilter);
+        //console.log(servantFilter, classes, cardTypes, NPLevels, OCLevels, targetTypes, levelFilter);
 
         //let checker = (arr, target) => arr.every(v => target.includes(v));
 
@@ -119,6 +119,7 @@ class Application {
                 damageCalculation.configNpBonus = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
                 damageCalculation.configSpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
                 damageCalculation.configNpEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
+                damageCalculation.configNpRateBonus = document.getElementById("cardBonus").value / 100.0 ?? 0.0;
                 damageCalculation.Calculate(servant, this.enemy, noblePhantasm);
                 this.dataSource.push(damageCalculation);
                 //console.log(damageCalculation);
@@ -211,6 +212,7 @@ class Application {
             row.insertCell().append(document.createTextNode(this.round(item.TotalCardMod)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalAttackMod)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalPowerNpMod)));
+            row.insertCell().append(document.createTextNode(this.round(item.TotalNpRateUp)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalBaseRefund)));
 
             if (ShowTraits) {
@@ -372,6 +374,7 @@ class DamageCalculation {
     NpPowerMod = 0;
     SuperModValue = 1;
     NPEffectivenessMod = 1;
+    NPGainUp = 0;
 
     configServantAttack = 0;
     configCardBonus = 0;
@@ -380,11 +383,13 @@ class DamageCalculation {
     configNpBonus = 0;
     configSpecialDefence = 0;
     configNpEffectivenessUp = 0;
+    configNpRateBonus = 0;
 
     TotalCardMod = null;
     TotalAttackMod = null;
     TotalNpMod = null;
     TotalPowerNpMod = null;
+    TotalNpRateUp = null;
     TotalBaseRefund = null;
 
     MiscAttackRating = 0;
@@ -449,6 +454,12 @@ class DamageCalculation {
                         this.effectText.push(this.getEffectString(skill, effect));
                     }
                 }
+                if (effect.Type == "upDropnp") {
+                    //if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
+                        this.NPGainUp += effect.Value;
+                        this.effectText.push(this.getEffectString(skill, effect));
+                    //}
+                }
             });
         });
 
@@ -465,7 +476,8 @@ class DamageCalculation {
         this.TotalAttackMod = (1 + this.AttackMod - this.DefenceMod);
         this.TotalNpMod = this.NpPowerMod * this.NPEffectivenessMod;
         this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod);
-        this.TotalBaseRefund = this.inputNoblePhantasm.NpGainCardMod * this.inputNoblePhantasm.NPGain * this.inputNoblePhantasm.Hits;
+        this.TotalNpRateUp = 1 + this.NPGainUp + parseFloat(this.configNpRateBonus);
+        this.TotalBaseRefund = this.TotalNpRateUp * this.inputNoblePhantasm.NpGainCardMod * this.inputNoblePhantasm.NPGain * this.inputNoblePhantasm.Hits;
         if (this.inputNoblePhantasm.AOE)
             this.TotalBaseRefund *= 3;
         this.TotalBaseRefund *= this.TotalCardMod;
