@@ -119,7 +119,7 @@ class Application {
                 damageCalculation.configNpBonus = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
                 damageCalculation.configSpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
                 damageCalculation.configNpEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
-                damageCalculation.configNpRateBonus = document.getElementById("cardBonus").value / 100.0 ?? 0.0;
+                damageCalculation.configNpRateBonus = document.getElementById("npRateBonus").value / 100.0 ?? 0.0;
                 damageCalculation.Calculate(servant, this.enemy, noblePhantasm);
                 this.dataSource.push(damageCalculation);
                 //console.log(damageCalculation);
@@ -375,6 +375,7 @@ class DamageCalculation {
     SuperModValue = 1;
     NPEffectivenessMod = 1;
     NPGainUp = 0;
+    NPRegain = 0;
 
     configServantAttack = 0;
     configCardBonus = 0;
@@ -417,50 +418,66 @@ class DamageCalculation {
         this.PowerMod += parseFloat(this.configPowerBonus);
         this.NpPowerMod += parseFloat(this.configNpBonus);
 
-        let skillsArray = servant.Skills.concat(noblePhantasm.NoblePhantasmBuff);
-        skillsArray.forEach((skill) => {
+        let parseEffect = ((skill, effect, isSkill) => {
+            if (
+                (effect.Type == "upCommandall" || effect.Type == "downDefencecommandall")
+                && this.matchValue(noblePhantasm.CardType, effect.Cards)) {
+                if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
+                    this.CardMod += effect.Value;
+                    this.effectText.push(this.getEffectString(skill, effect));
+                }
+            }
+            if (effect.Type == "upAtk") {
+                if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
+                    this.AttackMod += effect.Value;
+                    this.effectText.push(this.getEffectString(skill, effect));
+                }
+            }
+            if (effect.Type == "downDefence") {
+                let targetMatch = (noblePhantasm.AOE && effect.AOE || !noblePhantasm.AOE);
+                if (targetMatch && this.matchTrait(effect.Traits, enemy.Traits, true)) {
+                    this.AttackMod += effect.Value;
+                    this.effectText.push(this.getEffectString(skill, effect));
+                }
+            }
+            if (effect.Type == "upDamage" || effect.Type == "upDamageIndividuality") {
+                //console.log(effect.Traits, enemy.Traits);
+                if (this.matchTrait(effect.Traits, enemy.Traits, false)) {
+                    this.PowerMod += effect.Value;
+                    this.effectText.push(this.getEffectString(skill, effect));
+                }
+            }
+            if (effect.Type == "upNpdamage") {
+                if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
+                    this.NpPowerMod += effect.Value;
+                    this.effectText.push(this.getEffectString(skill, effect));
+                }
+            }
+            if (effect.Type == "upDropnp") {
+                //if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
+                this.NPGainUp += effect.Value;
+                this.effectText.push(this.getEffectString(skill, effect));
+                //}
+            }
+            if (effect.Type == "regainNp") {
+                this.NPRegain += effect.Value * 10;
+                this.effectText.push(this.getEffectString(skill, effect));
+            }            
+            if(effect.Type == "gainNp" && !isSkill) {
+                this.NPRegain += effect.Value * 10;
+                this.effectText.push(this.getEffectString(skill, effect));
+            }
+        });
+        
+        servant.Skills.forEach((skill) => {
             skill.Effects.forEach((effect) => {
-                if (
-                    (effect.Type == "upCommandall" || effect.Type == "downDefencecommandall")
-                    && this.matchValue(noblePhantasm.CardType, effect.Cards)) {
-                    if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
-                        this.CardMod += effect.Value;
-                        this.effectText.push(this.getEffectString(skill, effect));
-                    }
-                }
-                if (effect.Type == "upAtk") {
-                    if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
-                        this.AttackMod += effect.Value;
-                        this.effectText.push(this.getEffectString(skill, effect));
-                    }
-                }
-                if (effect.Type == "downDefence") {
-                    let targetMatch = (noblePhantasm.AOE && effect.AOE || !noblePhantasm.AOE);
-                    if (targetMatch && this.matchTrait(effect.Traits, enemy.Traits, true)) {
-                        this.AttackMod += effect.Value;
-                        this.effectText.push(this.getEffectString(skill, effect));
-                    }
-                }
-                if (effect.Type == "upDamage" || effect.Type == "upDamageIndividuality") {
-                    //console.log(effect.Traits, enemy.Traits);
-                    if (this.matchTrait(effect.Traits, enemy.Traits, false)) {
-                        this.PowerMod += effect.Value;
-                        this.effectText.push(this.getEffectString(skill, effect));
-                    }
-                }
-                if (effect.Type == "upNpdamage") {
-                    if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
-                        this.NpPowerMod += effect.Value;
-                        this.effectText.push(this.getEffectString(skill, effect));
-                    }
-                }
-                if (effect.Type == "upDropnp") {
-                    //if (this.matchTrait(effect.Traits, enemy.Traits, true)) {
-                        this.NPGainUp += effect.Value;
-                        this.effectText.push(this.getEffectString(skill, effect));
-                    //}
-                }
+                parseEffect(skill, effect, true);
             });
+        });
+
+        noblePhantasm.NoblePhantasmBuff.Effects.forEach((effect) => {
+            if (effect.BeforeDamage || effect.Type == "regainNp" || effect.Type == "gainNp")
+                parseEffect(noblePhantasm.NoblePhantasmBuff, effect, false);
         });
 
         //this.CardResistanceMod = parseFloat(noblePhantasm.CardResistanceMod);
@@ -472,7 +489,7 @@ class DamageCalculation {
         }
         this.NPEffectivenessMod = Math.min(2, 1 + parseFloat(this.configNpEffectivenessUp));
 
-        this.TotalCardMod = (1 + this.CardMod - this.CardResistanceMod);
+        this.TotalCardMod = (1 + this.CardMod - this.CardResistanceMod + this.configCardBonus);
         this.TotalAttackMod = (1 + this.AttackMod - this.DefenceMod);
         this.TotalNpMod = this.NpPowerMod * this.NPEffectivenessMod;
         this.TotalPowerNpMod = (1 + this.PowerMod + this.TotalNpMod);
@@ -481,6 +498,7 @@ class DamageCalculation {
         if (this.inputNoblePhantasm.AOE)
             this.TotalBaseRefund *= 3;
         this.TotalBaseRefund *= this.TotalCardMod;
+        this.TotalBaseRefund += this.NPRegain;        
 
         let debug = false;
         if (debug)
@@ -519,7 +537,9 @@ class DamageCalculation {
         this.CalculatedDamage = Math.round(this.CalculatedDamage);
         this.MiscAttackRating = Math.round(this.ServantAttack * this.ClassMod);
 
-        //console.log(this);
+        if (servant.Name == "Mordred")
+            console.log(this);
+
         return this;
     }
 
