@@ -204,6 +204,7 @@ class Application {
             row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.ServantLevel));
             row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.Level));
             row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.Overcharge));
+            row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.Stack));
 
             row.insertCell().append(document.createTextNode(item.MiscAttackRating));
             row.insertCell().append(document.createTextNode(item.CalculatedDamage));
