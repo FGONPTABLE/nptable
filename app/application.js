@@ -139,7 +139,7 @@ class Application {
         console.log("MISMATCH: StackMatchCount: " + StackMatchCount);
 
         if (this.sortFunctions.sortByID.enabled)
-            this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.ID, b.inputServant.ID, this.sortFunctions.sortByID.asc));
+            this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.inputServant.ID, b.inputServant.ID, this.sortFunctions.sortByID.asc));
 
         else if (this.sortFunctions.sortByName.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortString(a.inputServant.Name, b.inputServant.Name, this.sortFunctions.sortByName.asc));
