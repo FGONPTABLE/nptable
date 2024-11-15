@@ -533,7 +533,7 @@ class DamageCalculation {
         this.CalculatedDamage = Math.round(this.CalculatedDamage);
         this.MiscAttackRating = Math.round(this.ServantAttack * this.ClassMod);
 
-        if (servant.ID == "253")
+        if (servant.ID == "368")
             console.log(this);
 
         return this;
