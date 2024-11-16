@@ -84,7 +84,9 @@ class Application {
                     return;
                 }
 
-                let stackMatch = stackLevels.includes(noblePhantasm.Stack+"")
+                let stackMatch = stackLevels.includes(noblePhantasm.Stack + "");
+                if (servant.ID == "285" && noblePhantasm.Stack > 3)
+                    stackMatch = false;
                 if (!stackMatch) {
                     StackMatchCount++;
                     return;
@@ -453,7 +455,7 @@ class DamageCalculation {
                     this.effectText.push(this.getEffectString(skill, effect));
                 }
             }
-            if (effect.Type == "upDamage" || effect.Type == "upDamageIndividuality") {
+            if (effect.Type == "upDamage" || effect.Type == "upDamageIndividuality" || effect.Type == "upDamageIndividualityActiveonly") {
                 //console.log(effect.Traits, enemy.Traits);
                 if (this.matchTrait(effect.Traits, enemy.Traits, false)) {
                     this.PowerMod += effect.Value;

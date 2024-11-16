@@ -130,19 +130,21 @@ document.getElementById("Debuffable").onclick = function () {
     MySource.Check("buffCharm");
     MySource.Check("buffCurse");
     MySource.Check("buffMentalEffect");
+    MySource.Check("buffNegativeEffect");
     MySource.Check("buffPoison");
     MySource.Check("burningLove");
-    MySource.Check("exaltation");
+    //MySource.Check("exaltation");
     MySource.Check("notProtectedByBBDubai");
     MySource.Check("skillSeal");
     MySource.Check("weakPointsRevealed");
     application.OnFilterChange();
 };
 document.getElementById("SetCommonTraits").onclick = function () {
-    MySource.Check("humanoid");
+    //MySource.Check("humanoid");
     MySource.Check("like");
     MySource.Check("magicBullet");
     MySource.Check("weakToEnumaElish");
+
     application.OnFilterChange();
 };
 
@@ -175,15 +177,6 @@ document.getElementById("ConfigAllMax").onclick = function () {
     LevelFilterSelect(100);
     TargetFilterSelectAll();
     NPLevelSelect(5);
-    //TraitSelect("Servant");
-    //TraitSelect("StandardClassServant");
-    //TraitSelect("Burn");
-    //TraitSelect("Curse");
-    //TraitSelect("Poison");
-    //TraitSelect("SkillSeal");
-    //TraitSelect("Bound");
-    //TraitSelect("BuffCharm");
-    //TraitSelect("BuffNegativeEffect");
     application.OnFilterChange();
 };
 
