@@ -120,6 +120,7 @@ class Application {
                 damageCalculation.configSpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
                 damageCalculation.configNpEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
                 damageCalculation.configNpRateBonus = document.getElementById("npRateBonus").value / 100.0 ?? 0.0;
+                damageCalculation.configUseAppends = document.getElementById("UseAppends").checked;
                 damageCalculation.Calculate(servant, this.enemy, noblePhantasm);
                 this.dataSource.push(damageCalculation);
                 //console.log(damageCalculation);
@@ -258,22 +259,37 @@ class Application {
     }
 
     updateTraits() {
-        /*
-        let checkUncheck = function (id1, id2) {
-            if (MySource.IsChecked(id1) && !MySource.IsChecked(id2)) MySource.Check(id2);
-            if (!MySource.IsChecked(id1) && MySource.IsChecked(id2)) MySource.Uncheck(id2);
-        };
-
-        checkUncheck('Saber', 'SaberClassServant');
-
-        checkUncheck('Sky', 'AttributeSky');
-        //checkUncheck('Sky', 'SkyOrEarth');
-
-        checkUncheck('Earth', 'AttributeEarth');
-        //checkUncheck('Earth', 'SkyOrEarth');
-
-        checkUncheck('Man', 'AttributeMan');
-        */
+        MySource.Uncheck("classAlterEgo");
+        MySource.Uncheck("classArcher");
+        MySource.Uncheck("classAssassin");
+        MySource.Uncheck("classAvenger");
+        MySource.Uncheck("classBeast");
+        MySource.Uncheck("classBeastEresh");
+        MySource.Uncheck("classBerserker");
+        MySource.Uncheck("classCaster");
+        MySource.Uncheck("classForeigner");
+        MySource.Uncheck("classLancer");
+        MySource.Uncheck("classMoonCancer");
+        MySource.Uncheck("classPretender");
+        MySource.Uncheck("classRider");
+        MySource.Uncheck("classRuler");
+        MySource.Uncheck("classSaber");
+        MySource.Uncheck("classShielder");
+        try {
+            let value = 'class' + MySource.documentGetRadio("EnemyClass").substr(0, 1).toUpperCase() + MySource.documentGetRadio("EnemyClass").substr(1);
+                MySource.Check(value);
+        } catch (error) {
+            console.log(error);
+        }
+        MySource.Uncheck("attributeEarth");
+        MySource.Uncheck("attributeHuman");
+        MySource.Uncheck("attributeSky");
+        try {
+            let value = 'attribute' + MySource.documentGetRadio("EnemyAttribute").substr(0, 1).toUpperCase() + MySource.documentGetRadio("EnemyAttribute").substr(1);
+            MySource.Check(value);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     OnFilterChange() {
@@ -386,6 +402,7 @@ class DamageCalculation {
     configSpecialDefence = 0;
     configNpEffectivenessUp = 0;
     configNpRateBonus = 0;
+    configUseAppends = false;
 
     TotalCardMod = null;
     TotalAttackMod = null;
@@ -470,6 +487,14 @@ class DamageCalculation {
                 parseEffect(skill, effect, true);
             });
         });
+
+        if (this.configUseAppends) {
+            servant.AppendSkills.forEach((skill) => {
+                skill.Effects.forEach((effect) => {
+                    parseEffect(skill, effect, true);
+                });
+            });
+        }
 
         noblePhantasm.NoblePhantasmBuff.Effects.forEach((effect) => {
             if (effect.BeforeDamage || effect.Type == "regainNp" || effect.Type == "gainNp")
