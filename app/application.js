@@ -65,7 +65,7 @@ class Application {
                     return;
                 }
 
-                let classMatch = classes.includes(servant.Class);
+                let classMatch = classes.includes(servant.Class.toLowerCase());
                 if (!classMatch) {
                     classMatchCount++;
                     return;
@@ -481,6 +481,9 @@ class DamageCalculation {
         this.SpecialDefMod = parseFloat(this.configSpecialDefence);
         if (this.matchTrait(noblePhantasm.Traits, enemy.Traits, false)) {
             //console.log(noblePhantasm.Traits, enemy.Traits);
+            this.SuperModValue = parseFloat(noblePhantasm.SuperMod) * parseFloat(noblePhantasm.StackMod);
+        }
+        if (servant.ID == "417") {
             this.SuperModValue = parseFloat(noblePhantasm.SuperMod) * parseFloat(noblePhantasm.StackMod);
         }
         this.NPEffectivenessMod = Math.min(2, 1 + parseFloat(this.configNpEffectivenessUp));
@@ -1039,6 +1042,36 @@ class DamageTriangle {
             "Attacker": "Beast",
             "Defender": "Pretender",
             "Value": 0.5
+        },
+        {
+            "Attacker": "BeastEresh",
+            "Defender": "Ruler",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "BeastEresh",
+            "Defender": "Alterego",
+            "Value": 0.5
+        },
+        {
+            "Attacker": "BeastEresh",
+            "Defender": "Avenger",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "BeastEresh",
+            "Defender": "Mooncancer",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "BeastEresh",
+            "Defender": "Foreigner",
+            "Value": 1.5
+        },
+        {
+            "Attacker": "BeastEresh",
+            "Defender": "Pretender",
+            "Value": 1.5
         }
     ];
 
