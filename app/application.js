@@ -120,6 +120,7 @@ class Application {
                 damageCalculation.configPowerBonus = document.getElementById("powerBonus").value / 100.0 ?? 0.0;
                 damageCalculation.configNpBonus = document.getElementById("NpBonus").value / 100.0 ?? 0.0;
                 damageCalculation.configSpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
+                damageCalculation.configTriangleMod = document.getElementById("ClassChange").value ?? 0.0;
                 damageCalculation.configNpEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
                 damageCalculation.configNpRateBonus = document.getElementById("npRateBonus").value / 100.0 ?? 0.0;
                 damageCalculation.configUseAppends = document.getElementById("UseAppends").checked;
@@ -130,6 +131,7 @@ class Application {
             });
         });
 
+        /*
         console.log("after filtering: " + count);
         console.log("MISMATCH: servantMatchCount: " + servantMatchCount);
         console.log("MISMATCH: targetTypeMatchCount: " + targetTypeMatchCount);
@@ -140,6 +142,7 @@ class Application {
         console.log("MISMATCH: NPLevelMatchCount: " + NPLevelMatchCount);
         console.log("MISMATCH: levelMatchCount: " + levelMatchCount);
         console.log("MISMATCH: StackMatchCount: " + StackMatchCount);
+        */
 
         if (this.sortFunctions.sortByID.enabled)
             this.dataSource = this.dataSource.sort((a, b) => MySource.sortInt(a.inputServant.ID, b.inputServant.ID, this.sortFunctions.sortByID.asc));
@@ -210,7 +213,10 @@ class Application {
             row.insertCell().append(document.createTextNode(item.inputNoblePhantasm.Stack));
 
             row.insertCell().append(document.createTextNode(item.MiscAttackRating));
-            row.insertCell().append(document.createTextNode(item.CalculatedDamage));
+            let damageNode = document.createElement('div');
+            damageNode.setAttribute('title', item.getDamageString());
+            damageNode.appendChild(document.createTextNode(item.CalculatedDamage))
+            row.insertCell().append(damageNode);
 
             row.insertCell().append(document.createTextNode(this.round(item.inputNoblePhantasm.NPMod * 100)));
             row.insertCell().append(document.createTextNode(this.round(item.TotalCardMod)));
@@ -405,6 +411,7 @@ class DamageCalculation {
     configNpEffectivenessUp = 0;
     configNpRateBonus = 0;
     configUseAppends = false;
+    configTriangleMod = 0;
 
     TotalCardMod = null;
     TotalAttackMod = null;
@@ -425,6 +432,8 @@ class DamageCalculation {
         this.inputNoblePhantasm = noblePhantasm;
 
         this.TriangleMod = parseFloat(DamageTriangle.getTriangleMod(servant, enemy));
+        if (parseFloat(this.configTriangleMod) > 0)
+            this.TriangleMod = this.configTriangleMod; 
         this.AttributeMod = parseFloat(DamageTriangle.getAttributeMod(servant, enemy));
 
         this.ServantAttack = parseInt(noblePhantasm.ServantAttack) + parseInt(this.configServantAttack);
@@ -526,24 +535,6 @@ class DamageCalculation {
         this.TotalBaseRefund *= this.TotalCardMod;
         this.TotalBaseRefund += this.NPRegain;        
 
-        let debug = false;
-        if (debug)
-            console.log(this.ServantAttack
-                , this.NPValue
-                , this.ScalingHpMod
-                , this.ClassMod
-                , this.CardTypeMode
-                , this.TotalCardMod
-                , this.TriangleMod
-                , this.AttributeMod
-                , this.RandomMod
-                , this.Const
-                , this.TotalAttackMod
-                , this.SpecialDefMod
-                , this.TotalPowerNpMod
-                , this.SuperModValue
-            );
-
         this.CalculatedDamage =
             this.ServantAttack
             * this.NPValue
@@ -563,8 +554,8 @@ class DamageCalculation {
         this.CalculatedDamage = Math.round(this.CalculatedDamage);
         this.MiscAttackRating = Math.round(this.ServantAttack * this.ClassMod);
 
-        if (servant.ID == "368")
-            console.log(this);
+        //if (servant.ID == "368")
+        //    console.log(this);
 
         return this;
     }
@@ -591,7 +582,36 @@ class DamageCalculation {
     getEffectString(skill, effect) {
         return "[" + skill.Name + "] " + effect.Name + " " + effect.Value * 100.0;
     }
+
+    getDamageString() {
+        let s =
+            ("ServantAttack {0}\nNPValue {1}\nScalingHpMod {2}\nClassMod {3}\nCardTypeMode {4}\nTotalCardMod {5}\nTriangleMod {6}\n"
+            + "AttributeMod {7}\nRandomMod {8}\nConst {9}\nTotalAttackMod {10}\nSpecialDefMod {11}\nTotalPowerNpMod {12}\nSuperModValue {13}").f(
+            this.ServantAttack
+            , this.NPValue
+            , this.ScalingHpMod
+            , this.ClassMod
+            , this.CardTypeMode
+            , this.TotalCardMod
+            , this.TriangleMod
+            , this.AttributeMod
+            , this.RandomMod
+            , this.Const
+            , this.TotalAttackMod
+            , this.SpecialDefMod +""
+            , this.TotalPowerNpMod
+            , this.SuperModValue
+        );
+        return s;
+    }
 }
+
+String.prototype.format = String.prototype.f = function () {
+    var args = arguments;
+    return this.replace(/\{(\d+)\}/g, function (m, n) {
+        return args[n] ? args[n] : m;
+    });
+};
 
 class DamageTriangle {
     static ClassTriangle = [
@@ -1142,9 +1162,8 @@ class DamageTriangle {
 
     static getTriangleMod(servant, enemy) {
         let item = DamageTriangle.ClassTriangle.find((element) => {
-            return (element.Attacker.toLowerCase() == servant.Class && element.Defender.toLowerCase() == enemy.Class);
+            return (element.Attacker.toLowerCase() == servant.Class.toLowerCase() && element.Defender.toLowerCase() == enemy.Class.toLowerCase());
         });
-
         if (item === undefined)
             return 1.0;
 
