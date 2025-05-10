@@ -122,6 +122,7 @@ class Application {
                 damageCalculation.configSpecialDefence = document.getElementById("SpecialDefence").value / 100.0 ?? 0.0;
                 damageCalculation.configTriangleMod = document.getElementById("ClassChange").value ?? 0.0;
                 damageCalculation.configNpEffectivenessUp = MySource.documentGetCheckedFloatValue("NPEffectivenessUp") / 100.0 ?? 0.0;
+                damageCalculation.configSkillDoubleDip = MySource.documentGetCheckedFloatValue("SkillDoubleDip") / 1.0 ?? 0.0;
                 damageCalculation.configNpRateBonus = document.getElementById("npRateBonus").value / 100.0 ?? 0.0;
                 damageCalculation.configUseAppends = document.getElementById("UseAppends").checked;
                 damageCalculation.Calculate(servant, this.enemy, noblePhantasm);
@@ -412,6 +413,7 @@ class DamageCalculation {
     configNpRateBonus = 0;
     configUseAppends = false;
     configTriangleMod = 0;
+    configSkillDoubleDip = 0;
 
     TotalCardMod = null;
     TotalAttackMod = null;
@@ -442,6 +444,7 @@ class DamageCalculation {
         this.ClassMod = parseFloat(servant.ClassMod);
         this.CardTypeMode = parseFloat(noblePhantasm.CardTypeMode);
 
+        let skillDoubleDip = 1 + parseFloat(this.configSkillDoubleDip);
         let parseEffect = ((skill, effect, isSkill) => {
             if (
                 (effect.Type == "upCommandall" || effect.Type == "downDefencecommandall")
@@ -486,18 +489,20 @@ class DamageCalculation {
             if (effect.Type == "regainNp") {
                 this.NPRegain += effect.Value * 10;
                 this.effectText.push(this.getEffectString(skill, effect));
-            }            
-            if(effect.Type == "gainNp" && !isSkill) {
+            }
+            if (effect.Type == "gainNp" && !isSkill) {
                 this.NPRegain += effect.Value * 10;
                 this.effectText.push(this.getEffectString(skill, effect));
             }
         });
-        
-        servant.Skills.forEach((skill) => {
-            skill.Effects.forEach((effect) => {
-                parseEffect(skill, effect, true);
+
+        for (let i = 0; i < skillDoubleDip; i++) {
+            servant.Skills.forEach((skill) => {
+                skill.Effects.forEach((effect) => {
+                    parseEffect(skill, effect, true);
+                });
             });
-        });
+        }
 
         if (this.configUseAppends) {
             servant.AppendSkills.forEach((skill) => {
